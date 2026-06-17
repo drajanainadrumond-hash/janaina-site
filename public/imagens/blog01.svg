@@ -1,0 +1,92 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Editorial Medical Composition -->
+  <!-- Brand Palette: Teal (#003E51), Cream (#F5F0E8) -->
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#F5F0E8"/>
+  
+  <!-- Soft Lighting / Depth -->
+  <defs>
+    <radialGradient id="soft_glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" transform="translate(900 315) scale(600 400)">
+      <stop stop-color="#00565B" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#F5F0E8" stop-opacity="0"/>
+    </radialGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="4" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.1"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#soft_glow)"/>
+
+  <!-- Background Decorative Texture (Very subtle) -->
+  <circle cx="1100" cy="100" r="300" stroke="#003E51" stroke-width="0.3" stroke-opacity="0.1" fill="none"/>
+  <circle cx="1100" cy="100" r="200" stroke="#003E51" stroke-width="0.3" stroke-opacity="0.05" fill="none"/>
+
+  <!-- Text Group (Left Side) -->
+  <g transform="translate(100, 120)">
+    <!-- Tag -->
+    <rect width="140" height="28" rx="14" fill="#003E51" fill-opacity="0.05"/>
+    <text x="70" y="19" font-family="'Century Gothic', sans-serif" font-size="12" fill="#003E51" text-anchor="middle" font-weight="bold" letter-spacing="2">GUIA MÉDICO</text>
+
+    <!-- Main Title (Aire Pro style) -->
+    <g transform="translate(0, 80)">
+      <text font-family="'Aire Pro', serif" font-size="64" fill="#003E51" style="font-weight: 300;">Condições de</text>
+      <text y="75" font-family="'Aire Pro', serif" font-size="72" fill="#003E51" style="font-weight: 300;">Mão e Punho</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text y="210" font-family="'Century Gothic', sans-serif" font-size="22" fill="#00565B" font-weight="300" letter-spacing="0.5">Diagnóstico, Tratamento e Prevenção</text>
+    
+    <!-- Separator -->
+    <rect y="240" width="60" height="2" fill="#003E51" fill-opacity="0.2"/>
+  </g>
+
+  <!-- Illustration Group (Right Side) -->
+  <g transform="translate(650, 80) scale(1.1)" filter="url(#shadow)">
+    <!-- Main Hand Shape (Editorial semi-realistic) -->
+    <path d="M120 420C120 420 85 370 85 310C85 240 120 210 160 210C200 210 230 240 230 310C230 370 190 420 190 420" fill="white" fill-opacity="0.95"/>
+    
+    <!-- Detailed Outlines (Traço Fino) -->
+    <g stroke="#003E51" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.7">
+      <path d="M110 430C110 430 80 370 80 310C80 230 120 200 165 200C210 200 245 230 245 310C245 370 215 430 215 430" />
+      
+      <!-- Thumb -->
+      <path d="M100 310C70 310 40 270 30 220C20 170 50 140 80 150C110 160 130 190 140 230" />
+      <!-- Index -->
+      <path d="M140 200C130 150 140 70 165 60C190 50 205 110 195 200" />
+      <!-- Middle -->
+      <path d="M195 200C195 130 210 30 240 20C270 10 285 90 270 205" />
+      <!-- Ring -->
+      <path d="M270 205C270 140 290 50 320 65C350 80 340 140 325 215" />
+      <!-- Pinky -->
+      <path d="M325 215C345 190 390 130 410 160C430 190 390 270 365 320" />
+    </g>
+
+    <!-- Soft Anatomical Shading -->
+    <path d="M165 200C130 200 100 230 100 310" stroke="#003E51" stroke-width="4" stroke-opacity="0.02" fill="none"/>
+
+    <!-- Markers -->
+    <g fill="#00565B" stroke="white" stroke-width="2">
+      <circle cx="160" cy="340" r="5" />
+      <circle cx="85" cy="250" r="4" opacity="0.8"/>
+      <circle cx="230" cy="190" r="4" opacity="0.8"/>
+    </g>
+  </g>
+
+  <!-- Footer Branding -->
+  <g transform="translate(100, 520)">
+    <text font-family="'Aire Pro', serif" font-size="28" fill="#003E51">Dra. Janaína Drumond</text>
+    <text y="25" font-family="'Century Gothic', sans-serif" font-size="12" fill="#85878B" font-weight="bold" letter-spacing="2">ORTOPEDIA • CIRURGIA DA MÃO</text>
+    <text y="45" font-family="'Century Gothic', sans-serif" font-size="10" fill="#85878B" font-weight="300">CRM-MG 69719 | RQE 50592</text>
+  </g>
+
+</svg>

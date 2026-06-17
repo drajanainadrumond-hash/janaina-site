@@ -11,6 +11,7 @@ import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
 import { AeoContentIntro } from "@/components/seo/aeo-content-intro";
 import { TimelineFeed } from "@/components/condicoes/timeline-feed";
 import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
+import { generateBlogPosting, generateFAQPage } from "@/lib/schema";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description,
     path: `/blog/${slug}`,
-    ogImage: "/janaina-blog.jpg",
+    ogImage: post.ogImage || "/janaina-blog.jpg",
   });
 }
 
@@ -56,26 +57,15 @@ export default async function BlogPostPage({ params }: Props) {
     year: "numeric",
   });
 
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
+  const articleSchema = generateBlogPosting({
     headline: post.title,
     description: directAnswer,
+    path: `/blog/${post.slug}`,
     datePublished: post.created_at,
     dateModified: post.updated_at,
-    author: {
-      "@type": "Physician",
-      name: "Dra. Janaína Drumond Rocha Fraga",
-      url: "https://janainadrumond.com.br/sobre",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Dra. Janaína Drumond",
-      url: "https://janainadrumond.com.br",
-    },
-    medicalAudience: { "@type": "PatientAudience" },
-    url: `https://janainadrumond.com.br/blog/${post.slug}`,
-  };
+  });
+
+  const faqSchema = post.faqs ? generateFAQPage(post.faqs) : null;
 
   return (
     <>
@@ -83,6 +73,12 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Hero */}
       <div className="relative bg-teal overflow-hidden">
@@ -90,45 +86,60 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_45%,rgba(0,86,91,0.35)_0%,transparent_60%)]" />
 
         <div className="relative pt-[120px] lg:pt-[160px] pb-12 lg:pb-16 px-6">
-          <div className="max-w-[700px] mx-auto">
-            <PageBreadcrumbs
-              variant="onDark"
-              className="mb-8"
-              items={withHome(
-                { name: "Blog", href: "/blog" },
-                { name: post.title, href: `/blog/${post.slug}` }
-              )}
-            />
+          <div className="max-w-[1100px] mx-auto grid lg:grid-cols-[1fr_400px] gap-12 items-center">
+            <div>
+              <PageBreadcrumbs
+                variant="onDark"
+                className="mb-8"
+                items={withHome(
+                  { name: "Blog", href: "/blog" },
+                  { name: post.title, href: `/blog/${post.slug}` }
+                )}
+              />
 
-            {/* Category */}
-            <span className="inline-block bg-white/10 text-white text-[1.125rem] px-3 py-1 rounded-full uppercase tracking-[1.5px] border border-white/[0.08] mb-5">
-              {post.category}
-            </span>
+              {/* Category */}
+              <span className="inline-block bg-white/10 text-white text-[1.125rem] px-3 py-1 rounded-full uppercase tracking-[1.5px] border border-white/[0.08] mb-5">
+                {post.category}
+              </span>
 
-            {/* Title */}
-            <h1 className="font-heading text-[1.8rem] sm:text-[2.2rem] md:text-[2.8rem] font-light text-white leading-[1.15] tracking-[0.5px] mb-5">
-              {post.title}
-            </h1>
+              {/* Title */}
+              <h1 className="font-heading text-[1.8rem] sm:text-[2.2rem] md:text-[2.8rem] font-light text-white leading-[1.15] tracking-[0.5px] mb-5">
+                {post.title}
+              </h1>
 
-            {/* Excerpt */}
-            <p className="text-[1.125rem] text-white/65 leading-[1.8] max-w-[560px] mb-8">
-              {post.excerpt}
-            </p>
+              {/* Excerpt */}
+              <p className="text-[1.125rem] text-white/65 leading-[1.8] max-w-[560px] mb-8">
+                {post.excerpt}
+              </p>
 
-            {/* Author + Meta */}
-            <div className="flex items-center gap-4 pt-6 border-t border-white/[0.06]">
-              <div className="w-11 h-11 rounded-full bg-white/10 border border-white/[0.08] flex items-center justify-center overflow-hidden">
-                <Image src="/logo-white.png" alt="" width={28} height={28} className="opacity-60" />
-              </div>
-              <div>
-                <p className="text-[1.125rem] text-white/70 font-medium">Dra. Janaína Drumond</p>
-                <div className="flex items-center gap-3 text-[1.125rem] text-white/60">
-                  <span>{publishDate}</span>
-                  <span className="w-1 h-1 rounded-full bg-white/20" />
-                  <span>{readTime} min de leitura</span>
+              {/* Author + Meta */}
+              <div className="flex items-center gap-4 pt-6 border-t border-white/[0.06]">
+                <div className="w-11 h-11 rounded-full bg-white/10 border border-white/[0.08] flex items-center justify-center overflow-hidden">
+                  <Image src="/logo-white.png" alt="" width={28} height={28} className="opacity-60" />
+                </div>
+                <div>
+                  <p className="text-[1.125rem] text-white/70 font-medium">Dra. Janaína Drumond</p>
+                  <div className="flex items-center gap-3 text-[1.125rem] text-white/60">
+                    <span>{publishDate}</span>
+                    <span className="w-1 h-1 rounded-full bg-white/20" />
+                    <span>{readTime} min de leitura</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Featured Image */}
+            {post.ogImage && (
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden glass p-4 group">
+                <Image
+                  src={post.ogImage}
+                  alt={post.title}
+                  fill
+                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                  priority
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

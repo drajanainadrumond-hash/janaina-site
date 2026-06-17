@@ -1,4 +1,5 @@
 import { getSupabaseAdmin } from "./supabase";
+import { FaqItem } from "./schema";
 
 export type BlogPost = {
   id: string;
@@ -10,10 +11,153 @@ export type BlogPost = {
   published: boolean;
   created_at: string;
   updated_at: string;
+  ogImage?: string;
+  faqs?: FaqItem[];
 };
 
 // Fallback: posts estáticos quando Supabase não está configurado
 const STATIC_POSTS: BlogPost[] = [
+  {
+    id: "0",
+    slug: "condicoes-mao-punho-guia-completo",
+    title: "Condições da Mão e Punho: Guia Completo",
+    excerpt: "Conheça as principais condições da mão e punho: túnel do carpo, dedo em gatilho, rizartrose, fraturas e mais.",
+    ogImage: "/imagens/condicoes-mao-punho-capa.jpeg",
+    faqs: [
+      {
+        question: "Qual a diferença entre ortopedista e cirurgião de mão?",
+        answer: "O cirurgião de mão é um ortopedista especializado que realizou dois anos adicionais de treinamento focado exclusivamente em microanatomia, nervos e tendões da mão e punho."
+      },
+      {
+        question: "Preciso de encaminhamento para consultar com especialista em mão?",
+        answer: "Não. Você pode agendar uma consulta diretamente se apresentar sintomas como formigamento, dor crônica ou travamento nos dedos."
+      },
+      {
+        question: "Artrose na mão tem cura sem cirurgia?",
+        answer: "A artrose é um processo degenerativo, mas o controle da dor e a melhora da função podem ser alcançados sem cirurgia através de viscossuplementação, fisioterapia e órteses."
+      },
+      {
+        question: "O cisto sinovial pode virar câncer?",
+        answer: "Não. O cisto sinovial é uma condição benigna preenchida por fluido articular e não possui relação com neoplasias malignas."
+      },
+      {
+        question: "Quais convênios são aceitos?",
+        answer: "Atendemos diversos convênios para consultas e procedimentos. Recomendamos entrar em contato com nossa equipe para confirmar a cobertura atualizada para o seu plano."
+      }
+    ],
+    content: `
+<p>As nossas mãos são ferramentas extraordinárias de interação com o mundo. Elas nos permitem desde a precisão de um cirurgião ou músico até a força necessária para carregar objetos pesados. No entanto, essa complexidade anatômica — composta por 27 ossos, dezenas de articulações, tendões, nervos e ligamentos — também as torna vulneráveis a uma série de condições que podem impactar severamente a nossa qualidade de vida.</p>
+
+<p>Como ortopedista especializada em cirurgia da mão e punho em Belo Horizonte, vejo diariamente pacientes que sofrem com dores, formigamentos e limitações funcionais. Muitas vezes, a demora em procurar ajuda especializada ocorre por falta de informação sobre as patologias mais comuns.</p>
+
+<p>Este guia completo foi elaborado para ser um hub central de informações sobre as principais <strong>condições da mão e punho</strong>, ajudando você a identificar sintomas precoces e entender as opções modernas de tratamento.</p>
+
+<h2>Anatomia da Mão — Por Que Ela é Tão Vulnerável?</h2>
+
+<p>A mão humana é uma das estruturas mais complexas do corpo. Para que possamos realizar o movimento de oposição do polegar (o que nos diferencia de muitos outros mamíferos), é necessária uma harmonia perfeita entre os ossos do carpo (punho), metacarpos (palma) e falanges (dedos).</p>
+
+<p>A vulnerabilidade da mão reside no fato de que muitas estruturas passam por canais estreitos (túneis). Qualquer inflamação mínima em um tendão ou o surgimento de um pequeno cisto pode comprimir um nervo ou travar uma articulação. Além disso, a mão está em constante uso, o que predispõe a lesões por esforço repetitivo (LER) e processos degenerativos como a artrose.</p>
+
+<h2>Síndrome do Túnel do Carpo</h2>
+
+<p>Esta é, sem dúvida, a neuropatia compressiva mais frequente no consultório. Ela ocorre quando o <strong>nervo mediano</strong>, que passa por um canal estreito no punho chamado túnel do carpo, sofre compressão.</p>
+
+<p><strong>Principais Sintomas:</strong>
+<ul>
+  <li>Formigamento e dormência no polegar, indicador e dedo médio.</li>
+  <li>Dores que pioram à noite ou ao segurar objetos por muito tempo (como o volante do carro ou celular).</li>
+  <li>Perda de força na mão e tendência a deixar objetos caírem.</li>
+</ul>
+</p>
+
+<p>O tratamento inicial costuma envolver o uso de órteses noturnas e fisioterapia. Em casos avançados ou onde não há resposta ao tratamento conservador, a cirurgia de liberação do túnel do carpo apresenta taxas de sucesso superiores a 90%.</p>
+
+<h2>Dedo em Gatilho</h2>
+
+<p>Tecnicamente chamado de tenossinovite estenosante, o <strong>dedo em gatilho</strong> acontece quando o tendão flexor incha e encontra dificuldade para deslizar através da polia (uma espécie de túnel na base do dedo).</p>
+
+<p>O resultado é um dedo que "trava" em posição dobrada e, ao esticar, produz um estalido doloroso, semelhante ao gatilho de uma arma. É muito comum em pacientes diabéticos ou pessoas que realizam atividades manuais intensas.</p>
+
+<h2>Rizartrose (Artrose do Polegar)</h2>
+
+<p>A rizartrose é a degeneração da cartilagem na base do polegar (articulação trapézio-metacarpiana). Por ser a articulação responsável pela "pinça", sua inflamação é extremamente incapacitante.</p>
+
+<p><strong>Sinais de Alerta:</strong>
+<ul>
+  <li>Dor na base do polegar ao abrir potes, girar chaves ou escrever.</li>
+  <li>Perda de força para segurar objetos pequenos.</li>
+  <li>Deformidade visível na base do polegar em estágios avançados.</li>
+</ul>
+</p>
+
+<h2>Fraturas de Mão e Punho</h2>
+
+<p>As fraturas são emergências ortopédicas comuns. A fratura do rádio distal (no punho) e a fratura do escafóide são as mais frequentes após quedas com a mão estendida.</p>
+
+<p>É fundamental o diagnóstico preciso através de radiografias ou tomografias, pois uma fratura não consolidada corretamente (pseudartrose) no punho pode levar à artrose precoce e perda permanente de movimento.</p>
+
+<h2>Cisto Sinovial</h2>
+
+<p>O cisto sinovial é uma "bolsa" preenchida por líquido articular que aparece geralmente no dorso do punho ou na palma, próximo à base dos dedos. Embora assuste visualmente, o cisto <strong>não é cancerígeno</strong>.</p>
+
+<p>O tratamento é indicado se houver dor ou desconforto estético acentuado. Muitos cistos desaparecem sozinhos, mas em casos persistentes, a aspiração ou a remoção cirúrgica (muitas vezes por vídeo/artroscopia) pode ser necessária.</p>
+
+<h2>Doença de De Quervain</h2>
+
+<p>Trata-se de uma inflamação dos tendões que movimentam o polegar, especificamente no lado do punho. É muito associada ao uso excessivo de smartphones (pelo movimento repetitivo do polegar) e também é frequente em mães de recém-nascidos, devido à posição de carregar o bebê.</p>
+
+<p>O teste de Finkelstein (dobrar o polegar na palma e inclinar o punho) costuma ser positivo e muito doloroso em quem tem essa condição.</p>
+
+<h2>Contratura de Dupuytren</h2>
+
+<p>Esta condição afeta a fáscia palmar (tecido abaixo da pele da palma da mão), causando seu espessamento e encurtamento. Com o tempo, formam-se nódulos e cordas que puxam os dedos (geralmente o anelar e o mínimo) para dentro da palma, impedindo que a mão seja aberta completamente.</p>
+
+<p>É uma condição de origem genética e, embora não tenha "cura" definitiva, procedimentos modernos como a fasciotomia percutânea ou cirurgia aberta podem restaurar a extensão dos dedos.</p>
+
+<h2>Quando Procurar um Especialista?</h2>
+
+<p>Não ignore sinais persistentes. Você deve procurar um especialista em mão se apresentar:
+<ul>
+  <li>Dormência que dura mais de uma semana ou que acorda você à noite.</li>
+  <li>Travamento de qualquer um dos dedos.</li>
+  <li>Dor no punho após trauma, mesmo que consiga movimentar.</li>
+  <li>Perda de sensibilidade ou força súbita.</li>
+</ul>
+</p>
+
+<div class="prose-custom">
+  <div class="compare-grid">
+    <div class="compare-card">
+      <div class="compare-header">Diferença Profissional</div>
+      <div class="compare-body">
+        <div class="compare-row"><span class="compare-label">Ortopedista Geral</span><span>Trata o sistema locomotor como um todo.</span></div>
+        <div class="compare-row"><span class="compare-label">Especialista em Mão</span><span>Focado na microanatomia e cirurgia reconstrutiva.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>FAQ sobre Condições da Mão</h3>
+
+<p><strong>Diferença entre ortopedista e cirurgião de mão:</strong> O cirurgião de mão é um ortopedista (ou cirurgião plástico) que realizou dois anos adicionais de especialização exclusiva em mão, punho e microcirurgia nervosa.</p>
+
+<p><strong>Precisa de encaminhamento?</strong> Não necessariamente. Você pode agendar uma consulta diretamente se tiver sintomas específicos nas mãos.</p>
+
+<p><strong>Artrose tem cura sem cirurgia?</strong> A artrose é degenerativa, portanto não tem "cura" que reverta a cartilagem, mas o <strong>controle da dor</strong> sem cirurgia é possível em muitos casos através de viscossuplementação, fisioterapia e órteses.</p>
+
+<p><strong>Cisto vira câncer?</strong> Absolutamente não. O cisto sinovial é benigno e composto por fluido lubrificante da própria articulação.</p>
+
+<p><strong>Convênios aceitos:</strong> Atendemos diversos convênios para consultas e procedimentos. Entre em contato para verificar a cobertura atualizada.</p>
+
+<p><strong>CTA:</strong> Se você sente algum desses sintomas ou deseja uma avaliação preventiva, <a href="/agende-sua-consulta">agende sua avaliação com a Dra. Janaina Drumond</a>. Cuidar das suas mãos é garantir sua independência e produtividade.</p>
+
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+`,
+    category: "Mão",
+    published: true,
+    created_at: "2026-06-15",
+    updated_at: "2026-06-15",
+  },
   {
     id: "1",
     slug: "sindrome-tunel-do-carpo",
@@ -112,6 +256,7 @@ const STATIC_POSTS: BlogPost[] = [
 
 <h2>Saiba mais</h2>
 <ul>
+<li><a href="/blog/condicoes-mao-punho-guia-completo">Guia Completo: Principais Condições da Mão e Punho</a></li>
 <li><a href="/condicoes/sindrome-do-tunel-do-carpo">Saiba mais sobre a síndrome do túnel do carpo e suas opções de tratamento</a></li>
 <li><a href="/blog/formigamento-dedos-noite">Formigamento nos dedos à noite: pode ser túnel do carpo?</a></li>
 <li><a href="/especialidades/cirurgia-da-mao-e-punho">Conheça a atuação da Dra. Janaína em cirurgia da mão</a></li>
@@ -337,6 +482,7 @@ const STATIC_POSTS: BlogPost[] = [
 
 <h2>Saiba mais</h2>
 <ul>
+<li><a href="/blog/condicoes-mao-punho-guia-completo">Guia Completo: Principais Condições da Mão e Punho</a></li>
 <li><a href="/condicoes/dedo-em-gatilho">Dedo em gatilho: diagnóstico e tratamento completo</a></li>
 <li><a href="/condicoes/sindrome-do-tunel-do-carpo">Síndrome do túnel do carpo — outra condição comum da mão</a></li>
 <li><a href="/especialidades/cirurgia-da-mao-e-punho">Conheça a atuação da Dra. Janaína em cirurgia da mão</a></li>
@@ -621,6 +767,7 @@ const STATIC_POSTS: BlogPost[] = [
 
 <h2>Saiba mais</h2>
 <ul>
+<li><a href="/blog/condicoes-mao-punho-guia-completo">Guia Completo: Principais Condições da Mão e Punho</a></li>
 <li><a href="/condicoes/sindrome-do-tunel-do-carpo">Saiba mais sobre a síndrome do túnel do carpo e suas opções de tratamento</a></li>
 <li><a href="/blog/sindrome-tunel-do-carpo">Túnel do carpo: sintomas, causas e tratamento completo</a></li>
 <li><a href="/especialidades/cirurgia-da-mao-e-punho">Conheça a atuação da Dra. Janaína em cirurgia da mão</a></li>
