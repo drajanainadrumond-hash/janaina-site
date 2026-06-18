@@ -10,9 +10,9 @@ import { getHomeFaqs } from "@/lib/faqs";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Dra. Janaína Drumond — Ortopedista em BH | Cirurgia de Mão e Punho",
+  title: "Dra. Janaína Drumond — Ortopedista em BH | Mão e Punho",
   description:
-    "Ortopedista e Traumatologista em Belo Horizonte com formação em Cirurgia da Mão e Punho. Diagnóstico preciso, atendimento humanizado. CRM-MG 69719 | RQE 50592. Agende sua consulta.",
+    "Ortopedista e Traumatologista em Belo Horizonte com atuação em condições da mão e punho. Diagnóstico preciso, atendimento humanizado. CRM-MG 69719 | RQE 50592. Agende sua consulta.",
   path: "/",
 });
 
