@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { ContactForm } from "@/components/forms/contact-form";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -7,7 +6,7 @@ export const metadata: Metadata = buildPageMetadata({
   title: "Agende sua Consulta — Ortopedista em Belo Horizonte",
   description:
     "Agende sua consulta com a Dra. Janaína Drumond, ortopedista em Belo Horizonte. Atendimento particular e convênios.",
-  path: "/agende-sua-consulta",
+  path: "/contato",
 });
 
 export default function AgendePage() {
@@ -73,15 +72,15 @@ export default function AgendePage() {
                   </a>
                 </li>
                 <li>
-                  <Link
-                    href="/contato"
+                  <a
+                    href="mailto:contato@janainadrumond.com.br"
                     className="flex items-center gap-3 text-[1.125rem] text-[#4A5E6B] hover:text-teal transition-colors"
                   >
                     <span className="w-8 h-8 rounded-lg bg-teal-pale flex items-center justify-center text-teal text-sm">
                       ✉️
                     </span>
-                    Página de contato completa
-                  </Link>
+                    E-mail
+                  </a>
                 </li>
               </ul>
             </div>

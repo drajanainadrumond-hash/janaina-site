@@ -149,7 +149,7 @@ const STATIC_POSTS: BlogPost[] = [
 
 <p><strong>Convênios aceitos:</strong> Atendemos diversos convênios para consultas e procedimentos. Entre em contato para verificar a cobertura atualizada.</p>
 
-<p><strong>CTA:</strong> Se você sente algum desses sintomas ou deseja uma avaliação preventiva, <a href="/agende-sua-consulta">agende sua avaliação com a Dra. Janaina Drumond</a>. Cuidar das suas mãos é garantir sua independência e produtividade.</p>
+<p><strong>CTA:</strong> Se você sente algum desses sintomas ou deseja uma avaliação preventiva, <a href="/contato">agende sua avaliação com a Dra. Janaina Drumond</a>. Cuidar das suas mãos é garantir sua independência e produtividade.</p>
 
 <p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
 `,

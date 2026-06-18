@@ -17,6 +17,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/agende-sua-consulta",
+        destination: "/contato",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

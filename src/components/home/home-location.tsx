@@ -21,7 +21,7 @@ export function HomeLocation() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/agende-sua-consulta"
+              href="/contato"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-cream text-teal text-[1.125rem] hover:bg-white transition-colors"
             >
               Agendar consulta

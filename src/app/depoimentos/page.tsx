@@ -84,7 +84,7 @@ export default async function DepoimentosPage() {
 
       <section className="pb-24 px-6 text-center">
         <Link
-          href="/agende-sua-consulta"
+          href="/contato"
           className="inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-teal text-white text-[1.125rem] hover:bg-teal-mid transition-colors"
         >
           Agendar consulta
