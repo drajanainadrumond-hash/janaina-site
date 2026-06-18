@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { CONVENIOS } from "@/lib/constants";
+import { getStoredAttribution } from "@/lib/utm";
 
 type ContactFormData = {
   name: string;
@@ -33,10 +34,12 @@ export function ContactForm() {
 
   async function onSubmit(data: ContactFormData) {
     try {
+      const attribution = getStoredAttribution();
+
       const res = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, ...attribution }),
       });
 
       const result = await res.json();
@@ -44,6 +47,15 @@ export function ContactForm() {
       if (!res.ok) {
         toast.error(result.error || "Erro ao enviar mensagem.");
         return;
+      }
+
+      // Conversão para GA4/Google Ads (só dispara se o GTM já estiver carregado,
+      // i.e. após consentimento de cookies). Inclui a origem da campanha.
+      if (typeof window !== "undefined" && "dataLayer" in window) {
+        (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer.push({
+          event: "generate_lead",
+          ...attribution,
+        });
       }
 
       toast.success("Mensagem enviada! Redirecionando para o WhatsApp...");

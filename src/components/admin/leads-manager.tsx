@@ -10,6 +10,10 @@ type Lead = {
   convenio: string;
   queixa: string;
   created_at: string;
+  utm_source?: string | null;
+  utm_medium?: string | null;
+  utm_campaign?: string | null;
+  gclid?: string | null;
 };
 
 export function LeadsManager() {
@@ -87,6 +91,26 @@ export function LeadsManager() {
                 <p className="mt-2 text-[1.125rem] uppercase text-[#4A5E6B] bg-[#f5f5f0] rounded-lg px-3 py-2">
                   {lead.queixa}
                 </p>
+              )}
+              {(lead.utm_source || lead.utm_campaign || lead.gclid) && (
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {lead.utm_source && (
+                    <span className="text-[0.95rem] text-[#00565B] bg-[#00565B]/10 rounded-full px-2.5 py-1">
+                      {lead.utm_source}
+                      {lead.utm_medium ? ` · ${lead.utm_medium}` : ""}
+                    </span>
+                  )}
+                  {lead.utm_campaign && (
+                    <span className="text-[0.95rem] text-[#00565B] bg-[#00565B]/10 rounded-full px-2.5 py-1">
+                      {lead.utm_campaign}
+                    </span>
+                  )}
+                  {lead.gclid && (
+                    <span className="text-[0.95rem] text-white bg-[#00565B] rounded-full px-2.5 py-1">
+                      Google Ads
+                    </span>
+                  )}
+                </div>
               )}
             </div>
           ))}

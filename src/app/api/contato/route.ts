@@ -4,6 +4,27 @@ import { sendContactEmail } from "@/lib/email";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { rateLimit } from "@/lib/rate-limit";
 
+const ATTRIBUTION_KEYS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "gclid",
+  "referrer",
+  "landing_page",
+] as const;
+
+/** Extrai e sanitiza os campos de atribuição vindos do cliente. */
+function pickAttribution(body: Record<string, unknown>) {
+  const out: Record<string, string> = {};
+  for (const key of ATTRIBUTION_KEYS) {
+    const v = body[key];
+    if (typeof v === "string" && v.trim()) out[key] = v.slice(0, 300);
+  }
+  return out;
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting
@@ -36,7 +57,7 @@ export async function POST(request: NextRequest) {
 
     const leadData = { name, whatsapp, convenio, queixa };
 
-    // 1. Salvar lead no Supabase
+    // 1. Salvar lead no Supabase (com atribuição de campanha, se houver)
     const supabase = getSupabaseAdmin();
     if (supabase) {
       const { error: dbError } = await supabase.from("leads").insert({
@@ -45,6 +66,7 @@ export async function POST(request: NextRequest) {
         convenio,
         queixa,
         ip,
+        ...pickAttribution(body),
         created_at: new Date().toISOString(),
       });
       if (dbError) console.error("[supabase] Erro ao salvar lead:", dbError);

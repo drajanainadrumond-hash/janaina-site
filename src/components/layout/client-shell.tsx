@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { UtmCapture } from "../seo/utm-capture";
 
 const WhatsAppButton = dynamic(
   () => import("./whatsapp-button").then((m) => m.WhatsAppButton),
@@ -26,6 +27,7 @@ const WebVitals = dynamic(
 export function ClientShell() {
   return (
     <>
+      <UtmCapture />
       <WebVitals />
       <WhatsAppButton />
       <ScrollToTop />

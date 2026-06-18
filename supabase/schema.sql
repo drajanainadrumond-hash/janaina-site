@@ -11,6 +11,15 @@ CREATE TABLE IF NOT EXISTS leads (
   convenio TEXT NOT NULL,
   queixa TEXT NOT NULL,
   ip TEXT,
+  -- Atribuição de campanha (origem do lead)
+  utm_source TEXT,
+  utm_medium TEXT,
+  utm_campaign TEXT,
+  utm_term TEXT,
+  utm_content TEXT,
+  gclid TEXT,
+  referrer TEXT,
+  landing_page TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
