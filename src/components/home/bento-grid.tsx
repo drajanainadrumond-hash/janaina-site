@@ -25,7 +25,7 @@ const CARDS = [
     href: "/contato",
     tag: "Agendamento",
     title: "Agende sua Consulta",
-    desc: "Consultório particular e convênios.",
+    desc: "Atendimento exclusivamente particular.",
     variant: "teal" as const,
   },
   {

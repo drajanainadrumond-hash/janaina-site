@@ -78,8 +78,8 @@ function buildIndex(): Result[] {
   const pages = [
     { title: "Sobre a Dra. Janaína", desc: "Ortopedista e traumatologista em BH. UFOP, Socor e pós-graduação em Mão e Punho pela FCMMG.", href: "/sobre", category: "Página" },
     { title: "Contato e Agendamento", desc: "WhatsApp, telefone, formulário. Consultório em Belo Horizonte.", href: "/contato", category: "Página" },
-    { title: "Perguntas Frequentes", desc: "FAQ sobre consultas, convênios, cirurgias e recuperação.", href: "/faq", category: "Página" },
-    { title: "Formação Acadêmica", desc: "UFOP, Hospital Socor, FCMMG. Residência e pós-graduação em cirurgia da mão.", href: "/sobre/formacao", category: "Página" },
+    { title: "Perguntas Frequentes", desc: "FAQ sobre consultas, condições da mão e punho e recuperação.", href: "/faq", category: "Página" },
+    { title: "Formação Acadêmica", desc: "UFOP, Hospital Socor, FCMMG. Residência e pós-graduação em Mão e Punho.", href: "/sobre/formacao", category: "Página" },
     { title: "Publicações Científicas", desc: "Archives of Health Investigation. ORCID: 0000-0003-2579-0312.", href: "/sobre/publicacoes", category: "Página" },
   ];
   pages.forEach((p) => {

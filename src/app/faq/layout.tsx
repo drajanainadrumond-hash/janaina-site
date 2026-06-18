@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Perguntas Frequentes — Consulta, Cirurgia de Mão, Convênios",
+  title: "Perguntas Frequentes — Consulta, Mão e Punho",
   description:
-    "Tire suas dúvidas sobre consulta ortopédica, cirurgia de mão e punho, túnel do carpo, dedo em gatilho, recuperação e convênios aceitos. Dra. Janaína Drumond — BH.",
+    "Tire suas dúvidas sobre consulta ortopédica, condições da mão e punho, túnel do carpo, dedo em gatilho e recuperação. Dra. Janaína Drumond — BH.",
   path: "/faq",
 });
 

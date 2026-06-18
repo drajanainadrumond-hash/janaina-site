@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildPageMetadata({
   title: "Agende sua Consulta — Ortopedista em Belo Horizonte",
   description:
-    "Agende sua consulta com a Dra. Janaína Drumond, ortopedista em Belo Horizonte. Atendimento particular e convênios.",
+    "Agende sua consulta com a Dra. Janaína Drumond, ortopedista em Belo Horizonte. Atendimento exclusivamente particular.",
   path: "/contato",
 });
 
@@ -38,7 +38,7 @@ export default function AgendePage() {
               <p className="text-[1.125rem] text-[#4A5E6B] leading-[1.8]">
                 Belo Horizonte, MG
                 <br />
-                Atendimento particular e convênios.
+                Atendimento exclusivamente particular.
               </p>
             </div>
 

@@ -34,7 +34,7 @@ const STATIC_FAQ_CATEGORIES: FaqCategoryGroup[] = [
       {
         question: "Preciso de encaminhamento para consultar?",
         answer:
-          "Não. Você pode agendar diretamente comigo, sem necessidade de encaminhamento, tanto para consultas particulares quanto por convênio.",
+          "Não. Você pode agendar diretamente comigo, sem necessidade de encaminhamento. O atendimento é exclusivamente particular.",
       },
       {
         question: "Quais exames devo levar na consulta?",
@@ -106,11 +106,6 @@ const STATIC_FAQ_CATEGORIES: FaqCategoryGroup[] = [
         answer:
           "Sempre que possível, priorizo o tratamento conservador: fisioterapia, órteses, anti-inflamatórios e infiltrações. A cirurgia é indicada quando o tratamento conservador não trouxe melhora adequada ou quando há comprometimento grave.",
       },
-      {
-        question: "A cirurgia de mão pelo plano de saúde é possível?",
-        answer:
-          "Sim. A maioria dos procedimentos de cirurgia da mão é coberta pelos planos de saúde, incluindo túnel do carpo, dedo em gatilho e fraturas. Consulte seu convênio para confirmar a cobertura.",
-      },
     ],
   },
   {
@@ -142,9 +137,9 @@ const STATIC_FAQ_CATEGORIES: FaqCategoryGroup[] = [
     title: "Convênios e Valores",
     items: [
       {
-        question: "Quais convênios a Dra. Janaína atende?",
+        question: "O atendimento é particular ou por convênio?",
         answer:
-          "Atendo consultas particulares e por convênios. Entre em contato pelo WhatsApp para verificar se seu plano de saúde é aceito e obter informações sobre disponibilidade de agenda.",
+          "O atendimento é exclusivamente particular. Entre em contato pelo WhatsApp para saber valores e formas de pagamento.",
       },
       {
         question: "Quanto custa uma consulta particular?",

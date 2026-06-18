@@ -41,8 +41,8 @@ const STATIC_POSTS: BlogPost[] = [
         answer: "Não. O cisto sinovial é uma condição benigna preenchida por fluido articular e não possui relação com neoplasias malignas."
       },
       {
-        question: "Quais convênios são aceitos?",
-        answer: "Atendemos diversos convênios para consultas e procedimentos. Recomendamos entrar em contato com nossa equipe para confirmar a cobertura atualizada para o seu plano."
+        question: "O atendimento é particular ou por convênio?",
+        answer: "O atendimento é exclusivamente particular. Entre em contato com a nossa equipe pelo WhatsApp para saber valores e formas de pagamento."
       }
     ],
     content: `
@@ -147,7 +147,7 @@ const STATIC_POSTS: BlogPost[] = [
 
 <p><strong>Cisto vira câncer?</strong> Absolutamente não. O cisto sinovial é benigno e composto por fluido lubrificante da própria articulação.</p>
 
-<p><strong>Convênios aceitos:</strong> Atendemos diversos convênios para consultas e procedimentos. Entre em contato para verificar a cobertura atualizada.</p>
+<p><strong>Atendimento:</strong> O atendimento é exclusivamente particular. Entre em contato para saber valores e formas de pagamento.</p>
 
 <p><strong>CTA:</strong> Se você sente algum desses sintomas ou deseja uma avaliação preventiva, <a href="/contato">agende sua avaliação com a Dra. Janaina Drumond</a>. Cuidar das suas mãos é garantir sua independência e produtividade.</p>
 

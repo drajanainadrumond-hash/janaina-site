@@ -19,7 +19,7 @@ export const HOME_FAQS: FaqItem[] = [
   {
     question: "A Dra. Janaína atende por convênio?",
     answer:
-      "Sim, atendo Unimed-BH e outros convênios. Entre em contato para confirmar o seu plano.",
+      "Não. O atendimento é exclusivamente particular. Entre em contato pelo WhatsApp para saber valores e formas de pagamento.",
   },
   {
     question: "O que é dedo em gatilho?",
