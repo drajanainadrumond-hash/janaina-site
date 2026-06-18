@@ -33,10 +33,10 @@ export function generateMedicalBusiness() {
     "@type": ["MedicalBusiness", "Physician"],
     name: SITE.fullName,
     description:
-      "Ortopedista e traumatologista em Belo Horizonte com atuação em cirurgia da mão e punho. Diagnóstico preciso, atendimento humanizado. CRM-MG 69719 | RQE 50592.",
+      "Ortopedista e traumatologista em Belo Horizonte com atuação em condições da mão e punho. Diagnóstico preciso, atendimento humanizado. CRM-MG 69719 | RQE 50592.",
     url: SITE.url,
     telephone: CONTACT.phone,
-    medicalSpecialty: "Orthopedic Surgery — Hand and Wrist",
+    medicalSpecialty: "Orthopedic",
     image: absoluteUrl(DEFAULT_OG_IMAGE),
     address: {
       "@type": "PostalAddress",
@@ -60,11 +60,11 @@ export function generateMedicalBusiness() {
       },
     ],
     availableService: [
-      { "@type": "MedicalTherapy", name: "Cirurgia do Túnel do Carpo" },
+      { "@type": "MedicalTherapy", name: "Tratamento da Síndrome do Túnel do Carpo" },
       { "@type": "MedicalTherapy", name: "Tratamento de Dedo em Gatilho" },
-      { "@type": "MedicalTherapy", name: "Cirurgia de Rizartrose" },
-      { "@type": "MedicalTherapy", name: "Fratura de Punho" },
-      { "@type": "MedicalTherapy", name: "Cirurgia de Polidactilia" },
+      { "@type": "MedicalTherapy", name: "Tratamento de Rizartrose" },
+      { "@type": "MedicalTherapy", name: "Tratamento de Fraturas da Mão e Punho" },
+      { "@type": "MedicalTherapy", name: "Avaliação Ortopédica de Mão e Punho" },
     ],
     priceRange: "$$",
     sameAs: [SOCIAL.facebook, SOCIAL.instagram, SOCIAL.doctoralia, SOCIAL.linkedin, SOCIAL.youtube].filter(
@@ -78,7 +78,7 @@ export function generatePhysician() {
     "@context": "https://schema.org",
     "@type": "Physician",
     name: SITE.fullName,
-    description: `Ortopedista e Traumatologista em ${SITE.city} com formação em Cirurgia da Mão e Punho.`,
+    description: `Ortopedista e Traumatologista em ${SITE.city} com pós-graduação em Mão e Punho.`,
     url: SITE.url,
     image: absoluteUrl(DEFAULT_OG_IMAGE),
     telephone: CONTACT.phone,

@@ -48,7 +48,7 @@ const STATIC_POSTS: BlogPost[] = [
     content: `
 <p>As nossas mãos são ferramentas extraordinárias de interação com o mundo. Elas nos permitem desde a precisão de um cirurgião ou músico até a força necessária para carregar objetos pesados. No entanto, essa complexidade anatômica — composta por 27 ossos, dezenas de articulações, tendões, nervos e ligamentos — também as torna vulneráveis a uma série de condições que podem impactar severamente a nossa qualidade de vida.</p>
 
-<p>Como ortopedista especializada em cirurgia da mão e punho em Belo Horizonte, vejo diariamente pacientes que sofrem com dores, formigamentos e limitações funcionais. Muitas vezes, a demora em procurar ajuda especializada ocorre por falta de informação sobre as patologias mais comuns.</p>
+<p>Como ortopedista e traumatologista em Belo Horizonte, com dedicação às condições da mão e punho, vejo diariamente pacientes que sofrem com dores, formigamentos e limitações funcionais. Muitas vezes, a demora em procurar ajuda ocorre por falta de informação sobre as patologias mais comuns.</p>
 
 <p>Este guia completo foi elaborado para ser um hub central de informações sobre as principais <strong>condições da mão e punho</strong>, ajudando você a identificar sintomas precoces e entender as opções modernas de tratamento.</p>
 
@@ -151,7 +151,7 @@ const STATIC_POSTS: BlogPost[] = [
 
 <p><strong>CTA:</strong> Se você sente algum desses sintomas ou deseja uma avaliação preventiva, <a href="/contato">agende sua avaliação com a Dra. Janaina Drumond</a>. Cuidar das suas mãos é garantir sua independência e produtividade.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,
     category: "Mão",
     published: true,
@@ -262,7 +262,7 @@ const STATIC_POSTS: BlogPost[] = [
 <li><a href="/especialidades/cirurgia-da-mao-e-punho">Conheça a atuação da Dra. Janaína em cirurgia da mão</a></li>
 </ul>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,
     category: "Mão",
     published: true,
@@ -488,7 +488,7 @@ const STATIC_POSTS: BlogPost[] = [
 <li><a href="/especialidades/cirurgia-da-mao-e-punho">Conheça a atuação da Dra. Janaína em cirurgia da mão</a></li>
 </ul>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,
     category: "Mão",
     published: true,
@@ -773,7 +773,7 @@ const STATIC_POSTS: BlogPost[] = [
 <li><a href="/especialidades/cirurgia-da-mao-e-punho">Conheça a atuação da Dra. Janaína em cirurgia da mão</a></li>
 </ul>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,
     category: "Mão",
     published: true,

@@ -41,7 +41,7 @@ export function Footer() {
               &ldquo;Ortopedia com precisão. Cuidado com alma.&rdquo;
             </p>
             <p className="text-[1.125rem] leading-[1.7]">
-              Ortopedista e traumatologista em Belo Horizonte. Subespecialidade em Cirurgia da Mão e Punho. CRM-MG 69719 | RQE 50592.
+              Ortopedista e traumatologista em Belo Horizonte. Pós-graduação em Mão e Punho. CRM-MG 69719 | RQE 50592.
             </p>
             <SocialIconLinks className="pt-3" />
           </div>

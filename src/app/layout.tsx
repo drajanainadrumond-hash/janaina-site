@@ -26,19 +26,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default:
-      "Dra. Janaína Drumond — Ortopedista em BH | Cirurgia de Mão e Punho",
+      "Dra. Janaína Drumond — Ortopedista em BH | Mão e Punho",
     template: "%s | Dra. Janaína Drumond",
   },
   description:
-    "Ortopedista e Traumatologista em Belo Horizonte com formação especializada em Cirurgia da Mão e Punho. Cuidado personalizado e tratamento baseado em evidências. CRM-MG 69719 | RQE 50592.",
+    "Ortopedista e Traumatologista em Belo Horizonte com atuação em condições da mão e punho. Cuidado personalizado e tratamento baseado em evidências. CRM-MG 69719 | RQE 50592.",
   keywords: [
     "ortopedista BH",
     "ortopedista mulher Belo Horizonte",
-    "cirurgia de mão BH",
+    "ortopedista de mão e punho BH",
     "síndrome do túnel do carpo",
     "dedo em gatilho",
     "ortopedia e traumatologia",
-    "cirurgia da mão Belo Horizonte",
+    "dor na mão e punho Belo Horizonte",
     "dor no punho",
     "rizartrose",
     "ortopedista mão BH",
