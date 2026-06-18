@@ -14,12 +14,20 @@ function supabaseOrigins(): string[] {
 function buildContentSecurityPolicy(isProd: boolean): string {
   const supabase = supabaseOrigins();
 
+  // Meta Pixel — libera os domínios da Meta apenas quando há Pixel configurado.
+  const hasMetaPixel = Boolean(process.env.NEXT_PUBLIC_META_PIXEL_ID);
+  const metaScript = hasMetaPixel ? ["https://connect.facebook.net"] : [];
+  const metaConnect = hasMetaPixel
+    ? ["https://connect.facebook.net", "https://www.facebook.com"]
+    : [];
+
   const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
     ...(isProd ? [] : ["'unsafe-eval'"]),
     "https://www.googletagmanager.com",
     "https://www.google-analytics.com",
+    ...metaScript,
   ];
 
   const connectSrc = [
@@ -31,6 +39,7 @@ function buildContentSecurityPolicy(isProd: boolean): string {
     "https://www.google-analytics.com",
     "https://region1.google-analytics.com",
     "https://stats.g.doubleclick.net",
+    ...metaConnect,
   ];
 
   const directives: Record<string, string[]> = {

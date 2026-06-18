@@ -58,6 +58,13 @@ export function ContactForm() {
         });
       }
 
+      // Conversão para o Meta Pixel (só dispara se o Pixel já estiver carregado,
+      // i.e. após consentimento de cookies).
+      const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
+      if (typeof fbq === "function") {
+        fbq("track", "Lead");
+      }
+
       toast.success("Mensagem enviada! Redirecionando para o WhatsApp...");
       reset();
 

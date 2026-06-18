@@ -15,7 +15,7 @@ export function CookieConsent() {
     const stored = localStorage.getItem(COOKIE_KEY);
     if (stored === "accepted" || stored === "rejected") {
       setConsent(stored);
-      if (stored === "accepted") injectGTM();
+      if (stored === "accepted") injectAnalytics();
     } else {
       setVisible(true);
     }
@@ -50,11 +50,27 @@ export function CookieConsent() {
     document.body.insertBefore(noscript, document.body.firstChild);
   }
 
+  function injectMetaPixel() {
+    const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+    if (!pixelId || document.getElementById("meta-pixel")) return;
+
+    const script = document.createElement("script");
+    script.id = "meta-pixel";
+    script.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${pixelId}');fbq('track','PageView');`;
+    document.head.appendChild(script);
+  }
+
+  // Carrega os trackers (GTM/GA4 + Meta Pixel) — só após consentimento.
+  function injectAnalytics() {
+    injectGTM();
+    injectMetaPixel();
+  }
+
   function handleAccept() {
     localStorage.setItem(COOKIE_KEY, "accepted");
     setConsent("accepted");
     setVisible(false);
-    injectGTM();
+    injectAnalytics();
   }
 
   function handleReject() {
