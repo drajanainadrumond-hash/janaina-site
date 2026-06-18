@@ -154,7 +154,7 @@ const STATIC_POSTS: BlogPost[] = [
 <p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,
     category: "Mão",
-    published: true,
+    published: false,
     created_at: "2026-06-15",
     updated_at: "2026-06-15",
   },
