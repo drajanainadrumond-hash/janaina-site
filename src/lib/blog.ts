@@ -125,15 +125,15 @@ const STATIC_POSTS: BlogPost[] = [
 </ul>
 </p>
 
-<div class="prose-custom">
-  <div class="compare-grid">
-    <div class="compare-card">
-      <div class="compare-header">Diferença Profissional</div>
-      <div class="compare-body">
-        <div class="compare-row"><span class="compare-label">Ortopedista Geral</span><span>Trata o sistema locomotor como um todo.</span></div>
-        <div class="compare-row"><span class="compare-label">Especialista em Mão</span><span>Focado na microanatomia e cirurgia reconstrutiva.</span></div>
-      </div>
-    </div>
+<div style="border:1px solid #E6E5E2;border-radius:12px;overflow:hidden;margin:1.5rem 0;">
+  <div style="background:#003E51;color:#ffffff;padding:0.7rem 1rem;font-weight:700;letter-spacing:0.5px;">Diferença Profissional</div>
+  <div style="padding:0.85rem 1rem;border-bottom:1px solid #F0EFED;">
+    <div style="color:#85878B;text-transform:uppercase;letter-spacing:0.3px;font-size:0.95rem;margin-bottom:0.25rem;">Ortopedista Geral</div>
+    <div style="color:#1A2E3B;font-weight:500;">Trata o sistema locomotor como um todo.</div>
+  </div>
+  <div style="padding:0.85rem 1rem;">
+    <div style="color:#85878B;text-transform:uppercase;letter-spacing:0.3px;font-size:0.95rem;margin-bottom:0.25rem;">Especialista em Mão</div>
+    <div style="color:#1A2E3B;font-weight:500;">Focado na microanatomia e cirurgia reconstrutiva.</div>
   </div>
 </div>
 
