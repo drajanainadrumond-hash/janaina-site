@@ -85,9 +85,9 @@ export default async function BlogPage() {
               </div>
             </div>
 
-            {/* Foto — absoluta no desktop (tamanho original ~540px, ajustada pra caber no hero) */}
-            <div className="hidden lg:block absolute top-[120px] bottom-[48px] right-0">
-              <div className="relative w-[540px] h-full rounded-3xl overflow-hidden border-2 border-white/[0.06] shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+            {/* Foto — absoluta no desktop (largura ~original 540px; altura em vh: cabe sempre, sem colapsar) */}
+            <div className="hidden lg:block absolute top-[120px] right-0">
+              <div className="relative w-[540px] h-[72vh] max-h-[720px] rounded-3xl overflow-hidden border-2 border-white/[0.06] shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
                 <Image
                   src="/janaina-blog.jpg"
                   alt="Dra. Janaína Drumond"
