@@ -67,7 +67,10 @@ CREATE POLICY "Service role full access" ON depoimentos
 CREATE TABLE IF NOT EXISTS newsletter_subscribers (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
-  verified BOOLEAN DEFAULT false,
+  verified BOOLEAN DEFAULT false,        -- true só após double opt-in confirmado
+  confirm_token TEXT,                    -- token do link de confirmação (limpo após confirmar)
+  token_expires_at TIMESTAMPTZ,          -- validade do token (24h)
+  confirmed_at TIMESTAMPTZ,              -- momento da confirmação do double opt-in
   subscribed_at TIMESTAMPTZ DEFAULT NOW(),
   unsubscribed_at TIMESTAMPTZ
 );
@@ -105,4 +108,5 @@ CREATE INDEX IF NOT EXISTS idx_blog_slug ON blog_posts(slug);
 CREATE INDEX IF NOT EXISTS idx_blog_published ON blog_posts(published, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_depoimentos_published ON depoimentos(published, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_newsletter_email ON newsletter_subscribers(email);
+CREATE INDEX IF NOT EXISTS idx_newsletter_confirm_token ON newsletter_subscribers(confirm_token);
 CREATE INDEX IF NOT EXISTS idx_faqs_published ON faqs(published, display_order ASC);

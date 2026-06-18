@@ -73,3 +73,60 @@ export async function sendContactEmail(data: LeadData) {
 
   return true;
 }
+
+/**
+ * Email de confirmação de inscrição na newsletter (double opt-in).
+ * Enviado ao próprio inscrito; só após clicar no link a inscrição é confirmada.
+ */
+export async function sendNewsletterConfirmationEmail(
+  email: string,
+  confirmUrl: string
+) {
+  if (!resend) {
+    console.warn("[email] RESEND_API_KEY não configurada — email não enviado");
+    return null;
+  }
+
+  const emailFrom =
+    process.env.EMAIL_FROM || "Site Dra. Janaína <contato@janainadrumond.com.br>";
+
+  const safeUrl = escapeHtml(confirmUrl);
+
+  const { error } = await resend.emails.send({
+    from: emailFrom,
+    to: email,
+    subject: "Confirme sua inscrição na newsletter",
+    html: `
+      <div style="font-family: sans-serif; max-width: 500px; color: #003E51;">
+        <h2 style="color: #003E51; margin-bottom: 16px;">Confirme sua inscrição</h2>
+        <p style="font-size: 15px; line-height: 1.7; color: #4A5E6B;">
+          Recebemos um pedido de inscrição na newsletter da Dra. Janaína Drumond
+          com este endereço de e-mail. Para concluir, confirme clicando no botão
+          abaixo:
+        </p>
+        <p style="margin: 28px 0;">
+          <a href="${safeUrl}" style="display: inline-block; background: #00565B; color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 999px; font-size: 15px;">
+            Confirmar inscrição
+          </a>
+        </p>
+        <p style="font-size: 13px; line-height: 1.7; color: #7A8E9B;">
+          Se o botão não funcionar, copie e cole este endereço no navegador:<br />
+          <span style="word-break: break-all;">${safeUrl}</span>
+        </p>
+        <p style="font-size: 13px; line-height: 1.7; color: #7A8E9B;">
+          Este link expira em 24 horas. Se você não solicitou esta inscrição,
+          basta ignorar este e-mail — nenhum dado será mantido.
+        </p>
+        <hr style="border: none; border-top: 1px solid #E6E5E2; margin: 24px 0;" />
+        <p style="font-size: 12px; color: #85878B;">Enviado pelo site janainadrumond.com.br</p>
+      </div>
+    `,
+  });
+
+  if (error) {
+    console.error("[email] Erro ao enviar confirmação de newsletter:", error);
+    throw error;
+  }
+
+  return true;
+}

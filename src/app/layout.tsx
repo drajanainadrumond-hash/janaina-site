@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Header } from "@/components/layout/header";
 import { CookieConsent } from "@/components/layout/cookie-consent";
+import { NewsletterPopup } from "@/components/layout/newsletter-popup";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ClientShell } from "@/components/layout/client-shell";
@@ -103,6 +104,7 @@ export default function RootLayout({
         <Footer />
         <ClientShell />
         <CookieConsent />
+        <NewsletterPopup />
       </body>
     </html>
   );
