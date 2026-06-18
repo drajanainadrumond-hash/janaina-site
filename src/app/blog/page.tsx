@@ -61,7 +61,7 @@ export default async function BlogPage() {
               </span>
             </div>
 
-            <Link href={`/blog/${featured.slug}`} className="group block relative">
+            <Link href={`/blog/${featured.slug}`} className="group block relative w-full lg:h-[calc(100vh-140px)] lg:flex lg:flex-col lg:justify-end">
             {/* Número decorativo — só desktop */}
             <div className="hidden lg:block absolute top-[35%] right-16 font-heading text-[20rem] font-extralight text-white/[0.03] leading-none select-none pointer-events-none">
               01
@@ -85,15 +85,15 @@ export default async function BlogPage() {
               </div>
             </div>
 
-            {/* Foto — absoluta no desktop (largura ~original 540px; altura em vh: cabe sempre, sem colapsar) */}
-            <div className="hidden lg:block absolute top-[120px] right-0">
-              <div className="relative w-[540px] h-[72vh] max-h-[720px] rounded-3xl overflow-hidden border-2 border-white/[0.06] shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+            {/* Foto — grande à direita, mais alta (magazine). Altura em vh: cabe sempre. */}
+            <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 lg:-right-12">
+              <div className="relative w-[560px] h-[62vh] max-h-[600px] rounded-3xl overflow-hidden border-2 border-white/[0.06] shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
                 <Image
                   src="/janaina-blog.jpg"
                   alt="Dra. Janaína Drumond"
                   fill
-                  className="object-cover"
-                  sizes="540px"
+                  className="object-cover object-[center_22%]"
+                  sizes="560px"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-teal/90 to-transparent p-4 pt-10">
                   <p className="text-[1.125rem] text-white/70 font-medium leading-tight">Dra. Janaína Drumond</p>
