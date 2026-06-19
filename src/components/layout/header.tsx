@@ -119,7 +119,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[1000] h-[72px] pl-4 pr-6 lg:pl-6 lg:pr-12 flex items-center justify-between transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-[1000] h-[72px] pl-4 pr-6 lg:pl-6 lg:pr-6 xl:pr-12 flex items-center justify-between gap-2 transition-all duration-500",
         useSolidBar
           ? "bg-white/92 backdrop-blur-[20px] border-b border-teal/[0.06]"
           : "bg-transparent"
@@ -176,7 +176,7 @@ export function Header() {
       <nav aria-label="Navegação principal" className="hidden lg:flex items-center">
         <div
           className={cn(
-            "flex items-center gap-2 rounded-full p-1.5 transition-all duration-500",
+            "flex items-center gap-0.5 xl:gap-1 rounded-full p-1 xl:p-1.5 transition-all duration-500",
             useReadableStyle
               ? "bg-white/95 backdrop-blur-md border border-cream-dark/40 shadow-[0_8px_28px_rgba(0,62,81,0.1)]"
               : "bg-white/10 backdrop-blur-md border border-white/10"
@@ -189,7 +189,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-4 py-2 rounded-full text-xs tracking-[1.5px] uppercase whitespace-nowrap transition-all duration-300",
+                  "px-2.5 xl:px-4 py-2 rounded-full text-[0.74rem] xl:text-[0.85rem] tracking-[0.3px] xl:tracking-[1.5px] uppercase whitespace-nowrap transition-all duration-300",
                   isActive
                     ? useReadableStyle
                       ? "bg-cream-light text-teal shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
