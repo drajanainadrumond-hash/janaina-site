@@ -85,6 +85,7 @@
   html {
     font-size: 16px;
     scroll-behavior: smooth;
+    overflow-x: hidden; /* fallback p/ iOS Safari < 16 */
     overflow-x: clip;
   }
   @media (min-width: 768px) {
@@ -109,6 +110,9 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans), 'Century Gothic', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* fallback p/ iOS Safari < 16 */
     overflow-x: clip;
   }
   h1, h2, h3, .font-heading {

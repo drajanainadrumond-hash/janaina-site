@@ -5,7 +5,7 @@ import { SITE } from "@/lib/constants";
 export function HomeLocation() {
   return (
     <section className="py-20 lg:py-28 px-6 bg-teal text-white">
-      <div className="max-w-[1100px] mx-auto grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div className="max-w-[1200px] mx-auto grid gap-10 md:grid-cols-2 md:items-center">
         <div>
           <p className="text-[1.125rem] uppercase tracking-[3px] text-teal-pale/80 mb-3">
             Consultório

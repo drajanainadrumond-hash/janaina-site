@@ -189,7 +189,7 @@ function CondicoesContent() {
             {/* Vertical stack on mobile, grid on desktop */}
             <div
               ref={scrollRef}
-              className="flex flex-col lg:flex-row lg:flex-wrap gap-4"
+              className="flex flex-col md:flex-row md:flex-wrap gap-4"
             >
               {filtered.map((cond) => {
                 const gradient = AREA_INFO[cond.area]?.color || "from-teal to-teal-mid";
@@ -198,7 +198,7 @@ function CondicoesContent() {
                   <Link
                     key={cond.slug}
                     href={`/condicoes/${cond.slug}`}
-                    className="group w-full lg:w-[calc(50%-0.5rem)] rounded-2xl bg-white border border-teal/[0.04] overflow-hidden hover:border-transparent hover:shadow-[0_16px_48px_rgba(0,62,81,0.08)] transition-all duration-400"
+                    className="group w-full md:w-[calc(50%-0.5rem)] rounded-2xl bg-white border border-teal/[0.04] overflow-hidden hover:border-transparent hover:shadow-[0_16px_48px_rgba(0,62,81,0.08)] transition-all duration-400"
                   >
                     {/* Gradient bar */}
                     <div className={`h-1.5 bg-gradient-to-r ${gradient} opacity-60 group-hover:opacity-100 transition-opacity duration-300`} />

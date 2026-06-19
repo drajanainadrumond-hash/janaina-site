@@ -28,7 +28,7 @@ export default function AgendePage() {
 
       {/* Form + Info */}
       <section className="max-w-[900px] mx-auto px-6 pb-24">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
+        <div className="grid md:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-start">
           {/* Info */}
           <div className="space-y-8">
             <div>
