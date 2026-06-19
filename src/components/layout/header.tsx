@@ -119,7 +119,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[1000] h-[72px] pl-4 pr-6 lg:pl-6 lg:pr-6 xl:pr-12 flex items-center justify-between gap-2 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-[1000] h-[72px] pl-4 pr-6 lg:pl-6 lg:pr-6 min-[1400px]:pr-12 flex items-center justify-between gap-2 transition-all duration-500",
         useSolidBar
           ? "bg-white/92 backdrop-blur-[20px] border-b border-teal/[0.06]"
           : "bg-transparent"
@@ -173,10 +173,10 @@ export function Header() {
         </div>
       </Link>
 
-      <nav aria-label="Navegação principal" className="hidden lg:flex items-center">
+      <nav aria-label="Navegação principal" className="hidden min-[1140px]:flex items-center">
         <div
           className={cn(
-            "flex items-center gap-0.5 xl:gap-1 rounded-full p-1 xl:p-1.5 transition-all duration-500",
+            "flex items-center gap-0.5 min-[1400px]:gap-1 rounded-full p-1 min-[1400px]:p-1.5 transition-all duration-500",
             useReadableStyle
               ? "bg-white/95 backdrop-blur-md border border-cream-dark/40 shadow-[0_8px_28px_rgba(0,62,81,0.1)]"
               : "bg-white/10 backdrop-blur-md border border-white/10"
@@ -189,7 +189,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-2.5 xl:px-4 py-2 rounded-full text-[0.74rem] xl:text-[0.85rem] tracking-[0.3px] xl:tracking-[1.5px] uppercase whitespace-nowrap transition-all duration-300",
+                  "px-2.5 min-[1400px]:px-4 py-2 rounded-full text-[0.74rem] min-[1400px]:text-[0.85rem] tracking-[0.3px] min-[1400px]:tracking-[1.5px] uppercase whitespace-nowrap transition-all duration-300",
                   isActive
                     ? useReadableStyle
                       ? "bg-cream-light text-teal shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
@@ -206,7 +206,7 @@ export function Header() {
         </div>
       </nav>
 
-      <div className="hidden lg:flex items-center gap-3 shrink-0">
+      <div className="hidden min-[1140px]:flex items-center gap-3 shrink-0">
         {searchOpen ? (
           <form onSubmit={handleSearch} className="relative flex items-center">
             <SearchIcon
@@ -273,7 +273,7 @@ export function Header() {
 
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className={cn("lg:hidden p-2 transition-colors duration-500", useReadableStyle ? "text-teal" : "text-white")}
+        className={cn("min-[1140px]:hidden p-2 transition-colors duration-500", useReadableStyle ? "text-teal" : "text-white")}
         aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
       >
         {mobileOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
@@ -283,11 +283,11 @@ export function Header() {
         <>
           <button
             type="button"
-            className="lg:hidden fixed inset-0 top-[72px] z-[999] bg-black/40"
+            className="min-[1140px]:hidden fixed inset-0 top-[72px] z-[999] bg-black/40"
             aria-label="Fechar menu"
             onClick={closeMobile}
           />
-          <div className="lg:hidden fixed inset-x-0 top-[72px] z-[1000] max-h-[calc(100dvh-72px)] overflow-y-auto bg-white border-t border-cream-dark shadow-lg">
+          <div className="min-[1140px]:hidden fixed inset-x-0 top-[72px] z-[1000] max-h-[calc(100dvh-72px)] overflow-y-auto bg-white border-t border-cream-dark shadow-lg">
             <nav className="flex flex-col gap-1 p-4">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
