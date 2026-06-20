@@ -208,7 +208,7 @@ function CondicoesContent() {
                     <div className="p-5">
                       {/* Header */}
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-[1.125rem] uppercase tracking-[2px] text-teal-mid/50">
+                        <span className="text-[1.125rem] uppercase tracking-[2px] text-teal-mid">
                           {cond.areaLabel}
                         </span>
                         <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${gradient} opacity-15 group-hover:opacity-30 group-hover:scale-125 transition-all duration-500 shadow-[inset_0_-1px_2px_rgba(0,0,0,0.1),inset_0_1px_2px_rgba(255,255,255,0.2)]`} />
@@ -226,7 +226,7 @@ function CondicoesContent() {
 
                       {/* CTA */}
                       <div className="flex items-center justify-between pt-3 border-t border-cream-light/80">
-                        <span className="text-[1.125rem] text-teal-mid/40 group-hover:text-teal transition-colors duration-300">
+                        <span className="text-[1.125rem] text-teal-mid group-hover:text-teal transition-colors duration-300">
                           Ver tratamento
                         </span>
                         <span className="w-7 h-7 rounded-full border border-teal/[0.08] flex items-center justify-center text-[1.125rem] text-teal/30 group-hover:bg-teal group-hover:text-white group-hover:border-teal group-hover:shadow-[0_4px_12px_rgba(0,62,81,0.15)] transition-all duration-300">
