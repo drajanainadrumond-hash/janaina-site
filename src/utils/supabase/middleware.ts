@@ -4,14 +4,14 @@ import { type NextRequest, NextResponse } from "next/server";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 
-export const updateSession = (request: NextRequest) => {
+export const updateSession = async (request: NextRequest) => {
   let supabaseResponse = NextResponse.next({
     request: {
       headers: request.headers,
     },
   });
 
-  createServerClient(
+  const supabase = createServerClient(
     supabaseUrl!,
     supabaseKey!,
     {
@@ -31,6 +31,10 @@ export const updateSession = (request: NextRequest) => {
       },
     },
   );
+
+  // IMPORTANTE (Supabase SSR): chamar getUser() logo após criar o client renova a
+  // sessão/refresh token. Não colocar lógica entre o createServerClient e este getUser.
+  await supabase.auth.getUser();
 
   return supabaseResponse;
 };

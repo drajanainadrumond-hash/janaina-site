@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createEvent } from "@/lib/google-calendar";
 import { getSupabaseServiceRole } from "@/lib/supabase";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
+  // Rate limit por IP (evita spam de agendamentos)
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  if (!rateLimit(ip).ok) {
+    return NextResponse.json({ error: "Muitas tentativas. Aguarde um minuto." }, { status: 429 });
+  }
+
   const supabase = getSupabaseServiceRole();
   if (!supabase) {
     return NextResponse.json(
@@ -16,6 +23,17 @@ export async function POST(req: NextRequest) {
 
   if (!patient_name || !patient_phone || !date || !start_time || !end_time) {
     return NextResponse.json({ error: "Dados incompletos" }, { status: 400 });
+  }
+
+  // Validação de formato (evita dados arbitrários)
+  if (typeof patient_name !== "string" || patient_name.length > 120 ||
+      typeof patient_phone !== "string" || patient_phone.length > 30 ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(String(date)) ||
+      !/^\d{2}:\d{2}$/.test(String(start_time)) || !/^\d{2}:\d{2}$/.test(String(end_time))) {
+    return NextResponse.json({ error: "Dados inválidos" }, { status: 400 });
+  }
+  if (patient_email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(patient_email))) {
+    return NextResponse.json({ error: "E-mail inválido" }, { status: 400 });
   }
 
   // 1. Verificar se slot ainda está livre
@@ -75,6 +93,10 @@ export async function POST(req: NextRequest) {
     .single();
 
   if (error) {
+    // 23505 = violação de índice único (horário já reservado por requisição concorrente)
+    if (error.code === "23505") {
+      return NextResponse.json({ error: "Horário já ocupado" }, { status: 409 });
+    }
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 

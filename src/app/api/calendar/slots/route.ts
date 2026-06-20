@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getFreeBusy } from "@/lib/google-calendar";
 import { getSupabaseServiceRole } from "@/lib/supabase";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function GET(req: NextRequest) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  if (!rateLimit(ip).ok) {
+    return NextResponse.json({ error: "Muitas tentativas. Aguarde um minuto.", slots: [] }, { status: 429 });
+  }
+
   const supabase = getSupabaseServiceRole();
   if (!supabase) {
     return NextResponse.json(
