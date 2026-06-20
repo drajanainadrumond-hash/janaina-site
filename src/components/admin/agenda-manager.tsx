@@ -22,8 +22,6 @@ import {
   CloudRain,
   Sun,
   Thermometer,
-  ToggleLeft,
-  ToggleRight,
   Zap,
   Coffee,
   Save,
@@ -37,7 +35,6 @@ import {
   DAY_LABELS,
   type CalendarEvent,
   type BusinessHours,
-  type DayKey,
 } from "@/lib/calendario-bh";
 
 /* ====== Types ====== */
@@ -121,11 +118,9 @@ const ANIM = `
 export function AgendaManager() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [slots, setSlots] = useState<Slot[]>([]);
-  const [loading, setLoading] = useState(true);
   const [googleConnected, setGoogleConnected] = useState(false);
   const [businessHours, setBusinessHours] = useState<BusinessHours>(DEFAULT_BUSINESS_HOURS);
   const [monthEvents, setMonthEvents] = useState<CalendarEvent[]>([]);
-  const [saving, setSaving] = useState(false);
 
   // Calendar
   const now = new Date();
@@ -143,7 +138,6 @@ export function AgendaManager() {
   const [booking, setBooking] = useState(false);
 
   const fetchData = useCallback(async () => {
-    setLoading(true);
     try {
       const data = await fetchAgenda<Appointment, Slot, BusinessHours>(year, month);
       setAppointments(data.appointments);
@@ -154,8 +148,6 @@ export function AgendaManager() {
     } catch {
       setAppointments([]);
       setSlots([]);
-    } finally {
-      setLoading(false);
     }
   }, [year, month]);
 
@@ -267,14 +259,11 @@ export function AgendaManager() {
 
   // Save business hours
   async function saveBH(bh: BusinessHours) {
-    setSaving(true);
     try {
       await agendaAction({ action: "saveBusinessHours", value: bh as unknown as Record<string, unknown> });
       setBusinessHours(bh);
     } catch (e) {
       alert("Erro: " + (e as Error).message);
-    } finally {
-      setSaving(false);
     }
   }
 

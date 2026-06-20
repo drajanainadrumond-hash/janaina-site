@@ -8,14 +8,6 @@ import { CONDICOES } from "@/lib/condicoes";
 
 type Area = "todas" | "mao" | "ombro" | "joelho" | "coluna";
 
-/* Hotspots — positioned on the body outline */
-const HOTSPOTS: { id: Area; cx: number; cy: number; labelX: number; labelY: number; labelAnchor: "start" | "end" }[] = [
-  { id: "ombro", cx: 68, cy: 88, labelX: 6, labelY: 82, labelAnchor: "start" },
-  { id: "coluna", cx: 120, cy: 170, labelX: 185, labelY: 165, labelAnchor: "start" },
-  { id: "mao", cx: 46, cy: 240, labelX: 6, labelY: 250, labelAnchor: "start" },
-  { id: "joelho", cx: 96, cy: 370, labelX: 185, labelY: 365, labelAnchor: "start" },
-];
-
 const AREA_INFO: Record<string, { label: string; color: string }> = {
   mao: { label: "Mão e Punho", color: "from-teal to-teal-mid" },
   ombro: { label: "Ombro", color: "from-teal-mid to-teal-light" },

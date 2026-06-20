@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { fetchStats } from "@/utils/admin-api";
 import {
   CalendarDays,
@@ -282,13 +283,13 @@ export function AdminDashboard({ userEmail, onLogout }: Props) {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-[1.125rem] text-white/65 hidden sm:block">{userEmail}</span>
-            <a
+            <Link
               href="/"
               className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-[1.125rem] uppercase font-medium bg-white text-[#003E51] hover:bg-white/90 transition-all shadow-sm"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               Ver site
-            </a>
+            </Link>
             <button
               onClick={onLogout}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[1.125rem] uppercase text-white/70 border border-white/10 hover:bg-white/10 hover:text-white transition-all"
@@ -341,9 +342,9 @@ export function AdminDashboard({ userEmail, onLogout }: Props) {
       <footer className="border-t border-[#E6E5E2] py-4 px-6">
         <div className="max-w-[1500px] mx-auto flex items-center justify-between">
           <p className="text-[1.125rem] text-[#5A6B78]">Orbee Labs — Painel Administrativo</p>
-          <a href="/" className="flex items-center gap-1 text-[1.125rem] text-[#003E51]/40 hover:text-[#003E51] transition-colors">
+          <Link href="/" className="flex items-center gap-1 text-[1.125rem] text-[#003E51]/40 hover:text-[#003E51] transition-colors">
             Ver site <ExternalLink className="w-3 h-3" />
-          </a>
+          </Link>
         </div>
       </footer>
     </div>
