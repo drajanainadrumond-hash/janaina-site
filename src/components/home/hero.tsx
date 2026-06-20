@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { SplitTextReveal, TextReveal } from "@/components/effects/text-reveal";
+import { TextReveal } from "@/components/effects/text-reveal";
 
 export function Hero() {
   return (
@@ -71,11 +71,12 @@ export function Hero() {
             </div>
           </div>
 
-          <h1 className="font-heading text-[2.2rem] sm:text-[3rem] md:text-[3.8rem] lg:text-[4.5rem] font-light leading-[1.08] text-white tracking-[1px] uppercase lg:mb-6 text-center lg:text-left" style={{ perspective: "600px" }}>
-            <SplitTextReveal text="Ortopedia" className="block" immediate />
-            <SplitTextReveal text="completa." className="block" immediate />
-            <em className="font-serif italic font-normal text-cream normal-case tracking-[-0.5px] block text-[1.8rem] sm:text-[2.4rem] md:text-[3rem] lg:text-[3.8rem]">
-              <SplitTextReveal text="Mão e punho." className="" immediate />
+          {/* h1 como bloco de texto contínuo (1 só elemento) — vira o LCP acima da
+              dobra, renderizado no SSR (mais rápido e correto que o banner ser o LCP). */}
+          <h1 className="font-heading text-[2.2rem] sm:text-[3rem] md:text-[3.8rem] lg:text-[4.5rem] font-light leading-[1.08] text-white tracking-[1px] uppercase lg:mb-6 text-center lg:text-left">
+            Ortopedia<br />completa.<br />
+            <em className="font-serif italic font-normal text-cream normal-case tracking-[-0.5px] text-[1.8rem] sm:text-[2.4rem] md:text-[3rem] lg:text-[3.8rem]">
+              Mão e punho.
             </em>
           </h1>
 
