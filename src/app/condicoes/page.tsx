@@ -48,6 +48,8 @@ function BodySilhouette({ active, onSelect }: { active: Area; onSelect: (a: Area
         return (
           <button
             key={area.id}
+            type="button"
+            aria-label={`Ver condições de ${area.label}`}
             onMouseEnter={() => onSelect(area.id)}
             onClick={() => onSelect(area.id)}
             className="absolute group z-10"
@@ -136,7 +138,7 @@ function CondicoesContent() {
                   {areaInfo.label} · {filtered.length} condições
                 </span>
               ) : (
-                <span className="text-[1.125rem] text-[#5A6B78]/60">Todas as regiões · {filtered.length}</span>
+                <span className="text-[1.125rem] text-[#5A6B78]">Todas as regiões · {filtered.length}</span>
               )}
             </div>
 
@@ -213,9 +215,9 @@ function CondicoesContent() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="font-heading text-[1.125rem] font-normal text-teal group-hover:text-teal-mid transition-colors duration-300 mb-2 leading-snug">
+                      <h2 className="font-heading text-[1.125rem] font-normal text-teal group-hover:text-teal-mid transition-colors duration-300 mb-2 leading-snug">
                         {cond.title}
-                      </h3>
+                      </h2>
 
                       {/* Description */}
                       <p className="text-[1.125rem] text-[#4A5E6B] leading-relaxed mb-4 line-clamp-2">

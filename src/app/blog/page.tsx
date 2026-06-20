@@ -199,13 +199,13 @@ export default async function BlogPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className={`font-heading font-normal leading-[1.25] mb-3 transition-colors duration-300 ${
+                      <h2 className={`font-heading font-normal leading-[1.25] mb-3 transition-colors duration-300 ${
                         isLarge
                           ? "text-[1.15rem] sm:text-[1.3rem] lg:text-[1.6rem] text-white group-hover:text-cream"
                           : "text-[1rem] text-teal group-hover:text-teal-mid"
                       }`}>
                         {post.title}
-                      </h3>
+                      </h2>
 
                       {/* Excerpt */}
                       <p className={`text-[1.125rem] leading-relaxed ${
@@ -266,9 +266,9 @@ export default async function BlogPage() {
           <div className="relative grid lg:grid-cols-[1.2fr_1fr] gap-8 p-8 lg:p-14 items-center">
             <div>
               <span className="text-[1.125rem] uppercase tracking-[2.5px] text-teal-pale/50 block mb-4">Atendimento</span>
-              <h3 className="font-heading text-[1.5rem] lg:text-[2rem] font-light text-white leading-[1.2] tracking-[0.5px] mb-3">
+              <h2 className="font-heading text-[1.5rem] lg:text-[2rem] font-light text-white leading-[1.2] tracking-[0.5px] mb-3">
                 Cuide da sua saúde com quem entende
-              </h3>
+              </h2>
               <p className="text-[1.125rem] text-white/60 leading-[1.8] max-w-[400px]">
                 Dra. Janaína Drumond — ortopedista em BH com formação em cirurgia da mão e punho.
               </p>
