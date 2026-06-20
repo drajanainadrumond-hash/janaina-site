@@ -6,6 +6,8 @@ import { NewsletterPopup } from "@/components/layout/newsletter-popup";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ClientShell } from "@/components/layout/client-shell";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "@/lib/constants";
 import { absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
@@ -118,6 +120,9 @@ export default function RootLayout({
         <ClientShell />
         <CookieConsent />
         <NewsletterPopup />
+        {/* Cookieless: Web Analytics (visitas) + Speed Insights (Core Web Vitals reais). */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
