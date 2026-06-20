@@ -21,6 +21,12 @@ function buildContentSecurityPolicy(isProd: boolean): string {
     ? ["https://connect.facebook.net", "https://www.facebook.com"]
     : [];
 
+  // DECISÃO (2026-06-20) — NÃO remover 'unsafe-inline' daqui (item 1.12 / RISCO ACEITO).
+  // O caminho limpo (nonce por request no proxy.ts) força o site INTEIRO a virar
+  // dinâmico (sem prerender estático, sem cache de CDN), o que destrói o Lighthouse 100.
+  // SRI é experimental e não remove o inline da hidratação do Next + script anti-flash.
+  // script-src já está restrito a 'self' + GTM + GA, então o risco residual é baixo.
+  // Justificativa completa: doc/RUMO-AOS-100.md item 1.12.
   const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
