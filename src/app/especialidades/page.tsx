@@ -50,7 +50,7 @@ export default function EspecialidadesPage() {
               </div>
 
               <div style={reversed ? { direction: "ltr" } : undefined}>
-                <div aria-hidden="true" className="font-heading text-[3rem] sm:text-[4rem] lg:text-[4.5rem] font-extralight text-cream-dark leading-none tracking-[2px]">{esp.num}</div>
+                <div aria-hidden="true" className="font-heading text-[3rem] sm:text-[4rem] lg:text-[4.5rem] font-extralight text-[#8C8C8C] leading-none tracking-[2px]">{esp.num}</div>
                 <div className="text-[1.125rem] uppercase tracking-[2.5px] text-teal-mid my-2">{esp.tag}</div>
                 <h2 className="font-heading text-[1.3rem] sm:text-[1.5rem] lg:text-[1.8rem] font-normal tracking-[0.5px] mb-4 leading-[1.25]">{esp.title}</h2>
                 <p className="text-[1.125rem] text-[#4A5E6B] leading-[1.8] mb-6">{esp.desc}</p>
