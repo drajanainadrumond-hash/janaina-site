@@ -153,7 +153,7 @@ export default async function BlogPage() {
               Conteúdo para sua saúde
             </h2>
           </div>
-          <Link href="/condicoes" className="hidden sm:inline-flex items-center gap-2 text-[1.125rem] text-teal-mid/60 tracking-[0.5px] hover:text-teal transition-colors">
+          <Link href="/condicoes" className="hidden sm:inline-flex items-center gap-2 text-[1.125rem] text-teal-mid tracking-[0.5px] hover:text-teal transition-colors">
             Ver todas as condições →
           </Link>
         </div>
@@ -189,7 +189,7 @@ export default async function BlogPage() {
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2">
                           <div className={`w-2 h-2 rounded-full ${isLarge ? "bg-white/30" : "bg-teal-mid/40"}`} />
-                          <span className={`text-[1.125rem] uppercase tracking-[1.5px] ${isLarge ? "text-white/70" : "text-teal-mid/60"}`}>
+                          <span className={`text-[1.125rem] uppercase tracking-[1.5px] ${isLarge ? "text-white/70" : "text-teal-mid"}`}>
                             {post.category}
                           </span>
                         </div>
