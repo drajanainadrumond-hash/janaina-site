@@ -148,7 +148,7 @@ export default async function BlogPage() {
         {/* Section header */}
         <div className="flex items-end justify-between mb-10">
           <div>
-            <span className="text-[1.125rem] uppercase tracking-[2.5px] text-teal-mid/50 block mb-2">Mais artigos</span>
+            <span className="text-[1.125rem] uppercase tracking-[2.5px] text-teal-mid block mb-2">Mais artigos</span>
             <h2 className="font-heading text-[1.5rem] lg:text-[1.8rem] font-light tracking-[0.5px]">
               Conteúdo para sua saúde
             </h2>
@@ -193,7 +193,7 @@ export default async function BlogPage() {
                             {post.category}
                           </span>
                         </div>
-                        <span className={`text-[1.125rem] ${isLarge ? "text-white/25" : "text-[#5A6B78]/50"}`}>
+                        <span className={`text-[1.125rem] ${isLarge ? "text-white/55" : "text-[#5A6B78]"}`}>
                           {readTime} min
                         </span>
                       </div>
@@ -223,7 +223,7 @@ export default async function BlogPage() {
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center ${isLarge ? "bg-white/10" : "bg-teal"}`}>
                           <span className={`text-[1.125rem] font-medium ${isLarge ? "text-white/60" : "text-white"}`}>JD</span>
                         </div>
-                        <span className={`text-[1.125rem] ${isLarge ? "text-white/25" : "text-[#5A6B78]/60"}`}>
+                        <span className={`text-[1.125rem] ${isLarge ? "text-white/55" : "text-[#5A6B78]"}`}>
                           {new Date(post.created_at).toLocaleDateString("pt-BR", { day: "numeric", month: "short" })}
                         </span>
                       </div>
@@ -231,7 +231,7 @@ export default async function BlogPage() {
                       <span className={`inline-flex items-center gap-1.5 text-[1.125rem] transition-all duration-300 group-hover:gap-2.5 ${
                         isLarge
                           ? "text-white/65 group-hover:text-white"
-                          : "text-teal-mid/50 group-hover:text-teal"
+                          : "text-teal-mid group-hover:text-teal"
                       }`}>
                         Ler
                         <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[1.125rem] transition-all duration-300 ${
