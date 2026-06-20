@@ -97,6 +97,14 @@ export default function RootLayout({
       className={`${centuryGothic.variable} ${airePro.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        {/* Anti-flash: esconde o banner de cookies antes do paint p/ quem já consentiu
+            (o banner é renderizado no SSR para servir de LCP rápido em quem ainda não consentiu). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var c=localStorage.getItem('cookie-consent');if(c==='accepted'||c==='rejected'){document.documentElement.setAttribute('data-consent','given');}}catch(e){}",
+          }}
+        />
         <a href="#main" className="skip-link">Pular para o conteúdo</a>
         <JsonLd />
         <Header />

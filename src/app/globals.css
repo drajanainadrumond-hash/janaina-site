@@ -146,6 +146,11 @@
     border-radius: 4px;
   }
 
+  /* Anti-flash do banner de cookies: esconde antes do paint p/ quem já consentiu */
+  html[data-consent="given"] .cookie-consent-root {
+    display: none !important;
+  }
+
   /* Skip to main content link */
   .skip-link {
     position: absolute;

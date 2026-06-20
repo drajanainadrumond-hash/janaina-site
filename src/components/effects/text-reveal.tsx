@@ -97,6 +97,12 @@ export function SplitTextReveal({
     return () => observer.disconnect();
   }, [immediate]);
 
+  // Acima da dobra: texto contínuo (não fragmentado em spans por caractere),
+  // pra ser um bloco grande renderizado no SSR e servir de LCP rápido.
+  if (immediate) {
+    return <span className={className}>{text}</span>;
+  }
+
   return (
     <span ref={ref} className={className}>
       <span className="sr-only">{text}</span>

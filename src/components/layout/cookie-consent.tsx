@@ -9,12 +9,16 @@ type ConsentState = "pending" | "accepted" | "rejected";
 
 export function CookieConsent() {
   const [consent, setConsent] = useState<ConsentState>("pending");
-  const [visible, setVisible] = useState(false);
+  // Inicia visível para ser renderizado no SSR (pinta no FCP, não atrasa o LCP).
+  // Quem já consentiu é escondido antes do paint pelo script anti-flash no layout
+  // (data-consent="given") e desmontado por este efeito.
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const stored = localStorage.getItem(COOKIE_KEY);
     if (stored === "accepted" || stored === "rejected") {
       setConsent(stored);
+      setVisible(false);
       if (stored === "accepted") injectAnalytics();
     } else {
       setVisible(true);
@@ -82,7 +86,7 @@ export function CookieConsent() {
   if (!visible || consent !== "pending") return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-[9999] p-4 sm:p-6">
+    <div className="cookie-consent-root fixed bottom-0 inset-x-0 z-[9999] p-4 sm:p-6">
       <div className="max-w-[600px] mx-auto bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-black/[0.04] p-5 sm:p-6">
         <p className="text-[1.125rem] text-[#4A5E6B] leading-[1.7] mb-4">
           Utilizamos cookies analíticos para melhorar sua experiência de navegação.
