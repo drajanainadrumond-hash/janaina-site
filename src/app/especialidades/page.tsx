@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useReveal } from "@/hooks/use-reveal";
 import { ESPECIALIDADES } from "@/lib/especialidades";
 import { FloatingOrbs } from "@/components/ui/floating-orbs";
+import { LazyVideo } from "@/components/especialidades/lazy-video";
 
 
 export default function EspecialidadesPage() {
@@ -30,18 +31,13 @@ export default function EspecialidadesPage() {
               <div className="h-[220px] sm:h-[300px] lg:h-[380px] rounded-2xl lg:rounded-3xl relative overflow-hidden bg-cream-dark/20" style={reversed ? { direction: "ltr" } : undefined}>
                 {(esp.slug === "ortopedia-geral" || esp.slug === "cirurgia-da-mao-e-punho") && (
                   <>
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover"
-                    >
-                      <source src={
+                    <LazyVideo
+                      src={
                         esp.slug === "ortopedia-geral" ? "/ortopedia-geral.mp4" :
                         "/cirurgia-mao.mp4"
-                      } type="video/mp4" />
-                    </video>
+                      }
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
                     <div className="absolute bottom-2 left-2 bg-white/40 backdrop-blur-sm px-2 py-1 rounded-md border border-white/20 shadow-sm uppercase">
                       <span className="text-[0.65rem] text-teal/60 font-medium tracking-[0.5px] uppercase">Imagem ilustrativa</span>
                     </div>

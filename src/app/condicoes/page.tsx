@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, Suspense } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CONDICOES } from "@/lib/condicoes";
@@ -34,9 +35,12 @@ function BodySilhouette({ active, onSelect }: { active: Area; onSelect: (a: Area
   return (
     <div className="relative w-full max-w-[280px] mx-auto select-none">
       {/* Illustration */}
-      <img
+      <Image
         src="/body-illustration.jpg"
         alt="Corpo humano"
+        width={740}
+        height={1836}
+        sizes="280px"
         className="w-full h-auto opacity-70"
         draggable={false}
       />
