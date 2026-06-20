@@ -35,6 +35,7 @@ function FaqAccordionItem({
         />
       </button>
       <div
+        inert={!open}
         className={cn(
           "grid transition-all duration-300",
           open ? "grid-rows-[1fr] opacity-100 pb-5" : "grid-rows-[0fr] opacity-0"

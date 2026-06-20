@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import type { ExerciseData } from "@/lib/especialidades";
 
@@ -19,15 +19,21 @@ function XIcon({ className }: { className?: string }) {
 }
 
 export function StretchModal({ exercise, sectionTitle, onClose }: Props) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
+    const prevFocus = document.activeElement as HTMLElement | null;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    // Move o foco para o modal ao abrir; restaura ao fechar.
+    closeRef.current?.focus();
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      prevFocus?.focus?.();
     };
   }, [onClose]);
 
@@ -36,10 +42,14 @@ export function StretchModal({ exercise, sectionTitle, onClose }: Props) {
       <div className="absolute inset-0 bg-teal/60 backdrop-blur-sm animate-[fadeIn_0.2s_ease]" />
 
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="stretch-modal-title"
         className="relative bg-white rounded-3xl shadow-[0_30px_80px_rgba(0,62,81,0.2)] max-w-[500px] w-full max-h-[90vh] overflow-y-auto animate-[slideUp_0.3s_ease]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          ref={closeRef}
           onClick={onClose}
           className="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream-light flex items-center justify-center text-teal/50 hover:text-teal hover:bg-cream transition-colors z-10"
           aria-label="Fechar"
@@ -52,7 +62,7 @@ export function StretchModal({ exercise, sectionTitle, onClose }: Props) {
           <span className="text-[1.125rem] uppercase tracking-[2px] text-teal-mid/70 block mb-2">
             Exercício preventivo · {sectionTitle}
           </span>
-          <h3 className="font-heading text-xl font-normal tracking-[0.5px] text-teal">
+          <h3 id="stretch-modal-title" className="font-heading text-xl font-normal tracking-[0.5px] text-teal">
             {exercise.name}
           </h3>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { toast } from "sonner";
@@ -14,6 +14,7 @@ export function NewsletterPopup() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   // Abre uma vez por visitante, 10s após o carregamento.
   useEffect(() => {
@@ -25,14 +26,17 @@ export function NewsletterPopup() {
   // Trava o scroll do fundo e fecha com Esc enquanto o modal está aberto.
   useEffect(() => {
     if (!open) return;
+    const prevFocus = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
+    closeRef.current?.focus();
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
+      prevFocus?.focus?.();
     };
   }, [open]);
 
@@ -88,6 +92,7 @@ export function NewsletterPopup() {
       />
       <div className="relative w-full max-w-[440px] bg-white rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] p-7 sm:p-8">
         <button
+          ref={closeRef}
           onClick={close}
           aria-label="Fechar"
           className="absolute top-4 right-4 text-gray-brand hover:text-foreground transition-colors"

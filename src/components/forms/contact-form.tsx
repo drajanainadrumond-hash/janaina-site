@@ -88,9 +88,11 @@ export function ContactForm() {
           type="text"
           placeholder="Seu nome"
           className={inputClass}
+          aria-invalid={errors.name ? "true" : undefined}
+          aria-describedby={errors.name ? "name-error" : undefined}
           {...register("name", { required: "Nome é obrigatório", minLength: { value: 3, message: "Mínimo 3 caracteres" } })}
         />
-        {errors.name && <p className="text-xs text-destructive mt-1">{errors.name.message}</p>}
+        {errors.name && <p id="name-error" role="alert" className="text-xs text-destructive mt-1">{errors.name.message}</p>}
       </div>
 
       <div>
@@ -102,13 +104,15 @@ export function ContactForm() {
           type="tel"
           placeholder="(31) 9 0000-0000"
           className={inputClass}
+          aria-invalid={errors.whatsapp ? "true" : undefined}
+          aria-describedby={errors.whatsapp ? "whatsapp-error" : undefined}
           {...register("whatsapp", {
             required: "WhatsApp é obrigatório",
             minLength: { value: 14, message: "Número incompleto" },
             onChange: (e) => setValue("whatsapp", formatPhone(e.target.value)),
           })}
         />
-        {errors.whatsapp && <p className="text-xs text-destructive mt-1">{errors.whatsapp.message}</p>}
+        {errors.whatsapp && <p id="whatsapp-error" role="alert" className="text-xs text-destructive mt-1">{errors.whatsapp.message}</p>}
       </div>
 
       <div>
@@ -119,6 +123,8 @@ export function ContactForm() {
           id="convenio"
           className={inputClass}
           defaultValue=""
+          aria-invalid={errors.convenio ? "true" : undefined}
+          aria-describedby={errors.convenio ? "convenio-error" : undefined}
           {...register("convenio", { required: "Selecione o convênio" })}
         >
           <option value="" disabled>Selecione</option>
@@ -126,7 +132,7 @@ export function ContactForm() {
             <option key={c} value={c}>{c}</option>
           ))}
         </select>
-        {errors.convenio && <p className="text-xs text-destructive mt-1">{errors.convenio.message}</p>}
+        {errors.convenio && <p id="convenio-error" role="alert" className="text-xs text-destructive mt-1">{errors.convenio.message}</p>}
       </div>
 
       <div>
@@ -137,12 +143,14 @@ export function ContactForm() {
           id="queixa"
           placeholder="O que está sentindo..."
           className={`${inputClass} resize-y min-h-[90px]`}
+          aria-invalid={errors.queixa ? "true" : undefined}
+          aria-describedby={errors.queixa ? "queixa-error" : undefined}
           {...register("queixa", {
             required: "Descreva sua queixa",
             minLength: { value: 10, message: "Mínimo 10 caracteres" },
           })}
         />
-        {errors.queixa && <p className="text-xs text-destructive mt-1">{errors.queixa.message}</p>}
+        {errors.queixa && <p id="queixa-error" role="alert" className="text-xs text-destructive mt-1">{errors.queixa.message}</p>}
       </div>
 
       <div>
@@ -150,6 +158,8 @@ export function ContactForm() {
           <input
             type="checkbox"
             className="mt-1 h-4 w-4 rounded border-cream-dark text-teal accent-teal shrink-0"
+            aria-invalid={errors.consent ? "true" : undefined}
+            aria-describedby={errors.consent ? "consent-error" : undefined}
             {...register("consent", { required: "Você precisa concordar com a Política de Privacidade" })}
           />
           <span className="text-[1.125rem] text-[#4A5E6B] leading-[1.6]">
@@ -160,7 +170,7 @@ export function ContactForm() {
             . Autorizo o tratamento dos meus dados pessoais, incluindo dados de saúde, para fins de agendamento de consulta.
           </span>
         </label>
-        {errors.consent && <p className="text-xs text-destructive mt-1">{errors.consent.message}</p>}
+        {errors.consent && <p id="consent-error" role="alert" className="text-xs text-destructive mt-1">{errors.consent.message}</p>}
       </div>
 
       <button

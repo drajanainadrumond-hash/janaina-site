@@ -92,9 +92,18 @@ export function InteractiveSections({ sections }: { sections: Section[] }) {
           const hasExercise = !!section.exercise;
 
           const card = (
-            <button
+            <div
+              role="button"
+              tabIndex={0}
+              aria-expanded={isOpen}
               onClick={() => toggle(i)}
-              className={`group w-full text-left rounded-xl border px-4 py-3.5 transition-all duration-300 ${
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggle(i);
+                }
+              }}
+              className={`group w-full text-left rounded-xl border px-4 py-3.5 transition-all duration-300 cursor-pointer ${
                 isOpen
                   ? "bg-white border-teal/[0.12] shadow-[0_8px_24px_rgba(0,62,81,0.06)]"
                   : "bg-cream-light/60 border-teal/[0.06] hover:bg-white hover:border-teal/[0.10] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,62,81,0.04)]"
@@ -141,7 +150,7 @@ export function InteractiveSections({ sections }: { sections: Section[] }) {
                   )}
                 </div>
               </div>
-            </button>
+            </div>
           );
 
           return (
