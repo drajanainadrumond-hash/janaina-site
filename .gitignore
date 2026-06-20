@@ -46,3 +46,6 @@ next-env.d.ts
 
 # backups de fontes (subset)
 *.woff2.orig
+
+# CLI temp (cache de versão, não versionar)
+supabase/.temp/cli-latest
