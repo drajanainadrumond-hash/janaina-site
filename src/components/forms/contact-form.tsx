@@ -90,7 +90,7 @@ export function ContactForm() {
           className={inputClass}
           {...register("name", { required: "Nome é obrigatório", minLength: { value: 3, message: "Mínimo 3 caracteres" } })}
         />
-        {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
+        {errors.name && <p className="text-xs text-destructive mt-1">{errors.name.message}</p>}
       </div>
 
       <div>
@@ -108,7 +108,7 @@ export function ContactForm() {
             onChange: (e) => setValue("whatsapp", formatPhone(e.target.value)),
           })}
         />
-        {errors.whatsapp && <p className="text-xs text-red-500 mt-1">{errors.whatsapp.message}</p>}
+        {errors.whatsapp && <p className="text-xs text-destructive mt-1">{errors.whatsapp.message}</p>}
       </div>
 
       <div>
@@ -126,7 +126,7 @@ export function ContactForm() {
             <option key={c} value={c}>{c}</option>
           ))}
         </select>
-        {errors.convenio && <p className="text-xs text-red-500 mt-1">{errors.convenio.message}</p>}
+        {errors.convenio && <p className="text-xs text-destructive mt-1">{errors.convenio.message}</p>}
       </div>
 
       <div>
@@ -142,7 +142,7 @@ export function ContactForm() {
             minLength: { value: 10, message: "Mínimo 10 caracteres" },
           })}
         />
-        {errors.queixa && <p className="text-xs text-red-500 mt-1">{errors.queixa.message}</p>}
+        {errors.queixa && <p className="text-xs text-destructive mt-1">{errors.queixa.message}</p>}
       </div>
 
       <div>
@@ -160,7 +160,7 @@ export function ContactForm() {
             . Autorizo o tratamento dos meus dados pessoais, incluindo dados de saúde, para fins de agendamento de consulta.
           </span>
         </label>
-        {errors.consent && <p className="text-xs text-red-500 mt-1">{errors.consent.message}</p>}
+        {errors.consent && <p className="text-xs text-destructive mt-1">{errors.consent.message}</p>}
       </div>
 
       <button

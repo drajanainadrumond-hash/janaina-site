@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
           <div>
             <p className="text-[1.125rem] font-medium text-teal">Dra. Janaína Drumond</p>
-            <p className="text-[1.125rem] text-[#7A8E9B] leading-relaxed mt-0.5">
+            <p className="text-[1.125rem] text-[#5A6B78] leading-relaxed mt-0.5">
               {AUTHOR_BYLINE}
             </p>
           </div>

@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     "ortopedista mão BH",
   ],
   authors: [{ name: "Dra. Janaína Drumond Rocha Fraga" }],
-  creator: "Orbee Labs",
+  creator: "Dra. Janaína Drumond Rocha Fraga",
   publisher: "Dra. Janaína Drumond",
   formatDetection: {
     telephone: true,

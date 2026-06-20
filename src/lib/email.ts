@@ -44,24 +44,24 @@ export async function sendContactEmail(data: LeadData) {
         <h2 style="color: #003E51; margin-bottom: 24px;">Nova solicitação de consulta</h2>
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
-            <td style="padding: 8px 0; color: #7A8E9B; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Nome</td>
+            <td style="padding: 8px 0; color: #5A6B78; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Nome</td>
             <td style="padding: 8px 0; font-weight: 500;">${safeName}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #7A8E9B; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">WhatsApp</td>
+            <td style="padding: 8px 0; color: #5A6B78; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">WhatsApp</td>
             <td style="padding: 8px 0;">${safeWhatsapp}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #7A8E9B; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Convênio</td>
+            <td style="padding: 8px 0; color: #5A6B78; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Convênio</td>
             <td style="padding: 8px 0;">${safeConvenio}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #7A8E9B; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; vertical-align: top;">Queixa</td>
+            <td style="padding: 8px 0; color: #5A6B78; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; vertical-align: top;">Queixa</td>
             <td style="padding: 8px 0;">${safeQueixa}</td>
           </tr>
         </table>
         <hr style="border: none; border-top: 1px solid #E6E5E2; margin: 24px 0;" />
-        <p style="font-size: 12px; color: #85878B;">Enviado pelo site janainadrumond.com.br</p>
+        <p style="font-size: 12px; color: #66686D;">Enviado pelo site janainadrumond.com.br</p>
       </div>
     `,
   });
@@ -109,16 +109,16 @@ export async function sendNewsletterConfirmationEmail(
             Confirmar inscrição
           </a>
         </p>
-        <p style="font-size: 13px; line-height: 1.7; color: #7A8E9B;">
+        <p style="font-size: 13px; line-height: 1.7; color: #5A6B78;">
           Se o botão não funcionar, copie e cole este endereço no navegador:<br />
           <span style="word-break: break-all;">${safeUrl}</span>
         </p>
-        <p style="font-size: 13px; line-height: 1.7; color: #7A8E9B;">
+        <p style="font-size: 13px; line-height: 1.7; color: #5A6B78;">
           Este link expira em 24 horas. Se você não solicitou esta inscrição,
           basta ignorar este e-mail — nenhum dado será mantido.
         </p>
         <hr style="border: none; border-top: 1px solid #E6E5E2; margin: 24px 0;" />
-        <p style="font-size: 12px; color: #85878B;">Enviado pelo site janainadrumond.com.br</p>
+        <p style="font-size: 12px; color: #66686D;">Enviado pelo site janainadrumond.com.br</p>
       </div>
     `,
   });

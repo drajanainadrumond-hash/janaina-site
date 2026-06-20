@@ -193,7 +193,7 @@ export default async function BlogPage() {
                             {post.category}
                           </span>
                         </div>
-                        <span className={`text-[1.125rem] ${isLarge ? "text-white/25" : "text-[#7A8E9B]/50"}`}>
+                        <span className={`text-[1.125rem] ${isLarge ? "text-white/25" : "text-[#5A6B78]/50"}`}>
                           {readTime} min
                         </span>
                       </div>
@@ -223,7 +223,7 @@ export default async function BlogPage() {
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center ${isLarge ? "bg-white/10" : "bg-teal"}`}>
                           <span className={`text-[1.125rem] font-medium ${isLarge ? "text-white/60" : "text-white"}`}>JD</span>
                         </div>
-                        <span className={`text-[1.125rem] ${isLarge ? "text-white/25" : "text-[#7A8E9B]/60"}`}>
+                        <span className={`text-[1.125rem] ${isLarge ? "text-white/25" : "text-[#5A6B78]/60"}`}>
                           {new Date(post.created_at).toLocaleDateString("pt-BR", { day: "numeric", month: "short" })}
                         </span>
                       </div>

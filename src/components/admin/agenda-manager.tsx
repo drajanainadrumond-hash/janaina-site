@@ -171,7 +171,7 @@ export function AgendaManager() {
 
   if (!supabase) {
     return (
-      <p className="text-[1.125rem] text-[#7A8E9B]">Supabase não configurado.</p>
+      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
     );
   }
 
@@ -323,7 +323,7 @@ export function AgendaManager() {
               <Link2 className="w-3 h-3" /> Google sincronizado
             </div>
           ) : (
-            <a href="/api/calendar/auth" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[1.125rem] uppercase text-[#7A8E9B] border border-[#E6E5E2] hover:text-[#00565B] transition-colors">
+            <a href="/api/calendar/auth" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[1.125rem] uppercase text-[#5A6B78] border border-[#E6E5E2] hover:text-[#00565B] transition-colors">
               <Link2 className="w-3 h-3" /> Conectar Google
             </a>
           )}
@@ -347,7 +347,7 @@ export function AgendaManager() {
 
           <div className="grid grid-cols-7 border-b border-[#E6E5E2]/60">
             {WEEKDAYS.map((d, i) => (
-              <div key={d} className={`py-2 text-center text-[1.125rem] uppercase tracking-[1px] font-medium ${!businessHours[DAY_KEYS[i]].active ? "text-[#7A8E9B]/25" : "text-[#7A8E9B]"}`}>{d}</div>
+              <div key={d} className={`py-2 text-center text-[1.125rem] uppercase tracking-[1px] font-medium ${!businessHours[DAY_KEYS[i]].active ? "text-[#5A6B78]/25" : "text-[#5A6B78]"}`}>{d}</div>
             ))}
           </div>
 
@@ -365,7 +365,7 @@ export function AgendaManager() {
               return (
                 <button key={day} onClick={() => selectDay(day)} className={`min-h-[130px] p-2.5 text-left border-b border-[#E6E5E2]/20 transition-all relative group ${!lastCol ? "border-r" : ""} ${isSel ? "bg-[#003E51]/[0.04] ring-2 ring-inset ring-[#003E51]/15" : "hover:bg-[#003E51]/[0.015]"} ${d.isOff && !d.holiday ? "bg-[#fafaf8]/80" : ""} ${d.holiday ? "bg-red-50/30" : ""}`}>
                   <div className="flex items-center justify-between mb-1">
-                    <span className={`w-8 h-8 flex items-center justify-center rounded-full text-[1.125rem] font-medium transition-all ${isToday ? "bg-[#003E51] text-white" : d.holiday ? "text-red-400" : d.isOff ? "text-[#7A8E9B]/30" : "text-[#003E51]"} ${isSel && !isToday ? "ring-2 ring-[#003E51]/20" : ""}`}>{day}</span>
+                    <span className={`w-8 h-8 flex items-center justify-center rounded-full text-[1.125rem] font-medium transition-all ${isToday ? "bg-[#003E51] text-white" : d.holiday ? "text-red-400" : d.isOff ? "text-[#5A6B78]/30" : "text-[#003E51]"} ${isSel && !isToday ? "ring-2 ring-[#003E51]/20" : ""}`}>{day}</span>
                     {d.pending > 0 && <div className="w-6 h-6 rounded-full bg-amber-400 text-white text-[1.125rem] font-bold flex items-center justify-center animate-pulse">{d.pending}</div>}
                   </div>
 
@@ -395,8 +395,8 @@ export function AgendaManager() {
 
           {/* Season bar */}
           <div className="px-4 py-2.5 flex items-center gap-2 border-t border-[#E6E5E2]/40 bg-[#fafaf8]/50">
-            {month >= 4 && month <= 8 ? <CloudRain className="w-3.5 h-3.5 text-[#7A8E9B]" /> : month >= 9 || month <= 1 ? <Sun className="w-3.5 h-3.5 text-amber-500" /> : <Thermometer className="w-3.5 h-3.5 text-[#7A8E9B]" />}
-            <span className="text-[1.125rem] text-[#7A8E9B]">{month >= 4 && month <= 8 ? "Estação seca — dores articulares" : month >= 9 || month <= 1 ? "Estação chuvosa — quedas/acidentes" : "Transição — retorno às atividades"}</span>
+            {month >= 4 && month <= 8 ? <CloudRain className="w-3.5 h-3.5 text-[#5A6B78]" /> : month >= 9 || month <= 1 ? <Sun className="w-3.5 h-3.5 text-amber-500" /> : <Thermometer className="w-3.5 h-3.5 text-[#5A6B78]" />}
+            <span className="text-[1.125rem] text-[#5A6B78]">{month >= 4 && month <= 8 ? "Estação seca — dores articulares" : month >= 9 || month <= 1 ? "Estação chuvosa — quedas/acidentes" : "Transição — retorno às atividades"}</span>
           </div>
         </div>
 
@@ -413,7 +413,7 @@ export function AgendaManager() {
             {dayEvents.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mb-2">
                 {dayEvents.map((ev, i) => (
-                  <span key={i} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[1.125rem] font-medium ${ev.type === "feriado" ? "bg-red-50 text-red-500" : ev.type === "sazonal" ? "bg-violet-50 text-violet-500" : "bg-amber-50 text-amber-600"}`}>
+                  <span key={i} className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[1.125rem] font-medium ${ev.type === "feriado" ? "bg-red-50 text-destructive" : ev.type === "sazonal" ? "bg-violet-50 text-violet-500" : "bg-amber-50 text-amber-600"}`}>
                     {ev.type === "feriado" ? <Flag className="w-2.5 h-2.5" /> : <Activity className="w-2.5 h-2.5" />}
                     {ev.label}
                   </span>
@@ -425,7 +425,7 @@ export function AgendaManager() {
             {!editingBH ? (
               <div className="flex items-center justify-between">
                 {selBH.active ? (
-                  <div className="flex items-center gap-3 text-[1.125rem] text-[#7A8E9B]">
+                  <div className="flex items-center gap-3 text-[1.125rem] text-[#5A6B78]">
                     <div className="flex items-center gap-1"><Clock className="w-3 h-3" />{selBH.start} — {selBH.end}</div>
                     {selBH.lunch_start && <div className="flex items-center gap-1"><Coffee className="w-3 h-3" />{selBH.lunch_start}-{selBH.lunch_end}</div>}
                     <div className="flex items-center gap-1">
@@ -434,10 +434,10 @@ export function AgendaManager() {
                     </div>
                   </div>
                 ) : (
-                  <p className="text-[1.125rem] text-[#7A8E9B]/50">Sem expediente configurado</p>
+                  <p className="text-[1.125rem] text-[#5A6B78]/50">Sem expediente configurado</p>
                 )}
                 <button onClick={() => { setBhDraft(JSON.parse(JSON.stringify(businessHours))); setEditingBH(true); }} className="w-7 h-7 rounded-lg hover:bg-[#f5f5f0] flex items-center justify-center transition-colors">
-                  <Settings className="w-3.5 h-3.5 text-[#7A8E9B]" />
+                  <Settings className="w-3.5 h-3.5 text-[#5A6B78]" />
                 </button>
               </div>
             ) : (
@@ -459,15 +459,15 @@ export function AgendaManager() {
                         <>
                           {/* Times */}
                           <div className="flex items-center gap-2">
-                            <Clock className="w-3 h-3 text-[#7A8E9B] shrink-0" />
+                            <Clock className="w-3 h-3 text-[#5A6B78] shrink-0" />
                             <input type="time" value={d.start} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, start: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
-                            <span className="text-[1.125rem] text-[#7A8E9B]">até</span>
+                            <span className="text-[1.125rem] text-[#5A6B78]">até</span>
                             <input type="time" value={d.end} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, end: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
                           </div>
                           <div className="flex items-center gap-2">
-                            <Coffee className="w-3 h-3 text-[#7A8E9B] shrink-0" />
+                            <Coffee className="w-3 h-3 text-[#5A6B78] shrink-0" />
                             <input type="time" value={d.lunch_start} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, lunch_start: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
-                            <span className="text-[1.125rem] text-[#7A8E9B]">—</span>
+                            <span className="text-[1.125rem] text-[#5A6B78]">—</span>
                             <input type="time" value={d.lunch_end} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, lunch_end: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
                           </div>
 
@@ -478,7 +478,7 @@ export function AgendaManager() {
                               { v: "video", label: "Vídeo", Icon: Video },
                               { v: "ambos", label: "Ambos", Icon: Layers },
                             ] as const).map((opt) => (
-                              <button key={opt.v} onClick={() => setBhDraft({ ...bhDraft, [dayKey]: { ...d, mode: opt.v } })} className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[1.125rem] font-medium border transition-all ${d.mode === opt.v ? "bg-[#003E51] text-white border-[#003E51]" : "border-[#E6E5E2] text-[#7A8E9B] bg-white hover:bg-[#f5f5f0]"}`}>
+                              <button key={opt.v} onClick={() => setBhDraft({ ...bhDraft, [dayKey]: { ...d, mode: opt.v } })} className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-[1.125rem] font-medium border transition-all ${d.mode === opt.v ? "bg-[#003E51] text-white border-[#003E51]" : "border-[#E6E5E2] text-[#5A6B78] bg-white hover:bg-[#f5f5f0]"}`}>
                                 <opt.Icon className="w-3 h-3" />{opt.label}
                               </button>
                             ))}
@@ -491,7 +491,7 @@ export function AgendaManager() {
                         <button onClick={async () => { await saveBH(bhDraft); setEditingBH(false); fetchData(); }} className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#003E51] text-white text-[1.125rem] uppercase font-medium hover:bg-[#00565B] transition-colors">
                           <Save className="w-3 h-3" /> Salvar
                         </button>
-                        <button onClick={() => setEditingBH(false)} className="px-3 py-1.5 rounded-lg text-[1.125rem] text-[#7A8E9B] hover:text-[#003E51] transition-colors">
+                        <button onClick={() => setEditingBH(false)} className="px-3 py-1.5 rounded-lg text-[1.125rem] text-[#5A6B78] hover:text-[#003E51] transition-colors">
                           Cancelar
                         </button>
                       </div>
@@ -521,11 +521,11 @@ export function AgendaManager() {
                           {a.status === "pending" && <button onClick={() => updateStatus(a.id, "confirmed")} className="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center hover:bg-emerald-100 transition-colors"><Check className="w-3 h-3 text-emerald-600" /></button>}
                           {a.status === "pending" && <button onClick={() => updateStatus(a.id, "cancelled")} className="w-6 h-6 rounded-md bg-red-50 flex items-center justify-center hover:bg-red-100 transition-colors"><X className="w-3 h-3 text-red-400" /></button>}
                           {a.status === "confirmed" && <button onClick={() => updateStatus(a.id, "completed")} className="w-6 h-6 rounded-md bg-[#003E51]/5 flex items-center justify-center hover:bg-[#003E51]/10 transition-colors"><CheckCircle2 className="w-3 h-3 text-[#003E51]" /></button>}
-                          <button onClick={() => deleteAppt(a.id)} className="w-6 h-6 rounded-md hover:bg-red-50 flex items-center justify-center transition-colors"><Trash2 className="w-3 h-3 text-[#7A8E9B]" /></button>
+                          <button onClick={() => deleteAppt(a.id)} className="w-6 h-6 rounded-md hover:bg-red-50 flex items-center justify-center transition-colors"><Trash2 className="w-3 h-3 text-[#5A6B78]" /></button>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 text-[1.125rem]">
-                        <User className="w-3 h-3 text-[#7A8E9B]" /><span className="text-[#003E51] font-medium">{a.patient_name}</span>
+                        <User className="w-3 h-3 text-[#5A6B78]" /><span className="text-[#003E51] font-medium">{a.patient_name}</span>
                         <a href={`https://wa.me/55${a.patient_phone.replace(/\D/g, "")}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-0.5 text-emerald-600 hover:underline"><Phone className="w-2.5 h-2.5" />{a.patient_phone}</a>
                       </div>
                     </div>
@@ -539,7 +539,7 @@ export function AgendaManager() {
           {selBH.active && (
             <div className="bg-white rounded-2xl border border-[#E6E5E2] p-4">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] font-medium">Horários</p>
+                <p className="text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] font-medium">Horários</p>
                 <button onClick={generateDaySlots} className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-[1.125rem] uppercase text-[#003E51] bg-[#003E51]/[0.04] hover:bg-[#003E51]/[0.08] transition-colors font-medium">
                   <Zap className="w-3 h-3" /> Liberar todos
                 </button>
@@ -554,8 +554,8 @@ export function AgendaManager() {
                   if (ts.isLunch) {
                     return (
                       <div key={ts.time} className="slot-enter rounded-lg px-2 py-2 bg-[#fafaf8] border border-dashed border-[#E6E5E2]/60 flex items-center justify-center gap-1 uppercase">
-                        <Coffee className="w-3 h-3 text-[#7A8E9B]/30" />
-                        <span className="text-[1.125rem] text-[#7A8E9B]/30">{ts.time}</span>
+                        <Coffee className="w-3 h-3 text-[#5A6B78]/30" />
+                        <span className="text-[1.125rem] text-[#5A6B78]/30">{ts.time}</span>
                       </div>
                     );
                   }
@@ -582,7 +582,7 @@ export function AgendaManager() {
                         }`}
                       >
                         <div className="flex items-center justify-between">
-                          <span className={`text-[1.125rem] font-semibold ${hasAppt ? "text-white" : isAvailable ? "text-emerald-700" : "text-[#7A8E9B]"}`}>{ts.time}</span>
+                          <span className={`text-[1.125rem] font-semibold ${hasAppt ? "text-white" : isAvailable ? "text-emerald-700" : "text-[#5A6B78]"}`}>{ts.time}</span>
                           {hasAppt ? (
                             <CheckCircle2 className="w-3.5 h-3.5 text-white/60" />
                           ) : isAvailable ? (
@@ -590,7 +590,7 @@ export function AgendaManager() {
                               <Check className="w-2.5 h-2.5 text-emerald-600" />
                             </div>
                           ) : (
-                            <Plus className="w-3 h-3 text-[#7A8E9B]/30" />
+                            <Plus className="w-3 h-3 text-[#5A6B78]/30" />
                           )}
                         </div>
                         {hasAppt && (() => {
@@ -618,7 +618,7 @@ export function AgendaManager() {
                           </span>
                         )}
                         {!isAvailable && !hasAppt && (
-                          <span className="text-[1.125rem] text-[#7A8E9B]/25 mt-0.5 block">Clique para liberar</span>
+                          <span className="text-[1.125rem] text-[#5A6B78]/25 mt-0.5 block">Clique para liberar</span>
                         )}
                       </button>
                     </div>
@@ -636,17 +636,17 @@ export function AgendaManager() {
                   <div className="w-7 h-7 rounded-lg bg-[#003E51] flex items-center justify-center"><Plus className="w-3.5 h-3.5 text-white" /></div>
                   <div>
                     <p className="text-[1.125rem] font-medium text-[#003E51]">Agendar {quickForm.time} — {quickForm.endTime}</p>
-                    <p className="text-[1.125rem] text-[#7A8E9B] capitalize">{formatDateLong(selectedDate)}</p>
+                    <p className="text-[1.125rem] text-[#5A6B78] capitalize">{formatDateLong(selectedDate)}</p>
                   </div>
                 </div>
-                <button onClick={() => setQuickForm({ open: false, time: "", endTime: "" })} className="w-6 h-6 rounded-md hover:bg-[#f5f5f0] flex items-center justify-center"><X className="w-3.5 h-3.5 text-[#7A8E9B]" /></button>
+                <button onClick={() => setQuickForm({ open: false, time: "", endTime: "" })} className="w-6 h-6 rounded-md hover:bg-[#f5f5f0] flex items-center justify-center"><X className="w-3.5 h-3.5 text-[#5A6B78]" /></button>
               </div>
 
               <div className="space-y-2.5">
-                <input type="text" placeholder="Nome do paciente" value={apptForm.patient_name} onChange={(e) => setApptForm({ ...apptForm, patient_name: e.target.value })} className="w-full px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#7A8E9B]/40" autoFocus />
+                <input type="text" placeholder="Nome do paciente" value={apptForm.patient_name} onChange={(e) => setApptForm({ ...apptForm, patient_name: e.target.value })} className="w-full px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" autoFocus />
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="tel" placeholder="Telefone" value={apptForm.patient_phone} onChange={(e) => setApptForm({ ...apptForm, patient_phone: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#7A8E9B]/40" />
-                  <input type="email" placeholder="Email (opcional)" value={apptForm.patient_email} onChange={(e) => setApptForm({ ...apptForm, patient_email: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#7A8E9B]/40" />
+                  <input type="tel" placeholder="Telefone" value={apptForm.patient_phone} onChange={(e) => setApptForm({ ...apptForm, patient_phone: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" />
+                  <input type="email" placeholder="Email (opcional)" value={apptForm.patient_email} onChange={(e) => setApptForm({ ...apptForm, patient_email: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" />
                 </div>
 
                 {/* Mode selector */}
@@ -656,7 +656,7 @@ export function AgendaManager() {
                     { v: "video", label: "Vídeo", Icon: Video },
                     { v: "ambos", label: "Ambos", Icon: Layers },
                   ].map((opt) => (
-                    <button key={opt.v} onClick={() => setApptForm({ ...apptForm, mode: opt.v })} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[1.125rem] font-medium border transition-all ${apptForm.mode === opt.v ? "bg-[#003E51] text-white border-[#003E51]" : "border-[#E6E5E2] text-[#7A8E9B] hover:bg-[#f5f5f0]"}`}>
+                    <button key={opt.v} onClick={() => setApptForm({ ...apptForm, mode: opt.v })} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[1.125rem] font-medium border transition-all ${apptForm.mode === opt.v ? "bg-[#003E51] text-white border-[#003E51]" : "border-[#E6E5E2] text-[#5A6B78] hover:bg-[#f5f5f0]"}`}>
                       <opt.Icon className="w-3 h-3" />{opt.label}
                     </button>
                   ))}
@@ -676,12 +676,12 @@ export function AgendaManager() {
           {/* Month events sidebar */}
           {monthEvents.length > 0 && (
             <div className="bg-white rounded-2xl border border-[#E6E5E2] p-3">
-              <p className="text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] font-medium mb-2">{MONTHS[month]}</p>
+              <p className="text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] font-medium mb-2">{MONTHS[month]}</p>
               <div className="space-y-1.5 max-h-[150px] overflow-y-auto">
                 {monthEvents.slice(0, 8).map((ev, i) => (
                   <div key={i} className="flex items-center gap-1.5">
                     {ev.type === "feriado" ? <Flag className="w-2.5 h-2.5 text-red-400 shrink-0" /> : <Activity className="w-2.5 h-2.5 text-violet-400 shrink-0" />}
-                    <span className="text-[1.125rem] text-[#7A8E9B] truncate">{ev.fullDate.split("-")[2]}/{ev.fullDate.split("-")[1]} — {ev.label}</span>
+                    <span className="text-[1.125rem] text-[#5A6B78] truncate">{ev.fullDate.split("-")[2]}/{ev.fullDate.split("-")[1]} — {ev.label}</span>
                   </div>
                 ))}
               </div>

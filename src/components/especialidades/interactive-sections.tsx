@@ -105,7 +105,7 @@ export function InteractiveSections({ sections }: { sections: Section[] }) {
                   <span className="text-xl shrink-0">{section.icon}</span>
                   <div className="min-w-0">
                     <h3 className="font-heading text-[1.125rem] font-normal tracking-[0.3px] text-teal truncate">{section.title}</h3>
-                    <span className="text-[1.125rem] text-[#7A8E9B]">{section.items.length} condições</span>
+                    <span className="text-[1.125rem] text-[#5A6B78]">{section.items.length} condições</span>
                   </div>
                 </div>
                 <ChevronIcon open={isOpen} className="h-4 w-4 text-teal/30 shrink-0" />

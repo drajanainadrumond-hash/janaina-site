@@ -112,7 +112,7 @@ function SearchResults() {
       <div className="max-w-[700px] mx-auto">
         {/* Search input */}
         <div className="relative mb-8">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#7A8E9B]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5A6B78]">
             <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
           </svg>
           <input
@@ -120,13 +120,13 @@ function SearchResults() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Digite o que procura... ex: dor no ombro, túnel do carpo"
-            className="w-full pl-14 pr-5 py-4 rounded-2xl bg-white border border-teal/[0.08] text-[1.125rem] text-[#4A5E6B] placeholder:text-[#7A8E9B]/50 shadow-[0_2px_12px_rgba(0,62,81,0.04)] focus:outline-none focus:border-teal/20 focus:shadow-[0_4px_20px_rgba(0,62,81,0.08)] transition-all duration-300"
+            className="w-full pl-14 pr-5 py-4 rounded-2xl bg-white border border-teal/[0.08] text-[1.125rem] text-[#4A5E6B] placeholder:text-[#5A6B78]/50 shadow-[0_2px_12px_rgba(0,62,81,0.04)] focus:outline-none focus:border-teal/20 focus:shadow-[0_4px_20px_rgba(0,62,81,0.08)] transition-all duration-300"
             autoFocus
           />
           {query && (
             <button
               onClick={() => setQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-cream-light flex items-center justify-center text-[#7A8E9B] hover:bg-teal hover:text-white transition-all duration-200 text-xs"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-cream-light flex items-center justify-center text-[#5A6B78] hover:bg-teal hover:text-white transition-all duration-200 text-xs"
             >
               ✕
             </button>
@@ -135,7 +135,7 @@ function SearchResults() {
 
         {/* Results count */}
         {query.trim() && (
-          <p className="text-[1.125rem] text-[#7A8E9B] mb-6">
+          <p className="text-[1.125rem] text-[#5A6B78] mb-6">
             {filtered.length === 0
               ? "Nenhum resultado encontrado. Tente outra palavra."
               : `${filtered.length} resultado${filtered.length !== 1 ? "s" : ""} para "${query}"`}
@@ -152,7 +152,7 @@ function SearchResults() {
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className={`w-[6px] h-[6px] rounded-full ${r.categoryColor}`} />
-                <span className="text-[1.125rem] uppercase tracking-[1.5px] text-[#7A8E9B]">{r.category}</span>
+                <span className="text-[1.125rem] uppercase tracking-[1.5px] text-[#5A6B78]">{r.category}</span>
               </div>
               <h3 className="font-heading text-[1rem] font-normal text-teal group-hover:text-teal-mid transition-colors duration-200 mb-1">
                 {r.title}
@@ -172,7 +172,7 @@ function SearchResults() {
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
               </svg>
             </div>
-            <p className="text-[1.125rem] text-[#7A8E9B]">Digite acima para buscar condições, especialidades, artigos e mais.</p>
+            <p className="text-[1.125rem] text-[#5A6B78]">Digite acima para buscar condições, especialidades, artigos e mais.</p>
           </div>
         )}
       </div>

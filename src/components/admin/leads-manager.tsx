@@ -38,7 +38,7 @@ export function LeadsManager() {
 
   if (!supabase) {
     return (
-      <p className="text-[1.125rem] text-[#7A8E9B]">Supabase não configurado.</p>
+      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
     );
   }
 
@@ -46,14 +46,14 @@ export function LeadsManager() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-[1.1rem] font-medium text-[#003E51]">Leads / Contatos</h2>
-        <span className="text-[1.125rem] text-[#7A8E9B]">{leads.length} contatos</span>
+        <span className="text-[1.125rem] text-[#5A6B78]">{leads.length} contatos</span>
       </div>
 
       {loading ? (
-        <p className="text-[1.125rem] text-[#7A8E9B]">Carregando...</p>
+        <p className="text-[1.125rem] text-[#5A6B78]">Carregando...</p>
       ) : leads.length === 0 ? (
         <div className="bg-white rounded-2xl p-8 text-center border border-[#E6E5E2]">
-          <p className="text-[1.125rem] text-[#7A8E9B]">Nenhum contato recebido ainda.</p>
+          <p className="text-[1.125rem] text-[#5A6B78]">Nenhum contato recebido ainda.</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -65,7 +65,7 @@ export function LeadsManager() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <h3 className="text-[1.125rem] font-medium text-[#003E51]">{lead.name}</h3>
-                  <div className="flex flex-wrap items-center gap-3 mt-1 text-[1.125rem] text-[#7A8E9B]">
+                  <div className="flex flex-wrap items-center gap-3 mt-1 text-[1.125rem] text-[#5A6B78]">
                     <a
                       href={`https://wa.me/55${lead.whatsapp.replace(/\D/g, "")}`}
                       target="_blank"

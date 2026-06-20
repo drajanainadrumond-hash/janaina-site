@@ -51,7 +51,7 @@ export default function AdminPage() {
   if (!supabase) {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
-        <p className="text-center text-[1.125rem] text-[#7A8E9B] max-w-lg leading-relaxed">
+        <p className="text-center text-[1.125rem] text-[#5A6B78] max-w-lg leading-relaxed">
           Defina{" "}
           <code className="text-[#003E51] text-sm">NEXT_PUBLIC_SUPABASE_URL</code> e{" "}
           <code className="text-[#003E51] text-sm">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY</code>{" "}
@@ -73,13 +73,13 @@ export default function AdminPage() {
             <span className="text-white text-sm font-medium">JD</span>
           </div>
           <h1 className="text-[1.3rem] font-medium text-[#003E51]">Painel Administrativo</h1>
-          <p className="text-[1.125rem] text-[#7A8E9B] mt-1">Dra. Janaína Drumond</p>
+          <p className="text-[1.125rem] text-[#5A6B78] mt-1">Dra. Janaína Drumond</p>
         </div>
 
         <form onSubmit={handleLogin} className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,62,81,0.06)] border border-[#003E51]/[0.04]">
           <div className="space-y-4">
             <div>
-              <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">Email</label>
+              <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Email</label>
               <input
                 type="email"
                 value={email}
@@ -89,7 +89,7 @@ export default function AdminPage() {
               />
             </div>
             <div>
-              <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">Senha</label>
+              <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Senha</label>
               <input
                 type="password"
                 value={password}
@@ -101,7 +101,7 @@ export default function AdminPage() {
           </div>
 
           {error && (
-            <p className="text-red-500 text-[1.125rem] mt-3">{error}</p>
+            <p className="text-destructive text-[1.125rem] mt-3">{error}</p>
           )}
 
           <button
@@ -113,7 +113,7 @@ export default function AdminPage() {
           </button>
         </form>
 
-        <p className="text-center text-[1.125rem] text-[#7A8E9B] mt-6">
+        <p className="text-center text-[1.125rem] text-[#5A6B78] mt-6">
           Acesso restrito a administradores.
         </p>
       </div>

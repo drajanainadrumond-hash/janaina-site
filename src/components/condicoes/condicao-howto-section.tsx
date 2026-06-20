@@ -22,7 +22,7 @@ export function CondicaoHowToSection({ howTo }: Props) {
       </h2>
       <p className="text-[1.125rem] text-[#4A5E6B] leading-relaxed mb-2">{howTo.description}</p>
       {duration ? (
-        <p className="text-[0.95rem] text-[#7A8E9B] mb-6">Duração estimada: {duration}.</p>
+        <p className="text-[0.95rem] text-[#5A6B78] mb-6">Duração estimada: {duration}.</p>
       ) : (
         <div className="mb-6" />
       )}
@@ -44,7 +44,7 @@ export function CondicaoHowToSection({ howTo }: Props) {
         ))}
       </ol>
 
-      <p className="mt-6 text-[0.95rem] text-[#7A8E9B] leading-relaxed">
+      <p className="mt-6 text-[0.95rem] text-[#5A6B78] leading-relaxed">
         Conteúdo informativo. O fluxo real pode variar conforme seu exame e indicação médica individual.
       </p>
     </section>

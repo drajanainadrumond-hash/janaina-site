@@ -64,14 +64,19 @@ export function TextReveal({
 export function SplitTextReveal({
   text,
   className = "",
+  immediate = false,
 }: {
   text: string;
   className?: string;
+  /** Renderiza o texto já visível no SSR (sem esperar JS). Use em conteúdo acima da dobra (ex.: h1 do hero) para não atrasar o LCP. */
+  immediate?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(immediate);
 
   useEffect(() => {
+    // Acima da dobra: já visível, sem observer (LCP rápido).
+    if (immediate) return;
     // Respect prefers-reduced-motion — show immediately without animation
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVisible(true);
@@ -90,7 +95,7 @@ export function SplitTextReveal({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [immediate]);
 
   return (
     <span ref={ref} className={className}>

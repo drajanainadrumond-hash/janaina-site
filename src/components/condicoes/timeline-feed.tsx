@@ -82,7 +82,7 @@ function UsefulButton() {
       className={`flex items-center gap-1.5 text-[1.125rem] px-3 py-1.5 rounded-full border transition-all duration-300 ${
         clicked
           ? "bg-teal text-white border-teal"
-          : "bg-transparent text-[#7A8E9B] border-cream-dark hover:border-teal/30 hover:text-teal"
+          : "bg-transparent text-[#5A6B78] border-cream-dark hover:border-teal/30 hover:text-teal"
       }`}
     >
       <span>{clicked ? "✓" : "👍"}</span>
@@ -123,10 +123,10 @@ export function TimelineFeed({ content, areaLabel }: { content: string; areaLabe
                       </div>
                       <div className="min-w-0">
                         <p className="text-[0.85rem] sm:text-[1.125rem] font-medium text-teal leading-none truncate">Dra. Janaína Drumond</p>
-                        <p className="text-[0.8rem] sm:text-[1.125rem] text-[#7A8E9B] mt-0.5 truncate">{areaLabel}</p>
+                        <p className="text-[0.8rem] sm:text-[1.125rem] text-[#5A6B78] mt-0.5 truncate">{areaLabel}</p>
                       </div>
                     </div>
-                    <span className="text-[0.75rem] sm:text-[1.125rem] uppercase text-[#7A8E9B]/60 bg-white/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-black/[0.04] shrink-0">
+                    <span className="text-[0.75rem] sm:text-[1.125rem] uppercase text-[#5A6B78]/60 bg-white/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-black/[0.04] shrink-0">
                       {i + 1} de {cards.length}
                     </span>
                   </div>
@@ -150,7 +150,7 @@ export function TimelineFeed({ content, areaLabel }: { content: string; areaLabe
                   {/* Footer */}
                   <div className="px-3 sm:px-5 py-2 sm:py-3 border-t border-black/[0.03] flex items-center justify-between gap-2">
                     <div className="flex items-center gap-3 min-w-0">
-                      <span className="text-[0.8rem] sm:text-[1.125rem] text-[#7A8E9B] flex items-center gap-1.5 truncate">
+                      <span className="text-[0.8rem] sm:text-[1.125rem] text-[#5A6B78] flex items-center gap-1.5 truncate">
                         <span className="w-[6px] h-[6px] rounded-full bg-teal-mid/40 shrink-0" />
                         Baseado em evidências
                       </span>

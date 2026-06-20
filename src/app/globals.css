@@ -20,7 +20,7 @@
   --color-cream-dark: #D4D3D0;
   --color-dark: #0A1F2C;
   /* gold removed — not in official brand palette */
-  --color-gray-brand: #85878B;
+  --color-gray-brand: #66686D;
   --color-whatsapp: #25D366;
 
   /* Semantic aliases */
@@ -71,7 +71,7 @@
   --secondary: #F5F4F2;
   --secondary-foreground: #003E51;
   --muted: #F5F4F2;
-  --muted-foreground: #7A8E9B;
+  --muted-foreground: #5A6B78;
   --accent: #00565B;
   --accent-foreground: #FFFFFF;
   --destructive: #DC2626;
@@ -347,7 +347,7 @@
   border-bottom: none;
 }
 .prose-custom .compare-label {
-  color: #85878B;
+  color: #66686D;
   font-size: 1.125rem;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -366,7 +366,7 @@
   padding-top: 1.5rem;
   border-top: 1px solid #D4D3D0;
   font-size: 1.125rem;
-  color: #85878B;
+  color: #66686D;
 }
 
 /* Scroll reveal utility */

@@ -135,7 +135,7 @@ export default function FormacaoPage() {
           </div>
           <div>
             <p className="text-[1.125rem] font-medium text-teal">Dra. Janaína Drumond</p>
-            <p className="text-[1.125rem] text-[#7A8E9B] leading-relaxed mt-0.5">
+            <p className="text-[1.125rem] text-[#5A6B78] leading-relaxed mt-0.5">
               Ortopedista e Traumatologista em BH. Subespecialidade em Cirurgia da Mão e Punho. CRM-MG 69719 | RQE 50592.
             </p>
           </div>

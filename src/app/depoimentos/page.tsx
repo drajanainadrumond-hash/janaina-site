@@ -60,7 +60,7 @@ export default async function DepoimentosPage() {
                 <p className="font-heading text-[1.05rem] tracking-[0.5px] text-teal">
                   {d.name}
                 </p>
-                <p className="text-[1rem] text-[#7A8E9B]">{d.condition}</p>
+                <p className="text-[1rem] text-[#5A6B78]">{d.condition}</p>
               </div>
             </footer>
           </article>

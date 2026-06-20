@@ -57,7 +57,7 @@ export function BlogManager() {
 
   if (!supabase) {
     return (
-      <p className="text-[1.125rem] text-[#7A8E9B]">Supabase não configurado.</p>
+      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
     );
   }
 
@@ -147,10 +147,10 @@ export function BlogManager() {
       </div>
 
       {loading ? (
-        <p className="text-[1.125rem] text-[#7A8E9B]">Carregando...</p>
+        <p className="text-[1.125rem] text-[#5A6B78]">Carregando...</p>
       ) : posts.length === 0 ? (
         <div className="bg-white rounded-2xl p-8 text-center border border-[#E6E5E2]">
-          <p className="text-[1.125rem] text-[#7A8E9B]">Nenhum post ainda.</p>
+          <p className="text-[1.125rem] text-[#5A6B78]">Nenhum post ainda.</p>
           <button onClick={handleNew} className="mt-3 text-[1.125rem] text-[#00565B] underline">
             Criar primeiro post
           </button>
@@ -173,7 +173,7 @@ export function BlogManager() {
                     {post.title}
                   </h3>
                 </div>
-                <div className="flex items-center gap-3 text-[1.125rem] text-[#7A8E9B]">
+                <div className="flex items-center gap-3 text-[1.125rem] text-[#5A6B78]">
                   <span>{post.category}</span>
                   <span>
                     {new Date(post.created_at).toLocaleDateString("pt-BR")}
@@ -193,7 +193,7 @@ export function BlogManager() {
                 </button>
                 <button
                   onClick={() => handleDelete(post.id)}
-                  className="px-3 py-1.5 rounded-lg text-[1.125rem] uppercase text-red-500 hover:bg-red-50 transition-colors"
+                  className="px-3 py-1.5 rounded-lg text-[1.125rem] uppercase text-destructive hover:bg-red-50 transition-colors"
                 >
                   Excluir
                 </button>
@@ -235,14 +235,14 @@ function PostEditor({
         <h2 className="text-[1.1rem] font-medium text-[#003E51]">
           {isNew ? "Novo Post" : "Editar Post"}
         </h2>
-        <button onClick={onCancel} className="text-[1.125rem] text-[#7A8E9B] hover:text-[#003E51]">
+        <button onClick={onCancel} className="text-[1.125rem] text-[#5A6B78] hover:text-[#003E51]">
           Voltar
         </button>
       </div>
 
       <div className="bg-white rounded-2xl p-6 border border-[#E6E5E2] space-y-5">
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Título
           </label>
           <input
@@ -254,19 +254,19 @@ function PostEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Slug (URL)
           </label>
           <input
             type="text"
             value={form.slug}
             onChange={(e) => update("slug", e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#7A8E9B] focus:outline-none focus:border-[#00565B]"
+            className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#5A6B78] focus:outline-none focus:border-[#00565B]"
           />
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Categoria
           </label>
           <select
@@ -283,7 +283,7 @@ function PostEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Resumo
           </label>
           <textarea
@@ -295,7 +295,7 @@ function PostEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Conteúdo (HTML)
           </label>
           <textarea
@@ -327,7 +327,7 @@ function PostEditor({
           </button>
           <button
             onClick={onCancel}
-            className="px-6 py-2.5 rounded-xl text-[1.125rem] text-[#7A8E9B] hover:text-[#003E51] transition-colors"
+            className="px-6 py-2.5 rounded-xl text-[1.125rem] text-[#5A6B78] hover:text-[#003E51] transition-colors"
           >
             Cancelar
           </button>

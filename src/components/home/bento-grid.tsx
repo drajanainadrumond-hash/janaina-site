@@ -64,7 +64,7 @@ export function BentoGrid() {
             em todas as dimensões
           </em>
         </h2>
-        <p className="text-[1.125rem] text-[#7A8E9B] max-w-[300px] md:text-right leading-[1.7] mt-4 md:mt-0">
+        <p className="text-[1.125rem] text-[#5A6B78] max-w-[300px] md:text-right leading-[1.7] mt-4 md:mt-0">
           Do diagnóstico à recuperação, com expertise comprovada em cada etapa.
         </p>
       </div>

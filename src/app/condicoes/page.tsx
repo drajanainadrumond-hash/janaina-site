@@ -130,13 +130,13 @@ function CondicoesContent() {
           {/* Left — Body Map + Search */}
           <div className="lg:sticky lg:top-[90px]">
             <div className="text-center mb-6">
-              <p className="text-[1.125rem] uppercase tracking-[2px] text-[#7A8E9B] mb-1">Selecione a região</p>
+              <p className="text-[1.125rem] uppercase tracking-[2px] text-[#5A6B78] mb-1">Selecione a região</p>
               {areaInfo ? (
                 <span className={`inline-block text-[1.125rem] font-medium text-teal bg-teal-ghost px-3 py-1 rounded-full`}>
                   {areaInfo.label} · {filtered.length} condições
                 </span>
               ) : (
-                <span className="text-[1.125rem] text-[#7A8E9B]/60">Todas as regiões · {filtered.length}</span>
+                <span className="text-[1.125rem] text-[#5A6B78]/60">Todas as regiões · {filtered.length}</span>
               )}
             </div>
 
@@ -149,7 +149,7 @@ function CondicoesContent() {
                 className={`px-3 py-1.5 rounded-full text-[1.125rem] tracking-[0.5px] border transition-all duration-300 ${
                   activeArea === "todas"
                     ? "bg-teal text-white border-teal"
-                    : "bg-transparent text-[#7A8E9B] border-cream-dark hover:border-teal/30 hover:text-teal"
+                    : "bg-transparent text-[#5A6B78] border-cream-dark hover:border-teal/30 hover:text-teal"
                 }`}
               >
                 Todas
@@ -161,7 +161,7 @@ function CondicoesContent() {
                   className={`px-3 py-1.5 rounded-full text-[1.125rem] tracking-[0.5px] border transition-all duration-300 ${
                     activeArea === key
                       ? "bg-teal text-white border-teal"
-                      : "bg-transparent text-[#7A8E9B] border-cream-dark hover:border-teal/30 hover:text-teal"
+                      : "bg-transparent text-[#5A6B78] border-cream-dark hover:border-teal/30 hover:text-teal"
                   }`}
                 >
                   {info.label}
@@ -171,7 +171,7 @@ function CondicoesContent() {
 
             {/* Search */}
             <div className="relative mt-6">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[14px] h-[14px] text-[#7A8E9B]">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[14px] h-[14px] text-[#5A6B78]">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
               </svg>
               <input
@@ -179,7 +179,7 @@ function CondicoesContent() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Buscar condição..."
-                className="w-full pl-10 pr-4 py-2.5 bg-cream-light rounded-xl border border-cream-dark text-[1.125rem] text-[#4A5E6B] placeholder:text-[#7A8E9B]/40 focus:outline-none focus:border-teal/20 transition-all"
+                className="w-full pl-10 pr-4 py-2.5 bg-cream-light rounded-xl border border-cream-dark text-[1.125rem] text-[#4A5E6B] placeholder:text-[#5A6B78]/40 focus:outline-none focus:border-teal/20 transition-all"
               />
             </div>
           </div>
@@ -240,7 +240,7 @@ function CondicoesContent() {
             {/* Empty state */}
             {filtered.length === 0 && (
               <div className="text-center py-16">
-                <p className="text-[1.125rem] text-[#7A8E9B] mb-1">Nenhuma condição encontrada.</p>
+                <p className="text-[1.125rem] text-[#5A6B78] mb-1">Nenhuma condição encontrada.</p>
                 <button onClick={() => { setSearch(""); setActiveArea("todas"); }} className="text-[1.125rem] text-teal hover:text-teal-mid transition-colors mt-2">
                   Limpar filtros
                 </button>

@@ -212,7 +212,7 @@ export function Header() {
             <SearchIcon
               className={cn(
                 "absolute left-3 w-3.5 h-3.5 pointer-events-none",
-                useReadableStyle ? "text-[#7A8E9B]" : "text-white/65"
+                useReadableStyle ? "text-[#5A6B78]" : "text-white/65"
               )}
             />
             <input
@@ -224,7 +224,7 @@ export function Header() {
               className={cn(
                 "h-9 w-[180px] pl-9 pr-8 rounded-full text-xs tracking-[0.2px] focus:outline-none transition-colors",
                 useReadableStyle
-                  ? "bg-cream-light/80 border border-cream-dark text-[#4A5E6B] placeholder:text-[#7A8E9B]/50 focus:border-teal/25"
+                  ? "bg-cream-light/80 border border-cream-dark text-[#4A5E6B] placeholder:text-[#5A6B78]/50 focus:border-teal/25"
                   : "bg-white/10 border border-white/[0.08] text-white placeholder:text-white/55 focus:bg-white/15"
               )}
             />
@@ -234,7 +234,7 @@ export function Header() {
               className={cn(
                 "absolute right-2 flex h-5 w-5 items-center justify-center rounded-full text-[10px] transition-colors",
                 useReadableStyle
-                  ? "text-[#7A8E9B] hover:bg-cream-dark/60 hover:text-teal"
+                  ? "text-[#5A6B78] hover:bg-cream-dark/60 hover:text-teal"
                   : "text-white/60 hover:bg-white/20 hover:text-white"
               )}
               aria-label="Fechar busca"
@@ -308,13 +308,13 @@ export function Header() {
               );
             })}
             <form onSubmit={handleSearch} className="relative mt-4 pt-4 border-t border-cream-dark">
-              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#7A8E9B] pointer-events-none" />
+              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5A6B78] pointer-events-none" />
               <input
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Buscar no site..."
-                className="w-full rounded-xl border border-cream-dark py-3 pl-11 pr-4 text-sm text-[#4A5E6B] placeholder:text-[#7A8E9B]/60 focus:border-teal/30 focus:outline-none"
+                className="w-full rounded-xl border border-cream-dark py-3 pl-11 pr-4 text-sm text-[#4A5E6B] placeholder:text-[#5A6B78]/60 focus:border-teal/30 focus:outline-none"
               />
             </form>
             <Link

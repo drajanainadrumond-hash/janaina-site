@@ -2,8 +2,9 @@ import type { MetadataRoute } from "next";
 
 const SITE_URL = "https://janainadrumond.com.br";
 
-/** Rotas que não devem ser indexadas nem usadas por crawlers de IA. */
-const DISALLOW_PATHS = ["/api/", "/admin/", "/busca"];
+/** Rotas privadas que nunca devem ser rastreadas. (/busca usa `noindex` no metadata
+ * — não entra aqui, senão o crawler não consegue ler a tag noindex.) */
+const DISALLOW_PATHS = ["/api/", "/admin/"];
 
 /**
  * Crawlers de IA generativa — Livro-Guia § 8.5 (GEO).
@@ -17,6 +18,8 @@ const AI_CRAWLERS = [
   "anthropic-ai",
   "PerplexityBot",
   "Google-Extended",
+  "Applebot-Extended",
+  "CCBot",
 ] as const;
 
 export default function robots(): MetadataRoute.Robots {

@@ -37,7 +37,7 @@ export function DepoimentosManager() {
 
   if (!supabase) {
     return (
-      <p className="text-[1.125rem] text-[#7A8E9B]">Supabase não configurado.</p>
+      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
     );
   }
 
@@ -123,10 +123,10 @@ export function DepoimentosManager() {
       </div>
 
       {loading ? (
-        <p className="text-[1.125rem] text-[#7A8E9B]">Carregando...</p>
+        <p className="text-[1.125rem] text-[#5A6B78]">Carregando...</p>
       ) : items.length === 0 ? (
         <div className="bg-white rounded-2xl p-8 text-center border border-[#E6E5E2]">
-          <p className="text-[1.125rem] text-[#7A8E9B]">Nenhum depoimento ainda.</p>
+          <p className="text-[1.125rem] text-[#5A6B78]">Nenhum depoimento ainda.</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -143,7 +143,7 @@ export function DepoimentosManager() {
                     }`}
                   />
                   <h3 className="text-[1.125rem] font-medium text-[#003E51]">{item.name}</h3>
-                  <span className="text-[1.125rem] text-[#7A8E9B]">— {item.condition}</span>
+                  <span className="text-[1.125rem] text-[#5A6B78]">— {item.condition}</span>
                 </div>
                 <p className="text-[1.125rem] text-[#4A5E6B] line-clamp-2">{item.text}</p>
                 <div className="flex items-center gap-1 mt-1">
@@ -164,7 +164,7 @@ export function DepoimentosManager() {
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="px-3 py-1.5 rounded-lg text-[1.125rem] uppercase text-red-500 hover:bg-red-50 transition-colors"
+                  className="px-3 py-1.5 rounded-lg text-[1.125rem] uppercase text-destructive hover:bg-red-50 transition-colors"
                 >
                   Excluir
                 </button>
@@ -200,7 +200,7 @@ function DepoimentoEditor({
         <h2 className="text-[1.1rem] font-medium text-[#003E51]">
           {isNew ? "Novo Depoimento" : "Editar Depoimento"}
         </h2>
-        <button onClick={onCancel} className="text-[1.125rem] text-[#7A8E9B] hover:text-[#003E51]">
+        <button onClick={onCancel} className="text-[1.125rem] text-[#5A6B78] hover:text-[#003E51]">
           Voltar
         </button>
       </div>
@@ -208,7 +208,7 @@ function DepoimentoEditor({
       <div className="bg-white rounded-2xl p-6 border border-[#E6E5E2] space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
               Nome do Paciente
             </label>
             <input
@@ -219,7 +219,7 @@ function DepoimentoEditor({
             />
           </div>
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
               Condição Tratada
             </label>
             <input
@@ -233,7 +233,7 @@ function DepoimentoEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Depoimento
           </label>
           <textarea
@@ -245,7 +245,7 @@ function DepoimentoEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#7A8E9B] mb-1.5">
+          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Estrelas
           </label>
           <div className="flex gap-1">
@@ -281,7 +281,7 @@ function DepoimentoEditor({
           </button>
           <button
             onClick={onCancel}
-            className="px-6 py-2.5 rounded-xl text-[1.125rem] text-[#7A8E9B] hover:text-[#003E51] transition-colors"
+            className="px-6 py-2.5 rounded-xl text-[1.125rem] text-[#5A6B78] hover:text-[#003E51] transition-colors"
           >
             Cancelar
           </button>

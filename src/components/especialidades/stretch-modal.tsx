@@ -136,10 +136,10 @@ export function StretchModal({ exercise, sectionTitle, onClose }: Props) {
 
         {/* Disclaimer + Attribution */}
         <div className="px-8 pt-4 pb-6 text-center space-y-1">
-          <p className="text-[1.125rem] text-[#7A8E9B]">
+          <p className="text-[1.125rem] text-[#5A6B78]">
             Exercícios preventivos. Não substituem avaliação médica.
           </p>
-          <p className="text-[1.125rem] text-[#7A8E9B]">
+          <p className="text-[1.125rem] text-[#5A6B78]">
             Imagens: <a href="https://github.com/yuhonas/free-exercise-db" target="_blank" rel="noopener noreferrer" className="underline hover:text-teal transition-colors">Free Exercise DB</a> (domínio público)
           </p>
         </div>

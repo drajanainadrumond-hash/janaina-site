@@ -207,7 +207,7 @@ function DashboardHome({ onNavigate }: { onNavigate: (tab: TabId) => void }) {
         <h2 className="text-[1.4rem] font-medium text-[#003E51]">
           Bem-vinda, Dra. Janaína
         </h2>
-        <p className="text-[1.125rem] text-[#7A8E9B] mt-1">
+        <p className="text-[1.125rem] text-[#5A6B78] mt-1">
           {new Date().toLocaleDateString("pt-BR", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
         </p>
       </div>
@@ -256,7 +256,7 @@ function DashboardHome({ onNavigate }: { onNavigate: (tab: TabId) => void }) {
             <h3 className="text-[1.125rem] font-medium text-[#003E51] mb-0.5 group-hover:text-[#00565B] transition-colors">
               {card.title}
             </h3>
-            <p className="text-[1.125rem] text-[#7A8E9B] mb-4 leading-relaxed">{card.desc}</p>
+            <p className="text-[1.125rem] text-[#5A6B78] mb-4 leading-relaxed">{card.desc}</p>
 
             <div className="flex items-center justify-between pt-3 border-t border-[#E6E5E2]/60">
               <span className="text-[1.125rem] font-medium text-[#003E51] admin-count-pop" style={{ animationDelay: "0.4s" }}>{card.stat}</span>
@@ -273,7 +273,7 @@ function DashboardHome({ onNavigate }: { onNavigate: (tab: TabId) => void }) {
         <div className="w-8 h-8 rounded-lg bg-[#003E51]/[0.06] flex items-center justify-center shrink-0 mt-0.5">
           <Lightbulb className="w-4 h-4 text-[#003E51]/50" />
         </div>
-        <p className="text-[1.125rem] text-[#7A8E9B] leading-relaxed">
+        <p className="text-[1.125rem] text-[#5A6B78] leading-relaxed">
           <span className="font-medium text-[#003E51]">Dica:</span> Use a aba <strong>Agenda</strong> para definir seus horários de atendimento.
           Os pacientes poderão agendar direto pelo site nos horários que você liberar.
         </p>
@@ -332,10 +332,10 @@ export function AdminDashboard({ userEmail, onLogout }: Props) {
                   className={`admin-nav-item px-4 py-3.5 text-[1.125rem] font-medium border-b-[2.5px] whitespace-nowrap flex items-center gap-2 ${
                     isActive
                       ? "border-[#003E51] text-[#003E51]"
-                      : "border-transparent text-[#7A8E9B] hover:text-[#003E51] hover:bg-[#f5f5f0]/50"
+                      : "border-transparent text-[#5A6B78] hover:text-[#003E51] hover:bg-[#f5f5f0]/50"
                   }`}
                 >
-                  <tab.Icon className={`admin-nav-icon w-4 h-4 ${isActive ? "text-[#003E51]" : "text-[#7A8E9B]"}`} strokeWidth={isActive ? 2 : 1.5} />
+                  <tab.Icon className={`admin-nav-icon w-4 h-4 ${isActive ? "text-[#003E51]" : "text-[#5A6B78]"}`} strokeWidth={isActive ? 2 : 1.5} />
                   {tab.label}
                 </button>
               );
@@ -359,7 +359,7 @@ export function AdminDashboard({ userEmail, onLogout }: Props) {
       {/* Footer */}
       <footer className="border-t border-[#E6E5E2] py-4 px-6">
         <div className="max-w-[1500px] mx-auto flex items-center justify-between">
-          <p className="text-[1.125rem] text-[#7A8E9B]">Orbee Labs — Painel Administrativo</p>
+          <p className="text-[1.125rem] text-[#5A6B78]">Orbee Labs — Painel Administrativo</p>
           <a href="/" className="flex items-center gap-1 text-[1.125rem] text-[#003E51]/40 hover:text-[#003E51] transition-colors">
             Ver site <ExternalLink className="w-3 h-3" />
           </a>

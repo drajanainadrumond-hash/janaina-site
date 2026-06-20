@@ -36,7 +36,7 @@ export function AeoContentIntro({ directAnswer, pageTitle }: Props) {
           Ver formação
         </Link>
         {" · "}
-        <span className="text-[#7A8E9B]">{SITE.city}</span>
+        <span className="text-[#5A6B78]">{SITE.city}</span>
       </p>
     </header>
   );
