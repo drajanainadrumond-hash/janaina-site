@@ -350,7 +350,7 @@ CREATE POLICY "Authenticated full access faqs" ON "public"."faqs" USING (("auth"
 
 
 
-CREATE POLICY "Authenticated full access settings" ON "public"."settings" USING (("auth"."role"() = 'authenticated'::"text")) WITH CHECK (("auth"."role"() = 'authenticated'::"text"));
+CREATE POLICY "Service role full access settings" ON "public"."settings" USING (("auth"."role"() = 'service_role'::"text")) WITH CHECK (("auth"."role"() = 'service_role'::"text"));
 
 
 
@@ -363,10 +363,6 @@ CREATE POLICY "Authenticated read leads" ON "public"."leads" FOR SELECT USING ((
 
 
 CREATE POLICY "Authenticated read newsletter" ON "public"."newsletter_subscribers" FOR SELECT USING (("auth"."role"() = 'authenticated'::"text"));
-
-
-
-CREATE POLICY "Public insert appointments" ON "public"."appointments" FOR INSERT WITH CHECK (true);
 
 
 
