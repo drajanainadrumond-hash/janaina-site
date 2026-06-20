@@ -34,9 +34,9 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1fr_1fr]">
           {/* Col 1 — Brand */}
           <div className="space-y-3">
-            <h3 className="font-heading text-lg font-light tracking-[2px] uppercase text-white">
+            <h2 className="font-heading text-lg font-light tracking-[2px] uppercase text-white">
               Janaína Drumond
-            </h3>
+            </h2>
             <p className="font-serif italic text-sm text-teal-pale">
               &ldquo;Ortopedia com precisão. Cuidado com alma.&rdquo;
             </p>
@@ -48,9 +48,9 @@ export function Footer() {
 
           {/* Col 2 — Especialidades */}
           <div>
-            <h4 className="text-[1.125rem] font-normal tracking-[2px] uppercase text-white mb-6">
+            <h3 className="text-[1.125rem] font-normal tracking-[2px] uppercase text-white mb-6">
               Especialidades
-            </h4>
+            </h3>
             <ul className="flex flex-col gap-2.5">
               {ESPECIALIDADES.map((item) => (
                 <li key={item.href}>
@@ -64,9 +64,9 @@ export function Footer() {
 
           {/* Col 3 — Condições */}
           <div>
-            <h4 className="text-[1.125rem] font-normal tracking-[2px] uppercase text-white mb-6">
+            <h3 className="text-[1.125rem] font-normal tracking-[2px] uppercase text-white mb-6">
               Condições
-            </h4>
+            </h3>
             <ul className="flex flex-col gap-2.5">
               {CONDICOES.map((item) => (
                 <li key={item.href}>
@@ -80,9 +80,9 @@ export function Footer() {
 
           {/* Col 4 — Institucional */}
           <div>
-            <h4 className="text-[1.125rem] font-normal tracking-[2px] uppercase text-white mb-6">
+            <h3 className="text-[1.125rem] font-normal tracking-[2px] uppercase text-white mb-6">
               Institucional
-            </h4>
+            </h3>
             <ul className="flex flex-col gap-2.5">
               {INSTITUCIONAL.map((item) => (
                 <li key={item.href}>
