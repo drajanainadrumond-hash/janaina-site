@@ -43,3 +43,6 @@ next-env.d.ts
 
 # documentação interna (não versionar)
 /doc/
+
+# backups de fontes (subset)
+*.woff2.orig
