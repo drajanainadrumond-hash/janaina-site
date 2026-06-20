@@ -85,7 +85,10 @@ export function ContactsManager() {
       </div>
 
       <input
-        type="text"
+        id="contacts-search"
+        name="search"
+        type="search"
+        aria-label="Buscar contatos"
         placeholder="Buscar por nome, telefone ou email..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -157,27 +160,27 @@ function ContactEditor({ contact, isNew, onSave, onCancel }: { contact: Contact;
       <div className="bg-white rounded-2xl p-6 border border-[#E6E5E2] space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Nome</label>
-            <input type="text" value={form.name} onChange={(e) => update("name", e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
+            <label htmlFor="contact-name" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Nome</label>
+            <input id="contact-name" name="name" type="text" autoComplete="name" value={form.name} onChange={(e) => update("name", e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
           </div>
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Telefone</label>
-            <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" placeholder="(31) 99999-9999" />
+            <label htmlFor="contact-phone" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Telefone</label>
+            <input id="contact-phone" name="phone" type="tel" autoComplete="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" placeholder="(31) 99999-9999" />
           </div>
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Email</label>
-          <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
+          <label htmlFor="contact-email" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Email</label>
+          <input id="contact-email" name="email" type="email" autoComplete="email" value={form.email} onChange={(e) => update("email", e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Notas</label>
-          <textarea value={form.notes} onChange={(e) => update("notes", e.target.value)} rows={3} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] resize-none" />
+          <label htmlFor="contact-notes" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Notas</label>
+          <textarea id="contact-notes" name="notes" value={form.notes} onChange={(e) => update("notes", e.target.value)} rows={3} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] resize-none" />
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Tags</label>
+          <label htmlFor="contact-tags" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Tags</label>
           <div className="flex flex-wrap gap-1.5 mb-2">
             {form.tags.map((t) => (
               <span key={t} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#003E51]/[0.06] text-[#003E51] uppercase text-[1.125rem]">
@@ -187,7 +190,7 @@ function ContactEditor({ contact, isNew, onSave, onCancel }: { contact: Contact;
             ))}
           </div>
           <div className="flex gap-2">
-            <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())} placeholder="Ex: paciente, indicação" className="flex-1 px-4 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
+            <input id="contact-tags" name="tags" type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())} placeholder="Ex: paciente, indicação" className="flex-1 px-4 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
             <button type="button" onClick={addTag} className="px-4 py-2 rounded-xl bg-[#f5f5f0] text-[1.125rem] uppercase text-[#003E51] hover:bg-[#E6E5E2] transition-colors">Adicionar</button>
           </div>
         </div>

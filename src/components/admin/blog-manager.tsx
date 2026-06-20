@@ -222,10 +222,12 @@ function PostEditor({
 
       <div className="bg-white rounded-2xl p-6 border border-[#E6E5E2] space-y-5">
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+          <label htmlFor="post-title" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Título
           </label>
           <input
+            id="post-title"
+            name="title"
             type="text"
             value={form.title}
             onChange={(e) => update("title", e.target.value)}
@@ -234,10 +236,12 @@ function PostEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+          <label htmlFor="post-slug" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Slug (URL)
           </label>
           <input
+            id="post-slug"
+            name="slug"
             type="text"
             value={form.slug}
             onChange={(e) => update("slug", e.target.value)}
@@ -246,10 +250,12 @@ function PostEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+          <label htmlFor="post-category" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Categoria
           </label>
           <select
+            id="post-category"
+            name="category"
             value={form.category}
             onChange={(e) => update("category", e.target.value)}
             className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] bg-white"
@@ -263,10 +269,12 @@ function PostEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+          <label htmlFor="post-excerpt" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Resumo
           </label>
           <textarea
+            id="post-excerpt"
+            name="excerpt"
             value={form.excerpt}
             onChange={(e) => update("excerpt", e.target.value)}
             rows={2}
@@ -275,10 +283,12 @@ function PostEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+          <label htmlFor="post-content" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Conteúdo (HTML)
           </label>
           <textarea
+            id="post-content"
+            name="content"
             value={form.content}
             onChange={(e) => update("content", e.target.value)}
             rows={16}

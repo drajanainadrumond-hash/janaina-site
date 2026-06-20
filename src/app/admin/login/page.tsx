@@ -63,9 +63,12 @@ export default function AdminLoginPage() {
         <form onSubmit={handleLogin} className="bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,62,81,0.06)] border border-[#003E51]/[0.04]">
           <div className="space-y-4">
             <div>
-              <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Email</label>
+              <label htmlFor="admin-email" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Email</label>
               <input
+                id="admin-email"
+                name="email"
                 type="email"
+                autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] transition-colors"
@@ -73,9 +76,12 @@ export default function AdminLoginPage() {
               />
             </div>
             <div>
-              <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Senha</label>
+              <label htmlFor="admin-password" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Senha</label>
               <input
+                id="admin-password"
+                name="password"
                 type="password"
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] transition-colors"

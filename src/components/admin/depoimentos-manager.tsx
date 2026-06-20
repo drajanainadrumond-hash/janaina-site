@@ -190,10 +190,12 @@ function DepoimentoEditor({
       <div className="bg-white rounded-2xl p-6 border border-[#E6E5E2] space-y-5">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+            <label htmlFor="depo-name" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
               Nome do Paciente
             </label>
             <input
+              id="depo-name"
+              name="name"
               type="text"
               value={form.name}
               onChange={(e) => update("name", e.target.value)}
@@ -201,10 +203,12 @@ function DepoimentoEditor({
             />
           </div>
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+            <label htmlFor="depo-condition" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
               Condição Tratada
             </label>
             <input
+              id="depo-condition"
+              name="condition"
               type="text"
               value={form.condition}
               onChange={(e) => update("condition", e.target.value)}
@@ -215,10 +219,12 @@ function DepoimentoEditor({
         </div>
 
         <div>
-          <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
+          <label htmlFor="depo-text" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">
             Depoimento
           </label>
           <textarea
+            id="depo-text"
+            name="text"
             value={form.text}
             onChange={(e) => update("text", e.target.value)}
             rows={4}

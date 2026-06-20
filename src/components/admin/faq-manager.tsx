@@ -70,19 +70,19 @@ export function FaqManager() {
 
         <div className="bg-white rounded-2xl p-6 border border-[#E6E5E2] space-y-4 max-w-[600px]">
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Categoria</label>
-            <input type="text" value={editing.category} onChange={(e) => setEditing({ ...editing, category: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" list="faq-categories" />
+            <label htmlFor="faq-category" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Categoria</label>
+            <input id="faq-category" name="category" type="text" value={editing.category} onChange={(e) => setEditing({ ...editing, category: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" list="faq-categories" />
             <datalist id="faq-categories">
               {categories.map((c) => <option key={c} value={c} />)}
             </datalist>
           </div>
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Pergunta</label>
-            <input type="text" value={editing.question} onChange={(e) => setEditing({ ...editing, question: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
+            <label htmlFor="faq-question" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Pergunta</label>
+            <input id="faq-question" name="question" type="text" value={editing.question} onChange={(e) => setEditing({ ...editing, question: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B]" />
           </div>
           <div>
-            <label className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Resposta</label>
-            <textarea value={editing.answer} onChange={(e) => setEditing({ ...editing, answer: e.target.value })} rows={5} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] resize-y" />
+            <label htmlFor="faq-answer" className="block text-[1.125rem] uppercase tracking-[1px] text-[#5A6B78] mb-1.5">Resposta</label>
+            <textarea id="faq-answer" name="answer" value={editing.answer} onChange={(e) => setEditing({ ...editing, answer: e.target.value })} rows={5} className="w-full px-4 py-2.5 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] resize-y" />
           </div>
           <label className="flex items-center gap-2 cursor-pointer">
             <input type="checkbox" checked={editing.published} onChange={(e) => setEditing({ ...editing, published: e.target.checked })} className="w-4 h-4 rounded accent-[#003E51]" />

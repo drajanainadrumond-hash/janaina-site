@@ -453,15 +453,15 @@ export function AgendaManager() {
                           {/* Times */}
                           <div className="flex items-center gap-2">
                             <Clock className="w-3 h-3 text-[#5A6B78] shrink-0" />
-                            <input type="time" value={d.start} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, start: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
+                            <input type="time" name={`${dayKey}-start`} aria-label={`${DAY_LABELS[dayKey]} — início`} value={d.start} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, start: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
                             <span className="text-[1.125rem] text-[#5A6B78]">até</span>
-                            <input type="time" value={d.end} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, end: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
+                            <input type="time" name={`${dayKey}-end`} aria-label={`${DAY_LABELS[dayKey]} — fim`} value={d.end} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, end: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
                           </div>
                           <div className="flex items-center gap-2">
                             <Coffee className="w-3 h-3 text-[#5A6B78] shrink-0" />
-                            <input type="time" value={d.lunch_start} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, lunch_start: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
+                            <input type="time" name={`${dayKey}-lunch-start`} aria-label={`${DAY_LABELS[dayKey]} — almoço início`} value={d.lunch_start} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, lunch_start: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
                             <span className="text-[1.125rem] text-[#5A6B78]">—</span>
-                            <input type="time" value={d.lunch_end} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, lunch_end: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
+                            <input type="time" name={`${dayKey}-lunch-end`} aria-label={`${DAY_LABELS[dayKey]} — almoço fim`} value={d.lunch_end} onChange={(e) => setBhDraft({ ...bhDraft, [dayKey]: { ...d, lunch_end: e.target.value } })} className="px-2 py-1 rounded-lg border border-[#E6E5E2] text-[1.125rem] text-[#003E51] w-[80px] bg-white focus:outline-none focus:border-[#00565B]" />
                           </div>
 
                           {/* Mode */}
@@ -636,10 +636,10 @@ export function AgendaManager() {
               </div>
 
               <div className="space-y-2.5">
-                <input type="text" placeholder="Nome do paciente" value={apptForm.patient_name} onChange={(e) => setApptForm({ ...apptForm, patient_name: e.target.value })} className="w-full px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" autoFocus />
+                <input id="appt-patient-name" name="patient_name" type="text" aria-label="Nome do paciente" autoComplete="name" placeholder="Nome do paciente" value={apptForm.patient_name} onChange={(e) => setApptForm({ ...apptForm, patient_name: e.target.value })} className="w-full px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" autoFocus />
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="tel" placeholder="Telefone" value={apptForm.patient_phone} onChange={(e) => setApptForm({ ...apptForm, patient_phone: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" />
-                  <input type="email" placeholder="Email (opcional)" value={apptForm.patient_email} onChange={(e) => setApptForm({ ...apptForm, patient_email: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" />
+                  <input id="appt-patient-phone" name="patient_phone" type="tel" aria-label="Telefone do paciente" autoComplete="tel" placeholder="Telefone" value={apptForm.patient_phone} onChange={(e) => setApptForm({ ...apptForm, patient_phone: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" />
+                  <input id="appt-patient-email" name="patient_email" type="email" aria-label="Email do paciente (opcional)" autoComplete="email" placeholder="Email (opcional)" value={apptForm.patient_email} onChange={(e) => setApptForm({ ...apptForm, patient_email: e.target.value })} className="px-3 py-2 rounded-xl border border-[#E6E5E2] text-[1.125rem] text-[#003E51] focus:outline-none focus:border-[#00565B] placeholder:text-[#5A6B78]/40" />
                 </div>
 
                 {/* Mode selector */}
