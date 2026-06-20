@@ -14,12 +14,17 @@ const airePro = localFont({
   src: "../fonts/AireRomanPro.woff2",
   variable: "--font-heading",
   display: "swap",
+  // Fallback com métricas casadas (Aire Pro é serifada) → sem reflow/CLS na troca.
+  adjustFontFallback: "Times New Roman",
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 const centuryGothic = localFont({
   src: "../fonts/CENTURY.woff2",
   variable: "--font-sans",
   display: "swap",
+  adjustFontFallback: "Arial",
+  fallback: ["Arial", "Helvetica", "sans-serif"],
 });
 
 export const metadata: Metadata = {
