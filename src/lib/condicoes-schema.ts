@@ -1,4 +1,4 @@
-import { getCondicaoFaqs, isPriorityCondicao } from "@/lib/condicoes-faqs";
+import { getCondicaoFaqs } from "@/lib/condicoes-faqs";
 import { getCondicaoHowTo } from "@/lib/condicoes-howto";
 import { SITE } from "@/lib/constants";
 import { generateBlogPosting, generateFAQPage, generateHowTo } from "@/lib/schema";
@@ -20,36 +20,37 @@ function medicalConditionNode(slug: string, title: string, description: string) 
   };
 }
 
-/** JSON-LD para páginas de condição (BlogPosting + FAQPage nas prioritárias). BreadcrumbList fica em PageBreadcrumbs. */
+/** JSON-LD para páginas de condição: MedicalCondition + (BlogPosting + FAQPage)
+ * para qualquer condição com FAQ + HowTo quando houver. BreadcrumbList fica em PageBreadcrumbs. */
 export function buildCondicaoJsonLd({ slug, title, directAnswer }: BuildCondicaoSchemasInput): object[] {
-  const schemas: object[] = [medicalConditionNode(slug, title, directAnswer)];
+  const faqs = getCondicaoFaqs(slug);
+  const howTo = getCondicaoHowTo(slug);
 
-  if (isPriorityCondicao(slug)) {
-    const faqs = getCondicaoFaqs(slug)!;
-    const howTo = getCondicaoHowTo(slug);
-    const prioritySchemas: object[] = [
-      generateBlogPosting({
-        headline: title,
-        description: directAnswer,
-        path: `/condicoes/${slug}`,
-      }),
-      ...schemas,
-      generateFAQPage(faqs),
-    ];
+  // Sem FAQ: só o nó de MedicalCondition.
+  if (!faqs || faqs.length === 0) {
+    return [medicalConditionNode(slug, title, directAnswer)];
+  }
 
-    if (howTo) {
-      prioritySchemas.push(
-        generateHowTo({
-          name: howTo.name,
-          description: howTo.description,
-          path: howTo.path,
-          steps: howTo.steps,
-          totalTime: howTo.totalTime,
-        })
-      );
-    }
+  const schemas: object[] = [
+    generateBlogPosting({
+      headline: title,
+      description: directAnswer,
+      path: `/condicoes/${slug}`,
+    }),
+    medicalConditionNode(slug, title, directAnswer),
+    generateFAQPage(faqs),
+  ];
 
-    return prioritySchemas;
+  if (howTo) {
+    schemas.push(
+      generateHowTo({
+        name: howTo.name,
+        description: howTo.description,
+        path: howTo.path,
+        steps: howTo.steps,
+        totalTime: howTo.totalTime,
+      })
+    );
   }
 
   return schemas;
