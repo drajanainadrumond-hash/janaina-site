@@ -131,7 +131,7 @@ export function Header() {
             src="/mao-teal.png"
             alt="Logo Dra. Janaína Drumond"
             fill
-            sizes="(min-width: 1024px) 96px, 80px"
+            sizes="(min-width: 1024px) 44px, 36px"
             className={cn("transition-opacity duration-500", useReadableStyle ? "opacity-100" : "opacity-0")}
             priority
           />
@@ -139,7 +139,7 @@ export function Header() {
             src="/mao-white.png"
             alt=""
             fill
-            sizes="(min-width: 1024px) 96px, 80px"
+            sizes="(min-width: 1024px) 44px, 36px"
             className={cn("transition-opacity duration-500", useReadableStyle ? "opacity-0" : "opacity-100")}
             priority
             aria-hidden="true"
