@@ -1,35 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { adminList, adminCreate, adminUpdate, adminDelete } from "@/utils/admin-api";
 import { Plus, ChevronLeft, Trash2, GripVertical, Save } from "lucide-react";
 
 import type { PublicFaq as Faq } from "@/lib/faqs";
 
 export function FaqManager() {
-  const supabase = createClient();
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Faq | null>(null);
   const [isNew, setIsNew] = useState(false);
 
   async function fetchFaqs() {
-    if (!supabase) return;
     setLoading(true);
-    const { data } = await supabase.from("faqs").select("*").order("category").order("display_order");
-    setFaqs(data || []);
-    setLoading(false);
+    try {
+      setFaqs(await adminList<Faq>("faqs"));
+    } catch {
+      setFaqs([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  useEffect(() => { fetchFaqs(); }, [supabase]);
-
-  if (!supabase) {
-    return (
-      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
-    );
-  }
-
-  const sb = supabase;
+  useEffect(() => { fetchFaqs(); }, []);
 
   function handleNew() {
     setIsNew(true);
@@ -40,30 +34,25 @@ export function FaqManager() {
   }
 
   async function handleSave(faq: Faq) {
-    if (isNew) {
-      const { error } = await sb.from("faqs").insert({
-        category: faq.category, question: faq.question, answer: faq.answer,
-        display_order: faq.display_order, published: faq.published,
-      });
-      if (error) { alert("Erro: " + error.message); return; }
-    } else {
-      const { error } = await sb.from("faqs").update({
-        category: faq.category, question: faq.question, answer: faq.answer,
-        display_order: faq.display_order, published: faq.published,
-      }).eq("id", faq.id);
-      if (error) { alert("Erro: " + error.message); return; }
-    }
+    const payload = {
+      category: faq.category, question: faq.question, answer: faq.answer,
+      display_order: faq.display_order, published: faq.published,
+    };
+    try {
+      if (isNew) await adminCreate("faqs", payload);
+      else await adminUpdate("faqs", faq.id, payload);
+    } catch (e) { alert("Erro: " + (e as Error).message); return; }
     setEditing(null); setIsNew(false); fetchFaqs();
   }
 
   async function handleDelete(id: string) {
     if (!confirm("Excluir esta pergunta?")) return;
-    await sb.from("faqs").delete().eq("id", id);
+    try { await adminDelete("faqs", id); } catch (e) { alert("Erro: " + (e as Error).message); return; }
     fetchFaqs();
   }
 
   async function togglePublished(id: string, published: boolean) {
-    await sb.from("faqs").update({ published: !published }).eq("id", id);
+    try { await adminUpdate("faqs", id, { published: !published }); } catch (e) { alert("Erro: " + (e as Error).message); return; }
     fetchFaqs();
   }
 

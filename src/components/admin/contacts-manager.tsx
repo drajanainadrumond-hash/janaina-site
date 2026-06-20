@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { adminList, adminCreate, adminUpdate, adminDelete } from "@/utils/admin-api";
 
 type Contact = {
   id: string;
@@ -14,7 +14,6 @@ type Contact = {
 };
 
 export function ContactsManager() {
-  const supabase = createClient();
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Contact | null>(null);
@@ -22,25 +21,17 @@ export function ContactsManager() {
   const [search, setSearch] = useState("");
 
   async function fetchContacts() {
-    if (!supabase) return;
     setLoading(true);
-    const { data } = await supabase
-      .from("contacts")
-      .select("*")
-      .order("name", { ascending: true });
-    setContacts(data || []);
-    setLoading(false);
+    try {
+      setContacts(await adminList<Contact>("contacts"));
+    } catch {
+      setContacts([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  useEffect(() => { fetchContacts(); }, [supabase]);
-
-  if (!supabase) {
-    return (
-      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
-    );
-  }
-
-  const sb = supabase;
+  useEffect(() => { fetchContacts(); }, []);
 
   function handleNew() {
     setIsNew(true);
@@ -52,13 +43,10 @@ export function ContactsManager() {
 
   async function handleSave(c: Contact) {
     const payload = { name: c.name, phone: c.phone, email: c.email, notes: c.notes, tags: c.tags };
-    if (isNew) {
-      const { error } = await sb.from("contacts").insert(payload);
-      if (error) { alert("Erro: " + error.message); return; }
-    } else {
-      const { error } = await sb.from("contacts").update({ ...payload, updated_at: new Date().toISOString() }).eq("id", c.id);
-      if (error) { alert("Erro: " + error.message); return; }
-    }
+    try {
+      if (isNew) await adminCreate("contacts", payload);
+      else await adminUpdate("contacts", c.id, payload);
+    } catch (e) { alert("Erro: " + (e as Error).message); return; }
     setEditing(null);
     setIsNew(false);
     fetchContacts();
@@ -66,7 +54,7 @@ export function ContactsManager() {
 
   async function handleDelete(id: string) {
     if (!confirm("Excluir este contato?")) return;
-    await sb.from("contacts").delete().eq("id", id);
+    try { await adminDelete("contacts", id); } catch (e) { alert("Erro: " + (e as Error).message); return; }
     fetchContacts();
   }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { fetchAgenda, agendaAction } from "@/utils/admin-api";
 import {
   ChevronLeft,
   ChevronRight,
@@ -119,7 +119,6 @@ const ANIM = `
 
 /* ====== Main Component ====== */
 export function AgendaManager() {
-  const supabase = createClient();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [slots, setSlots] = useState<Slot[]>([]);
   const [loading, setLoading] = useState(true);
@@ -144,38 +143,23 @@ export function AgendaManager() {
   const [booking, setBooking] = useState(false);
 
   const fetchData = useCallback(async () => {
-    if (!supabase) {
-      setLoading(false);
-      return;
-    }
     setLoading(true);
-    const startOfMonth = `${year}-${String(month + 1).padStart(2, "0")}-01`;
-    const endOfMonth = `${year}-${String(month + 1).padStart(2, "0")}-${getDaysInMonth(year, month)}`;
-
-    const [appts, slotData, settings, bhData] = await Promise.all([
-      supabase.from("appointments").select("*").gte("date", startOfMonth).lte("date", endOfMonth).order("start_time"),
-      supabase.from("availability_slots").select("*").gte("date", startOfMonth).lte("date", endOfMonth).order("start_time"),
-      supabase.from("settings").select("value").eq("key", "google_calendar_tokens").single(),
-      supabase.from("settings").select("value").eq("key", "business_hours").single(),
-    ]);
-
-    setAppointments(appts.data || []);
-    setSlots(slotData.data || []);
-    setGoogleConnected(!!settings.data?.value?.access_token);
-    setMonthEvents(getEventsForMonth(year, month));
-    if (bhData.data?.value) setBusinessHours(bhData.data.value as BusinessHours);
-    setLoading(false);
-  }, [year, month, supabase]);
+    try {
+      const data = await fetchAgenda<Appointment, Slot, BusinessHours>(year, month);
+      setAppointments(data.appointments);
+      setSlots(data.slots);
+      setGoogleConnected(data.googleConnected);
+      setMonthEvents(getEventsForMonth(year, month));
+      if (data.businessHours) setBusinessHours(data.businessHours);
+    } catch {
+      setAppointments([]);
+      setSlots([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [year, month]);
 
   useEffect(() => { fetchData(); }, [fetchData]);
-
-  if (!supabase) {
-    return (
-      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
-    );
-  }
-
-  const sb = supabase;
 
   function prevMonth() { if (month === 0) { setMonth(11); setYear(year - 1); } else setMonth(month - 1); }
   function nextMonth() { if (month === 11) { setMonth(0); setYear(year + 1); } else setMonth(month + 1); }
@@ -185,11 +169,16 @@ export function AgendaManager() {
   // Toggle slot availability
   async function toggleSlot(time: string, endTime: string) {
     const existing = slots.find((s) => s.date === selectedDate && s.start_time.slice(0, 5) === time);
-    if (existing) {
-      await sb.from("availability_slots").delete().eq("id", existing.id);
-    } else {
-      await sb.from("availability_slots").insert({ date: selectedDate, start_time: time, end_time: endTime, is_available: true });
-    }
+    try {
+      if (existing) {
+        await agendaAction({ action: "deleteSlot", id: existing.id });
+      } else {
+        await agendaAction({
+          action: "createSlots",
+          slots: [{ date: selectedDate, start_time: time, end_time: endTime, is_available: true }],
+        });
+      }
+    } catch (e) { alert("Erro: " + (e as Error).message); return; }
     fetchData();
   }
 
@@ -199,10 +188,10 @@ export function AgendaManager() {
     setBooking(true);
 
     try {
-      // Insert directly via Supabase for instant feedback
       const slotMatch = slots.find((s) => s.date === selectedDate && s.start_time.slice(0, 5) === quickForm.time);
 
-      const { error } = await sb.from("appointments").insert({
+      await agendaAction({
+        action: "createAppointment",
         slot_id: slotMatch?.id || null,
         patient_name: apptForm.patient_name,
         patient_phone: apptForm.patient_phone,
@@ -215,15 +204,9 @@ export function AgendaManager() {
         source: "admin",
       });
 
-      if (error) {
-        alert("Erro ao agendar: " + error.message);
-        setBooking(false);
-        return;
-      }
-
       // Mark slot as unavailable
       if (slotMatch) {
-        await sb.from("availability_slots").update({ is_available: false }).eq("id", slotMatch.id);
+        await agendaAction({ action: "setSlotAvailability", id: slotMatch.id, is_available: false });
       }
 
       // Try to sync with Google Calendar (non-blocking)
@@ -242,19 +225,23 @@ export function AgendaManager() {
       setQuickForm({ open: false, time: "", endTime: "" });
       setApptForm({ patient_name: "", patient_phone: "", patient_email: "", notes: "", mode: "presencial" });
       await fetchData();
+    } catch (e) {
+      alert("Erro ao agendar: " + (e as Error).message);
     } finally {
       setBooking(false);
     }
   }
 
   async function updateStatus(id: string, status: string) {
-    await sb.from("appointments").update({ status, updated_at: new Date().toISOString() }).eq("id", id);
+    try { await agendaAction({ action: "updateAppointmentStatus", id, status }); }
+    catch (e) { alert("Erro: " + (e as Error).message); return; }
     fetchData();
   }
 
   async function deleteAppt(id: string) {
     if (!confirm("Excluir agendamento?")) return;
-    await sb.from("appointments").delete().eq("id", id);
+    try { await agendaAction({ action: "deleteAppointment", id }); }
+    catch (e) { alert("Erro: " + (e as Error).message); return; }
     fetchData();
   }
 
@@ -272,7 +259,8 @@ export function AgendaManager() {
     }));
 
     if (newSlots.length > 0) {
-      await sb.from("availability_slots").insert(newSlots);
+      try { await agendaAction({ action: "createSlots", slots: newSlots }); }
+      catch (e) { alert("Erro: " + (e as Error).message); return; }
       fetchData();
     }
   }
@@ -280,9 +268,14 @@ export function AgendaManager() {
   // Save business hours
   async function saveBH(bh: BusinessHours) {
     setSaving(true);
-    await sb.from("settings").upsert({ key: "business_hours", value: bh as unknown as Record<string, unknown>, updated_at: new Date().toISOString() });
-    setBusinessHours(bh);
-    setSaving(false);
+    try {
+      await agendaAction({ action: "saveBusinessHours", value: bh as unknown as Record<string, unknown> });
+      setBusinessHours(bh);
+    } catch (e) {
+      alert("Erro: " + (e as Error).message);
+    } finally {
+      setSaving(false);
+    }
   }
 
   // Calendar data

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { fetchStats } from "@/utils/admin-api";
 import {
   CalendarDays,
   PenLine,
@@ -105,40 +105,21 @@ type Stats = {
 };
 
 function DashboardHome({ onNavigate }: { onNavigate: (tab: TabId) => void }) {
-  const supabase = createClient();
   const [stats, setStats] = useState<Stats>({ appointments: 0, pendingAppointments: 0, blogPosts: 0, leads: 0, contacts: 0, depoimentos: 0, faqs: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!supabase) {
-      setLoading(false);
-      return;
-    }
-    const sb = supabase;
     async function load() {
-      const today = new Date().toISOString().split("T")[0];
-      const [appts, pending, posts, leads, contacts, deps, faqCount] = await Promise.all([
-        sb.from("appointments").select("id", { count: "exact", head: true }).gte("date", today),
-        sb.from("appointments").select("id", { count: "exact", head: true }).eq("status", "pending"),
-        sb.from("blog_posts").select("id", { count: "exact", head: true }),
-        sb.from("leads").select("id", { count: "exact", head: true }),
-        sb.from("contacts").select("id", { count: "exact", head: true }),
-        sb.from("depoimentos").select("id", { count: "exact", head: true }),
-        sb.from("faqs").select("id", { count: "exact", head: true }),
-      ]);
-      setStats({
-        appointments: appts.count || 0,
-        pendingAppointments: pending.count || 0,
-        blogPosts: posts.count || 0,
-        leads: leads.count || 0,
-        contacts: contacts.count || 0,
-        depoimentos: deps.count || 0,
-        faqs: faqCount.count || 0,
-      });
-      setLoading(false);
+      try {
+        setStats(await fetchStats());
+      } catch {
+        // mantém zeros em caso de erro
+      } finally {
+        setLoading(false);
+      }
     }
     load();
-  }, [supabase]);
+  }, []);
 
   const cards: { id: TabId; Icon: LucideIcon; title: string; desc: string; stat: string; alert?: string; accent: string; iconBg: string }[] = [
     {

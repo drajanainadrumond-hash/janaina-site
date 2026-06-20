@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { adminList } from "@/utils/admin-api";
 
 type Lead = {
   id: string;
@@ -17,30 +17,23 @@ type Lead = {
 };
 
 export function LeadsManager() {
-  const supabase = createClient();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
 
   async function fetchLeads() {
-    if (!supabase) return;
     setLoading(true);
-    const { data } = await supabase
-      .from("leads")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setLeads(data || []);
-    setLoading(false);
+    try {
+      setLeads(await adminList<Lead>("leads"));
+    } catch {
+      setLeads([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     fetchLeads();
-  }, [supabase]);
-
-  if (!supabase) {
-    return (
-      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
-    );
-  }
+  }, []);
 
   return (
     <div>

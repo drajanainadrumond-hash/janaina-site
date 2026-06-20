@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { adminList, adminCreate, adminUpdate, adminDelete } from "@/utils/admin-api";
 
 type Depoimento = {
   id: string;
@@ -14,34 +14,25 @@ type Depoimento = {
 };
 
 export function DepoimentosManager() {
-  const supabase = createClient();
   const [items, setItems] = useState<Depoimento[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Depoimento | null>(null);
   const [isNew, setIsNew] = useState(false);
 
   async function fetchItems() {
-    if (!supabase) return;
     setLoading(true);
-    const { data } = await supabase
-      .from("depoimentos")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setItems(data || []);
-    setLoading(false);
+    try {
+      setItems(await adminList<Depoimento>("depoimentos"));
+    } catch {
+      setItems([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     fetchItems();
-  }, [supabase]);
-
-  if (!supabase) {
-    return (
-      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
-    );
-  }
-
-  const sb = supabase;
+  }, []);
 
   function handleNew() {
     setIsNew(true);
@@ -57,33 +48,19 @@ export function DepoimentosManager() {
   }
 
   async function handleSave(item: Depoimento) {
-    if (isNew) {
-      const { error } = await sb.from("depoimentos").insert({
-        name: item.name,
-        condition: item.condition,
-        text: item.text,
-        stars: item.stars,
-        published: item.published,
-      });
-      if (error) {
-        alert("Erro: " + error.message);
-        return;
-      }
-    } else {
-      const { error } = await sb
-        .from("depoimentos")
-        .update({
-          name: item.name,
-          condition: item.condition,
-          text: item.text,
-          stars: item.stars,
-          published: item.published,
-        })
-        .eq("id", item.id);
-      if (error) {
-        alert("Erro: " + error.message);
-        return;
-      }
+    const payload = {
+      name: item.name,
+      condition: item.condition,
+      text: item.text,
+      stars: item.stars,
+      published: item.published,
+    };
+    try {
+      if (isNew) await adminCreate("depoimentos", payload);
+      else await adminUpdate("depoimentos", item.id, payload);
+    } catch (e) {
+      alert("Erro: " + (e as Error).message);
+      return;
     }
     setEditing(null);
     setIsNew(false);
@@ -92,7 +69,12 @@ export function DepoimentosManager() {
 
   async function handleDelete(id: string) {
     if (!confirm("Excluir este depoimento?")) return;
-    await sb.from("depoimentos").delete().eq("id", id);
+    try {
+      await adminDelete("depoimentos", id);
+    } catch (e) {
+      alert("Erro: " + (e as Error).message);
+      return;
+    }
     fetchItems();
   }
 

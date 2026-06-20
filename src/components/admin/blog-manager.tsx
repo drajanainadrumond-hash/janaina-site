@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { adminList, adminCreate, adminUpdate, adminDelete } from "@/utils/admin-api";
 
 type Post = {
   id: string;
@@ -34,34 +34,25 @@ function slugify(text: string) {
 }
 
 export function BlogManager() {
-  const supabase = createClient();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Post | null>(null);
   const [isNew, setIsNew] = useState(false);
 
   async function fetchPosts() {
-    if (!supabase) return;
     setLoading(true);
-    const { data } = await supabase
-      .from("blog_posts")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setPosts(data || []);
-    setLoading(false);
+    try {
+      setPosts(await adminList<Post>("blog_posts"));
+    } catch {
+      setPosts([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     fetchPosts();
-  }, [supabase]);
-
-  if (!supabase) {
-    return (
-      <p className="text-[1.125rem] text-[#5A6B78]">Supabase não configurado.</p>
-    );
-  }
-
-  const sb = supabase;
+  }, []);
 
   function handleNew() {
     setIsNew(true);
@@ -78,36 +69,20 @@ export function BlogManager() {
   }
 
   async function handleSave(post: Post) {
-    if (isNew) {
-      const { error } = await sb.from("blog_posts").insert({
-        title: post.title,
-        slug: post.slug,
-        excerpt: post.excerpt,
-        content: post.content,
-        category: post.category,
-        published: post.published,
-      });
-      if (error) {
-        alert("Erro ao salvar: " + error.message);
-        return;
-      }
-    } else {
-      const { error } = await sb
-        .from("blog_posts")
-        .update({
-          title: post.title,
-          slug: post.slug,
-          excerpt: post.excerpt,
-          content: post.content,
-          category: post.category,
-          published: post.published,
-          updated_at: new Date().toISOString(),
-        })
-        .eq("id", post.id);
-      if (error) {
-        alert("Erro ao salvar: " + error.message);
-        return;
-      }
+    const payload = {
+      title: post.title,
+      slug: post.slug,
+      excerpt: post.excerpt,
+      content: post.content,
+      category: post.category,
+      published: post.published,
+    };
+    try {
+      if (isNew) await adminCreate("blog_posts", payload);
+      else await adminUpdate("blog_posts", post.id, payload);
+    } catch (e) {
+      alert("Erro ao salvar: " + (e as Error).message);
+      return;
     }
     setEditing(null);
     setIsNew(false);
@@ -116,7 +91,12 @@ export function BlogManager() {
 
   async function handleDelete(id: string) {
     if (!confirm("Tem certeza que deseja excluir este post?")) return;
-    await sb.from("blog_posts").delete().eq("id", id);
+    try {
+      await adminDelete("blog_posts", id);
+    } catch (e) {
+      alert("Erro ao excluir: " + (e as Error).message);
+      return;
+    }
     fetchPosts();
   }
 
