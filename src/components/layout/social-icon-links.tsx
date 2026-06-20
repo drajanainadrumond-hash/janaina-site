@@ -62,7 +62,7 @@ export function SocialIconLinks({
 }: SocialIconLinksProps) {
 
   return (
-    <div className={cn("flex items-center gap-1.5", className)} role="list">
+    <div className={cn("flex items-center gap-1.5", className)}>
       {LINKS.map(({ href, label, Icon }) => (
         <a
           key={label}
@@ -71,7 +71,6 @@ export function SocialIconLinks({
           rel="noopener noreferrer"
           aria-label={label}
           className={itemClass}
-          role="listitem"
         >
           <Icon className={iconClassName} />
         </a>

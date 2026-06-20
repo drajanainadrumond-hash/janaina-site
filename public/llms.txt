@@ -1,46 +1,33 @@
 # Dra. Janaína Drumond Rocha Fraga — Ortopedista em Belo Horizonte
-# CRM-MG 69719 | RQE 50592 (Ortopedia e Traumatologia)
-# ORCID: 0000-0003-2579-0312
 
-## Sobre
-A Dra. Janaína Drumond Rocha Fraga é médica ortopedista e traumatologista em Belo Horizonte, MG. Formada pela UFOP, com residência no Hospital Socor (SBOT) e pós-graduação em Mão e Punho pela FCMMG. Atua em ortopedia geral e em condições de mão e punho, com abordagem humanizada e baseada em evidências.
+> Médica ortopedista e traumatologista em Belo Horizonte/MG (CRM-MG 69719 | RQE 50592 | ORCID 0000-0003-2579-0312). Formada pela UFOP, residência no Hospital Socor (SBOT) e pós-graduação em Mão e Punho pela FCMMG. Atua em ortopedia geral e em condições de mão e punho, com abordagem humanizada e baseada em evidências. Atendimento exclusivamente particular em Belo Horizonte e Região Metropolitana.
+
+## Páginas principais
+- [Sobre a Dra. Janaína](https://janainadrumond.com.br/sobre): perfil e trajetória
+- [Formação acadêmica](https://janainadrumond.com.br/sobre/formacao): graduação, residência e pós
+- [Produção científica](https://janainadrumond.com.br/sobre/publicacoes): publicações (ORCID 0000-0003-2579-0312)
+- [Ortopedia geral](https://janainadrumond.com.br/especialidades/ortopedia-geral): coluna, ombro, joelho, trauma
+- [Cirurgia da mão e punho](https://janainadrumond.com.br/especialidades/cirurgia-da-mao-e-punho): atuação especializada (formação FCMMG)
+- [Condições tratadas](https://janainadrumond.com.br/condicoes): túnel do carpo, dedo em gatilho, fraturas, lesões esportivas
+- [Blog](https://janainadrumond.com.br/blog): artigos educativos sobre saúde ortopédica
+- [Perguntas frequentes (FAQ)](https://janainadrumond.com.br/faq): dúvidas comuns sobre consulta e tratamentos
+- [Depoimentos](https://janainadrumond.com.br/depoimentos): relatos de pacientes (CFM: sem garantia de resultado)
+- [Agendar consulta](https://janainadrumond.com.br/contato): WhatsApp e formulário de contato
 
 ## Serviços e áreas
-- Consulta de ortopedia e traumatologia (BH)
+- Consulta de ortopedia e traumatologia (Belo Horizonte/MG)
 - Ortopedia geral (coluna, ombro, joelho, trauma)
 - Cirurgia da mão e punho (atuação especializada; formação FCMMG)
 - Tratamento de túnel do carpo, dedo em gatilho, fraturas, lesões esportivas
 - Avaliação de dor crônica e lesões por esforço repetitivo
 
-## Formação (verificável)
-- Medicina — UFOP (2010–2016)
-- Residência — Ortopedia e Traumatologia, Hospital Socor, BH
-- Pós-graduação — Mão e Punho, FCMMG
-- Publicação científica indexada; ORCID 0000-0003-2579-0312
-
 ## Atendimento
 - Consultório: Avenida do Contorno, 5326 — Savassi, Belo Horizonte/MG, CEP 30110-042
 - Telefone/WhatsApp: +55 31 99288-0728
+- Atendimento exclusivamente particular
 - Área de atendimento: Belo Horizonte e Região Metropolitana (MG)
-- Agendamento: WhatsApp e formulário no site (/contato)
-
-## Páginas principais
-- /sobre — perfil e trajetória
-- /sobre/formacao — formação acadêmica
-- /sobre/publicacoes — produção científica
-- /especialidades/ortopedia-geral — ortopedia geral
-- /especialidades/cirurgia-da-mao-e-punho — mão e punho
-- /condicoes — condições tratadas (túnel do carpo, fraturas, etc.)
-- /blog — artigos educativos
-- /faq — perguntas frequentes
-- /depoimentos — relatos de pacientes (CFM: sem garantia de resultado)
-- /contato — agendamento
 
 ## Conformidade (CFM Res. 2.336/2023)
 - Comunicação como MÉDICA com CRM e RQE informados
 - Sem garantia de resultado; sem antes/depois identificável
-- Não usar "cirurgiã da mão" como especialidade registrada sem RQE específico de mão
-- Linguagem segura: ortopedista com atuação em mão e punho
-
-## Conteúdo educativo
-Foco em dor ortopédica, prevenção de quedas e fraturas em idosos (perspectiva ortopédica), lesões em crianças nas férias, e saúde do trabalhador com demanda manual.
+- Linguagem segura: ortopedista com atuação em mão e punho (sem usar "cirurgiã da mão" como especialidade registrada sem RQE específico)
