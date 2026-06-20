@@ -12,7 +12,7 @@ export function getOAuth2Client() {
   return new google.auth.OAuth2(clientId, clientSecret, redirectUri);
 }
 
-export function getAuthUrl() {
+export function getAuthUrl(state?: string) {
   const client = getOAuth2Client();
   if (!client) return null;
 
@@ -20,6 +20,7 @@ export function getAuthUrl() {
     access_type: "offline",
     scope: SCOPES,
     prompt: "consent",
+    ...(state ? { state } : {}),
   });
 }
 
