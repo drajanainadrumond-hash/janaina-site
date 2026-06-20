@@ -15,7 +15,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 function Stars({ count }: { count: number }) {
   return (
-    <div className="flex gap-0.5" aria-label={`${count} de 5 estrelas`}>
+    <div className="flex gap-0.5" role="img" aria-label={`${count} de 5 estrelas`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <span key={i} className={i < count ? "text-teal-mid" : "text-[#C5D0D6]"} aria-hidden>
           ★
@@ -74,7 +74,7 @@ export default async function DepoimentosPage() {
             href={SOCIAL.doctoralia}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-teal-mid hover:text-teal underline-offset-2 hover:underline"
+            className="text-teal-mid hover:text-teal underline underline-offset-2"
           >
             Doctoralia
           </a>
