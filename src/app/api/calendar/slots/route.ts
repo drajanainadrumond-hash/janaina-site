@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getFreeBusy } from "@/lib/google-calendar";
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { getSupabaseServiceRole } from "@/lib/supabase";
 
 export async function GET(req: NextRequest) {
-  const supabase = getSupabaseAdmin();
+  const supabase = getSupabaseServiceRole();
   if (!supabase) {
     return NextResponse.json(
       { error: "Banco de dados não configurado", slots: [] },
