@@ -10,6 +10,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
 import { AeoContentIntro } from "@/components/seo/aeo-content-intro";
 import { TimelineFeed } from "@/components/condicoes/timeline-feed";
+import { CondicaoFaqSection } from "@/components/condicoes/condicao-faq-section";
 import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
 import { generateBlogPosting, generateFAQPage } from "@/lib/schema";
 
@@ -162,6 +163,11 @@ export default async function BlogPostPage({ params }: Props) {
               Agendar Consulta
             </Link>
           </div>
+        )}
+
+        {/* FAQ visível (alinhado ao FAQPage schema — exigido pelo Google e lido por IAs) */}
+        {post.faqs && post.faqs.length > 0 && (
+          <CondicaoFaqSection faqs={post.faqs} conditionTitle={post.title} />
         )}
 
         {/* CTA */}

@@ -31,12 +31,18 @@ export function generateMedicalBusiness() {
   return {
     "@context": "https://schema.org",
     "@type": ["MedicalBusiness", "Physician"],
+    "@id": absoluteUrl("/#physician"),
     name: SITE.fullName,
     description:
       "Ortopedista e traumatologista em Belo Horizonte com atuação em condições da mão e punho. Diagnóstico preciso, atendimento humanizado. CRM-MG 69719 | RQE 50592.",
     url: SITE.url,
     telephone: CONTACT.phone,
     medicalSpecialty: "Orthopedic",
+    areaServed: [
+      { "@type": "City", name: "Belo Horizonte" },
+      { "@type": "AdministrativeArea", name: "Região Metropolitana de Belo Horizonte" },
+      { "@type": "State", name: "Minas Gerais" },
+    ],
     image: absoluteUrl(DEFAULT_OG_IMAGE),
     address: {
       "@type": "PostalAddress",
@@ -77,12 +83,17 @@ export function generatePhysician() {
   return {
     "@context": "https://schema.org",
     "@type": "Physician",
+    "@id": absoluteUrl("/#physician"),
     name: SITE.fullName,
     description: `Ortopedista e Traumatologista em ${SITE.city} com pós-graduação em Mão e Punho.`,
     url: SITE.url,
     image: absoluteUrl(DEFAULT_OG_IMAGE),
     telephone: CONTACT.phone,
     medicalSpecialty: "Orthopedic",
+    areaServed: [
+      { "@type": "City", name: "Belo Horizonte" },
+      { "@type": "State", name: "Minas Gerais" },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.address.street,

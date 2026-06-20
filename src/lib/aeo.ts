@@ -45,7 +45,16 @@ function stripHtml(html: string): string {
 function truncateToWordRange(text: string, min = 40, max = 60): string {
   const words = text.split(/\s+/).filter(Boolean);
   if (words.length <= max) return words.join(" ");
-  return `${words.slice(0, max).join(" ")}.`;
+  const slice = words.slice(0, max).join(" ");
+  // Corta no fim de frase mais próximo (último ".", "!" ou "?") se ele estiver
+  // depois do mínimo, para não cortar no meio de uma frase.
+  const minChars = words.slice(0, min).join(" ").length;
+  const lastEnd = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("! "), slice.lastIndexOf("? "));
+  if (lastEnd >= minChars) {
+    return slice.slice(0, lastEnd + 1).trim();
+  }
+  // Sem fim de frase utilizável: remove pontuação solta no fim e fecha com ponto.
+  return `${slice.replace(/[\s,;:]+$/, "")}.`;
 }
 
 /** Monta resposta direta para posts do blog (excerpt ou primeiro parágrafo). */
