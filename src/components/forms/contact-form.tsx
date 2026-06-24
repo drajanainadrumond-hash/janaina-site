@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { CONVENIOS } from "@/lib/constants";
 import { getStoredAttribution } from "@/lib/utm";
+import { sendOrbeeEvent } from "@/lib/orbee";
 
 type ContactFormData = {
   name: string;
@@ -64,6 +65,13 @@ export function ContactForm() {
       if (typeof fbq === "function") {
         fbq("track", "Lead");
       }
+
+      // Central da Orbee — registra o lead + a jornada/atribuição no painel.
+      // Dado funcional (1ª parte), independe do GTM e do consentimento de cookies.
+      sendOrbeeEvent("orbee_lead_submit", {
+        lead: { name: data.name, phone: data.whatsapp },
+        payload: { convenio: data.convenio, queixa: data.queixa },
+      });
 
       toast.success("Mensagem enviada! Redirecionando para o WhatsApp...");
       reset();
