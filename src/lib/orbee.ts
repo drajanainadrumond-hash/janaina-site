@@ -68,15 +68,13 @@ export function sendOrbeeEvent(
     payload: opts.payload,
   };
 
-  // sendBeacon é ideal: não bloqueia, sobrevive à navegação (ex.: abrir o WhatsApp).
-  try {
-    const blob = new Blob([JSON.stringify(body)], { type: "application/json" });
-    if (navigator.sendBeacon(ENDPOINT, blob)) return;
-  } catch {
-    // cai pro fetch abaixo
-  }
+  // fetch com keepalive: sobrevive à navegação (abrir o WhatsApp) E faz o
+  // preflight de CORS corretamente — o webhook da Central trata o OPTIONS.
+  // (sendBeacon foi descartado: com application/json cross-origin ele pode
+  // falhar o CORS silenciosamente — retorna true mas o request é bloqueado.)
   void fetch(ENDPOINT, {
     method: "POST",
+    mode: "cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
     keepalive: true,
