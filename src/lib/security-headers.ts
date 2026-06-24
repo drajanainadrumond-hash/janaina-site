@@ -45,6 +45,8 @@ function buildContentSecurityPolicy(isProd: boolean): string {
     "https://www.google-analytics.com",
     "https://region1.google-analytics.com",
     "https://stats.g.doubleclick.net",
+    // Central da Orbee — ponte que registra leads/conversões no painel da agência.
+    "https://www.orbeelabs.com.br",
     ...metaConnect,
   ];
 
