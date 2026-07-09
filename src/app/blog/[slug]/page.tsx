@@ -14,6 +14,17 @@ import { CondicaoFaqSection } from "@/components/condicoes/condicao-faq-section"
 import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
 import { generateBlogPosting, generateFAQPage } from "@/lib/schema";
 
+// Escapa a saída JSON para injeção segura em <script type="application/ld+json">.
+// Sem isso, um título/FAQ vindo do banco com "</script>" quebra o elemento e injeta
+// HTML (XSS). Escapa <, >, & e os separadores de linha/parágrafo Unicode.
+function jsonLdScript(data: unknown): string {
+  // Escapa < > & para impedir breakout de </script> (XSS via dados do banco).
+  return JSON.stringify(data)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+}
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -72,12 +83,12 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(articleSchema) }}
       />
       {faqSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(faqSchema) }}
         />
       )}
 

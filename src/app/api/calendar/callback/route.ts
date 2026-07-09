@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getOAuth2Client } from "@/lib/google-calendar";
-import { getSupabaseServiceRole } from "@/lib/supabase";
-import { createClient } from "@/utils/supabase/server";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export async function GET(req: NextRequest) {
-  // Exige admin autenticado (mesma sessão que iniciou o fluxo).
-  const auth = await createClient();
-  const { data: userData } = await auth.auth.getUser();
-  if (!userData.user) {
+  // Exige admin AUTORIZADO (allowlist) — mesma sessão que iniciou o fluxo.
+  const admin = await requireAdmin();
+  if (!admin) {
     return NextResponse.redirect(new URL("/admin", req.url));
   }
 
@@ -30,10 +28,7 @@ export async function GET(req: NextRequest) {
 
   const { tokens } = await client.getToken(code);
 
-  const supabase = getSupabaseServiceRole();
-  if (!supabase) {
-    return NextResponse.json({ error: "Banco de dados não configurado" }, { status: 503 });
-  }
+  const supabase = admin.service;
 
   await supabase.from("settings").upsert({
     key: "google_calendar_tokens",

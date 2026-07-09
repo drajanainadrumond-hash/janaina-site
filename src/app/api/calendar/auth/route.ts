@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthUrl } from "@/lib/google-calendar";
-import { createClient } from "@/utils/supabase/server";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export async function GET(req: NextRequest) {
-  // Exige admin autenticado para iniciar o fluxo OAuth.
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-  if (!data.user) {
+  // Exige admin AUTORIZADO (allowlist), não só autenticado — senão um usuário
+  // não-admin poderia conectar o próprio Google Calendar como o da clínica.
+  const admin = await requireAdmin();
+  if (!admin) {
     return NextResponse.redirect(new URL("/admin", req.url));
   }
 

@@ -1,22 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createEvent } from "@/lib/google-calendar";
-import { getSupabaseServiceRole } from "@/lib/supabase";
-import { rateLimit, getClientIp } from "@/lib/rate-limit";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export async function POST(req: NextRequest) {
-  // Rate limit por IP (evita spam de agendamentos)
-  const ip = getClientIp(req);
-  if (!rateLimit(ip).ok) {
-    return NextResponse.json({ error: "Muitas tentativas. Aguarde um minuto." }, { status: 429 });
+  // Rota ADMIN-ONLY. O único chamador legítimo é o painel (agenda-manager), para
+  // sincronizar o evento no Google Calendar. Antes era pública com service_role e
+  // sem validar `slot_id`, o que permitia a QUALQUER anônimo: (1) marcar slots
+  // arbitrários como indisponíveis (sabotar a agenda) e (2) floodar `appointments`
+  // + criar eventos falsos no Google Calendar da médica. Agendamento público real
+  // é pelo WhatsApp; se um dia houver booking público, criar rota própria com
+  // validação de slot (existe + disponível + bate com date/start_time).
+  const admin = await requireAdmin();
+  if (!admin) {
+    return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   }
-
-  const supabase = getSupabaseServiceRole();
-  if (!supabase) {
-    return NextResponse.json(
-      { error: "Banco de dados não configurado" },
-      { status: 503 }
-    );
-  }
+  const supabase = admin.service;
 
   const body = await req.json();
   const { slot_id, patient_name, patient_phone, patient_email, date, start_time, end_time, notes } = body;
@@ -97,7 +95,8 @@ export async function POST(req: NextRequest) {
     if (error.code === "23505") {
       return NextResponse.json({ error: "Horário já ocupado" }, { status: 409 });
     }
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("[calendar/book] erro ao salvar agendamento:", error);
+    return NextResponse.json({ error: "Erro ao salvar agendamento" }, { status: 500 });
   }
 
   // 5. Marcar slot como indisponível

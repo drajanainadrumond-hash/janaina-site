@@ -1,5 +1,6 @@
 import { getSupabaseAdmin } from "./supabase";
 import { FaqItem } from "./schema";
+import sanitizeHtml from "sanitize-html";
 
 export type BlogPost = {
   id: string;
@@ -14,6 +15,39 @@ export type BlogPost = {
   ogImage?: string;
   faqs?: FaqItem[];
 };
+
+/**
+ * Sanitiza o HTML de posts vindos do BANCO (input do admin) antes de renderizar
+ * com dangerouslySetInnerHTML. Fecha XSS armazenado: remove <script>, handlers
+ * inline (onerror/onload) e URLs javascript:. Mantém a formatação editorial
+ * (títulos, listas, links, tabelas) via allowlist. Os STATIC_POSTS são conteúdo
+ * do desenvolvedor (confiável) e não passam por aqui.
+ */
+const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
+  allowedTags: [
+    "h1", "h2", "h3", "h4", "h5", "h6", "p", "a", "ul", "ol", "li", "strong",
+    "em", "b", "i", "u", "br", "hr", "blockquote", "div", "span", "table",
+    "thead", "tbody", "tr", "td", "th", "img", "figure", "figcaption", "code", "pre",
+  ],
+  allowedAttributes: {
+    a: ["href", "title", "target", "rel"],
+    img: ["src", "alt", "title", "width", "height", "loading"],
+    "*": ["class"],
+  },
+  allowedSchemes: ["http", "https", "mailto", "tel"],
+  allowProtocolRelative: false,
+  transformTags: {
+    // Todo link abre com rel seguro (evita tabnabbing em target=_blank).
+    a: sanitizeHtml.simpleTransform("a", { rel: "noopener noreferrer" }, false),
+  },
+};
+
+function sanitizePost(post: BlogPost): BlogPost {
+  if (typeof post.content === "string") {
+    return { ...post, content: sanitizeHtml(post.content, SANITIZE_OPTIONS) };
+  }
+  return post;
+}
 
 // Fallback: posts estáticos quando Supabase não está configurado
 const STATIC_POSTS: BlogPost[] = [
@@ -793,7 +827,7 @@ export async function getPosts(): Promise<BlogPost[]> {
         .eq("published", true)
         .order("created_at", { ascending: false });
 
-      if (!error && data && data.length > 0) return data;
+      if (!error && data && data.length > 0) return (data as BlogPost[]).map(sanitizePost);
     } catch {
       // Supabase indisponivel — fallback para posts estaticos
     }
@@ -814,7 +848,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
         .eq("published", true)
         .single();
 
-      if (!error && data) return data;
+      if (!error && data) return sanitizePost(data as BlogPost);
     } catch {
       // Supabase indisponivel — fallback para posts estaticos
     }
