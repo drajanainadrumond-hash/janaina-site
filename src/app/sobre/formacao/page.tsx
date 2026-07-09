@@ -32,6 +32,9 @@ const CONTENT = `
 <p>A residência médica em <strong>Ortopedia e Traumatologia</strong> foi realizada no <strong>Hospital Socor</strong>, em Belo Horizonte — instituição credenciada pela <strong>SBOT (Sociedade Brasileira de Ortopedia e Traumatologia)</strong>. É onde se consolida a formação clínica e cirúrgica, com alto volume de atendimentos em pronto-socorro, ambulatório e centro cirúrgico.</p>
 <p>O RQE 50592 em Ortopedia e Traumatologia, obtido ao concluir a residência, é o registro que habilita legalmente o exercício da especialidade.</p>
 
+<h2>Pós-Graduação em Cirurgia da Mão — Hospital São Francisco de Assis (HSFA), Goiânia</h2>
+<p>A formação em <strong>Cirurgia da Mão</strong> teve sequência com a <strong>Pós-Graduação no Hospital São Francisco de Assis (HSFA)</strong>, em Goiânia — instituição credenciada pela <strong>SBCM (Sociedade Brasileira de Cirurgia da Mão)</strong>. É uma formação dedicada ao diagnóstico e tratamento das condições da mão e do punho.</p>
+
 <h2>Pós-Graduação em Mão e Punho — FCMMG (2021-2023)</h2>
 <p>A formação especializada em <strong>Cirurgia da Mão e Punho</strong> foi realizada na <strong>Faculdade Ciências Médicas de Minas Gerais (FCMMG)</strong>, totalizando <strong>5.780 horas</strong> de dedicação entre 2021 e 2023.</p>
 <p>Essa combinação — ortopedia ampla + mão especializada — permite atender de forma abrangente pacientes com diversas condições ortopédicas, do ombro ao punho.</p>

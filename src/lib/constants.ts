@@ -13,8 +13,8 @@ export const SITE = {
     neighborhood: "Savassi",
     city: "Belo Horizonte",
     state: "MG",
-    zip: "30110-042",
-    full: "Av. do Contorno, 5326 — Savassi, Belo Horizonte/MG, CEP 30110-042",
+    zip: "30110-039",
+    full: "Av. do Contorno, 5326 — Savassi, Belo Horizonte/MG, CEP 30110-039",
   },
 } as const;
 
@@ -48,8 +48,13 @@ export const FORMACAO = [
     period: "",
   },
   {
-    title: "Pós-Graduação em Mão e Punho",
-    institution: "Faculdade Ciências Médicas de Minas Gerais",
+    title: "Pós-Graduação em Cirurgia da Mão",
+    institution: "Hospital São Francisco de Assis (HSFA) — Goiânia (credenciado SBCM)",
+    period: "",
+  },
+  {
+    title: "Pós-Graduação Lato Sensu em Cirurgia da Mão",
+    institution: "Faculdade Ciências Médicas de Minas Gerais (FCMMG)",
     period: "2021–2023",
     hours: "5.780 horas",
   },
