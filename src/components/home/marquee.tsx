@@ -10,7 +10,13 @@ const ITEMS = [
 
 export function Marquee() {
   return (
-    <div className="bg-teal-mid py-3.5 overflow-hidden whitespace-nowrap">
+    // Faixa decorativa: o texto é duplicado para o loop contínuo, então marcamos
+    // aria-hidden para o leitor de tela não ler tudo duas vezes. As credenciais
+    // (CRM/RQE) e condições já constam em conteúdo semântico em outras seções.
+    <div
+      className="bg-teal-mid py-3.5 overflow-hidden whitespace-nowrap"
+      aria-hidden="true"
+    >
       <div
         className="inline-flex"
         style={{ animation: "marquee 35s linear infinite" }}

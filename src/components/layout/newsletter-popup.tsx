@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { toast } from "sonner";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 
 const STORAGE_KEY = "newsletter-popup";
+const CONSENT_KEY = "cookie-consent";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const DELAY_MS = 5_000; // abre 5s após o carregamento
+const DELAY_MS = 5_000; // abre 5s após o consentimento de cookies
 
 export function NewsletterPopup() {
   const [open, setOpen] = useState(false);
@@ -15,12 +17,33 @@ export function NewsletterPopup() {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
-  // Abre uma vez por visitante, 10s após o carregamento.
+  useFocusTrap(dialogRef, open);
+
+  // Abre uma vez por visitante, 5s DEPOIS que o banner de cookies for resolvido —
+  // pra não empilhar dois interruptores (cookie + newsletter) na primeira visita.
   useEffect(() => {
     if (localStorage.getItem(STORAGE_KEY)) return;
-    const timer = setTimeout(() => setOpen(true), DELAY_MS);
-    return () => clearTimeout(timer);
+    let timer: ReturnType<typeof setTimeout>;
+    const schedule = () => {
+      timer = setTimeout(() => setOpen(true), DELAY_MS);
+    };
+    if (localStorage.getItem(CONSENT_KEY)) {
+      schedule();
+      return () => clearTimeout(timer);
+    }
+    // Ainda decidindo os cookies: espera resolver (o banner grava a decisão).
+    const poll = setInterval(() => {
+      if (localStorage.getItem(CONSENT_KEY)) {
+        clearInterval(poll);
+        schedule();
+      }
+    }, 1000);
+    return () => {
+      clearInterval(poll);
+      clearTimeout(timer);
+    };
   }, []);
 
   // Trava o scroll do fundo e fecha com Esc enquanto o modal está aberto.
@@ -81,6 +104,7 @@ export function NewsletterPopup() {
 
   return (
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-[10000] flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"

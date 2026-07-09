@@ -32,13 +32,15 @@ export function AboutSplit() {
         </div>
 
         <h2 className="font-heading text-[1.8rem] sm:text-[2.2rem] lg:text-[2.5rem] font-light text-white leading-[1.2] tracking-[1px] uppercase mb-6">
-          <TextReveal>
+          {/* as="span" + block: conteúdo válido dentro de <h2> (span é phrasing;
+              div não é), mantendo as duas linhas empilhadas. */}
+          <TextReveal as="span" className="block">
             Ortopedia com{" "}
             <em className="font-serif italic font-normal text-cream normal-case tracking-[-0.5px]">
               precisão.
             </em>
           </TextReveal>
-          <TextReveal delay={200}>
+          <TextReveal as="span" className="block" delay={200}>
             Cuidado com{" "}
             <em className="font-serif italic font-normal text-cream normal-case tracking-[-0.5px]">
               alma.

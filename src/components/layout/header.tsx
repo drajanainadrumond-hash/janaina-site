@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 
 function MenuIcon({ className }: { className?: string }) {
   return (
@@ -51,6 +52,9 @@ export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const searchRef = useRef<HTMLInputElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(mobileMenuRef, mobileOpen);
 
   /** Faixa branca full-width — só fora da home. */
   const useSolidBar = !isHome;
@@ -275,6 +279,8 @@ export function Header() {
         onClick={() => setMobileOpen(!mobileOpen)}
         className={cn("min-[1140px]:hidden p-2 transition-colors duration-500", useReadableStyle ? "text-teal" : "text-white")}
         aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+        aria-expanded={mobileOpen}
+        aria-controls="mobile-menu"
       >
         {mobileOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
       </button>
@@ -287,7 +293,11 @@ export function Header() {
             aria-label="Fechar menu"
             onClick={closeMobile}
           />
-          <div className="min-[1140px]:hidden fixed inset-x-0 top-[72px] z-[1000] max-h-[calc(100dvh-72px)] overflow-y-auto bg-white border-t border-cream-dark shadow-lg">
+          <div
+            ref={mobileMenuRef}
+            id="mobile-menu"
+            className="min-[1140px]:hidden fixed inset-x-0 top-[72px] z-[1000] max-h-[calc(100dvh-72px)] overflow-y-auto bg-white border-t border-cream-dark shadow-lg"
+          >
             <nav className="flex flex-col gap-1 p-4">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;

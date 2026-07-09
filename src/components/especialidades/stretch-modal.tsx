@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import type { ExerciseData } from "@/lib/especialidades";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 
 type Props = {
   exercise: ExerciseData;
@@ -20,6 +21,9 @@ function XIcon({ className }: { className?: string }) {
 
 export function StretchModal({ exercise, sectionTitle, onClose }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(dialogRef, true);
 
   useEffect(() => {
     const prevFocus = document.activeElement as HTMLElement | null;
@@ -42,6 +46,7 @@ export function StretchModal({ exercise, sectionTitle, onClose }: Props) {
       <div className="absolute inset-0 bg-teal/60 backdrop-blur-sm animate-[fadeIn_0.2s_ease]" />
 
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="stretch-modal-title"
