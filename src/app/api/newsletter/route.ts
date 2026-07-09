@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServiceRole } from "@/lib/supabase";
 import { sendNewsletterConfirmationEmail } from "@/lib/email";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24h
 
 export async function POST(req: NextRequest) {
   // Rate limiting por IP
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  const ip = getClientIp(req);
   const { ok } = rateLimit(ip);
   if (!ok) {
     return NextResponse.json(

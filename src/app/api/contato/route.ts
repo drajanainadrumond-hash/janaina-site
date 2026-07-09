@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CONTACT, CONVENIOS } from "@/lib/constants";
 import { sendContactEmail } from "@/lib/email";
-import { getSupabaseAdmin } from "@/lib/supabase";
-import { rateLimit } from "@/lib/rate-limit";
+import { getSupabaseServiceRole } from "@/lib/supabase";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 
 const ATTRIBUTION_KEYS = [
   "utm_source",
@@ -28,7 +28,7 @@ function pickAttribution(body: Record<string, unknown>) {
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+    const ip = getClientIp(request);
     const { ok, remaining } = rateLimit(ip);
 
     if (!ok) {
@@ -57,8 +57,10 @@ export async function POST(request: NextRequest) {
 
     const leadData = { name, whatsapp, convenio, queixa };
 
-    // 1. Salvar lead no Supabase (com atribuição de campanha, se houver)
-    const supabase = getSupabaseAdmin();
+    // 1. Salvar lead no Supabase (com atribuição de campanha, se houver).
+    // Usa service_role: toda escrita passa por esta rota (validação + rate-limit),
+    // permitindo remover o INSERT público direto na tabela `leads` via RLS.
+    const supabase = getSupabaseServiceRole();
     if (supabase) {
       const { error: dbError } = await supabase.from("leads").insert({
         name,

@@ -4,7 +4,7 @@ const SITE_URL = "https://janainadrumond.com.br";
 
 /** Rotas privadas que nunca devem ser rastreadas. (/busca usa `noindex` no metadata
  * — não entra aqui, senão o crawler não consegue ler a tag noindex.) */
-const DISALLOW_PATHS = ["/api/", "/admin/"];
+const DISALLOW_PATHS = ["/api/", "/admin"];
 
 /**
  * Crawlers de IA generativa — Livro-Guia § 8.5 (GEO).
