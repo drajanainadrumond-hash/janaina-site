@@ -50,13 +50,14 @@ export const RESOURCES: Record<string, ResourceConfig> = {
     allowDelete: true,
     setUpdatedAt: true,
   },
-  // Somente leitura: capturado pelo formulário público, sem edição no painel.
+  // Capturado pelo formulário público. Não é editável no painel (conteúdo do
+  // lead é imutável), mas permite marcar lido/não-lido e apagar.
   leads: {
     table: "leads",
     orders: [{ column: "created_at", ascending: false }],
     insertFields: [],
-    updateFields: [],
-    allowDelete: false,
+    updateFields: ["read"],
+    allowDelete: true,
   },
 };
 
