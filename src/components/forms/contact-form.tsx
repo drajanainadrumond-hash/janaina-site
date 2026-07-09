@@ -68,18 +68,24 @@ export function ContactForm() {
 
       // Central da Orbee — registra o lead + a jornada/atribuição no painel.
       // Dado funcional (1ª parte), independe do GTM e do consentimento de cookies.
+      // Só nome/telefone + atribuição são enviados: a `queixa` é dado de saúde
+      // (LGPD Art. 11) e NÃO trafega para terceiros — fica só no e-mail e no banco
+      // via /api/contato.
       sendOrbeeEvent("orbee_lead_submit", {
         lead: { name: data.name, phone: data.whatsapp },
-        payload: { convenio: data.convenio, queixa: data.queixa },
       });
 
-      toast.success("Mensagem enviada! Redirecionando para o WhatsApp...");
       reset();
 
-      // Abre WhatsApp em nova aba após breve delay
-      setTimeout(() => {
-        window.open(result.whatsappUrl, "_blank");
-      }, 1000);
+      // Navegação direta (não popup) para o WhatsApp — confiável. O window.open
+      // anterior rodava fora do gesto do usuário (após await + setTimeout) e era
+      // bloqueado como popup pela maioria dos navegadores, quebrando a conversão.
+      if (result.whatsappUrl) {
+        toast.success("Mensagem enviada! Abrindo o WhatsApp…");
+        window.location.assign(result.whatsappUrl);
+      } else {
+        toast.success("Mensagem enviada! Em breve entraremos em contato.");
+      }
     } catch {
       toast.error("Erro ao enviar mensagem. Tente novamente.");
     }
