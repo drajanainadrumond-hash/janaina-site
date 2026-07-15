@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { UtmCapture } from "../seo/utm-capture";
+import { OrbeeAutoCapture } from "../seo/orbee-autocapture";
 
 const WhatsAppButton = dynamic(
   () => import("./whatsapp-button").then((m) => m.WhatsAppButton),
@@ -28,6 +29,9 @@ export function ClientShell() {
   return (
     <>
       <UtmCapture />
+      {/* Depois do UtmCapture: a atribuição precisa estar nos cookies antes de
+          qualquer clique ser reportado. */}
+      <OrbeeAutoCapture />
       <WebVitals />
       <WhatsAppButton />
       <ScrollToTop />

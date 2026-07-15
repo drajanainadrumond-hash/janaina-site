@@ -13,11 +13,25 @@ import { getStoredAttribution } from "@/lib/utm";
 
 const ENDPOINT = "https://www.orbeelabs.com.br/api/tracking/event";
 
-// Eventos aceitos pela Central (precisam casar com ALLOWED_EVENTS do webhook).
+/**
+ * Eventos aceitos pela Central (precisam casar com ALLOWED_EVENTS do webhook).
+ *
+ * Eles NÃO servem à mesma coisa — e confundir isso é o que faz achar que "tem
+ * tracking" sem ter atribuição:
+ *
+ * • COM IDENTIDADE (`orbee_lead_submit`, `orbee_appointment_booked`) — carregam
+ *   nome/telefone → viram `Lead` na Central → dá pra casar com a consulta que
+ *   acontecer depois → **fecham o caixa** (conversão offline pro Google Ads).
+ *
+ * • ANÔNIMOS (`orbee_whatsapp_click`, `orbee_phone_click`, `orbee_doctoralia_click`,
+ *   `orbee_cta_click`) — não sabem QUEM é a pessoa. Medem interesse e ensinam o
+ *   otimizador, mas **nunca fecham o loop sozinhos**.
+ */
 export type OrbeeEvent =
   | "orbee_lead_submit"
   | "orbee_whatsapp_click"
   | "orbee_phone_click"
+  | "orbee_doctoralia_click"
   | "orbee_cta_click"
   | "orbee_appointment_booked";
 
@@ -58,6 +72,9 @@ export function sendOrbeeEvent(
       utm_content: attr.utm_content,
       utm_term: attr.utm_term,
       gclid: attr.gclid,
+      // fbclid: sem ele a Central não fecha o loop offline da Meta (CAPI).
+      // Não era capturado nem enviado até 15/jul.
+      fbclid: attr.fbclid,
     },
     lead: opts.lead,
     page: {
