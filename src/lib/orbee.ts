@@ -37,8 +37,17 @@ export type OrbeeEvent =
 
 type OrbeeLead = { name?: string; email?: string; phone?: string };
 
-/** ID de sessão estável (sessionStorage) para a Central costurar a jornada. */
-function sessionId(): string | undefined {
+/**
+ * ID de sessão estável (sessionStorage) para a Central costurar a jornada.
+ *
+ * Exportado porque a "ponte do WhatsApp" (orbee-autocapture) injeta ESTE mesmo id
+ * dentro da mensagem `wa.me?text=...(ref: <sid>)`: quando o paciente manda a
+ * mensagem, o webhook da Evolution lê o sid, cria o Lead com o telefone e reusa o
+ * stitch por sessionId da Central pra ligar o clique (que já carrega o gclid) ao
+ * Lead. É o que transforma o clique ANÔNIMO de zap em conversão offline fechável —
+ * sem isso o gclid morre num evento sem dono. Tem que ser o MESMO valor do evento.
+ */
+export function getSessionId(): string | undefined {
   try {
     let s = sessionStorage.getItem("orbee_sid");
     if (!s) {
@@ -63,7 +72,7 @@ export function sendOrbeeEvent(
   const body = {
     token,
     event,
-    sessionId: sessionId(),
+    sessionId: getSessionId(),
     occurredAt: new Date().toISOString(),
     attribution: {
       utm_source: attr.utm_source,
