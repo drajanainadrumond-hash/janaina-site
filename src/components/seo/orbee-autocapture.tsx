@@ -36,8 +36,13 @@ function tagWhatsAppLink(el: HTMLElement): void {
     const url = new URL(raw, window.location.origin);
     const text = url.searchParams.get("text") ?? "";
     if (text.includes("(ref:")) return; // já marcado (re-clique) — não duplica
-    url.searchParams.set("text", `${text} (ref: ${sid})`.trim());
-    el.setAttribute("href", url.toString());
+    // Marca SEM espaço interno — "(ref:<sid>)" — pra ser à prova do encoding do wa.me.
+    url.searchParams.set("text", `${text} (ref:${sid})`.trim());
+    // ⚠️ URLSearchParams serializa espaço como "+", MAS o WhatsApp não decodifica "+"
+    // como espaço de forma confiável (só %20) — sem isto a mensagem inteira fica feia
+    // ("Olá!+Gostaria+...") e o "+" pode até quebrar o parse do (ref:) no webhook.
+    // Só existe "+" de espaço aqui (número fica no path do wa.me), então normalizar é seguro.
+    el.setAttribute("href", url.toString().replace(/\+/g, "%20"));
   } catch {
     // href não-parseável — segue sem marca (não quebra a navegação)
   }
