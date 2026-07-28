@@ -94,15 +94,27 @@ export function sendOrbeeEvent(
     payload: opts.payload,
   };
 
-  // fetch com keepalive: sobrevive à navegação (abrir o WhatsApp) E faz o
-  // preflight de CORS corretamente — o webhook da Central trata o OPTIONS.
-  // (sendBeacon foi descartado: com application/json cross-origin ele pode
-  // falhar o CORS silenciosamente — retorna true mas o request é bloqueado.)
-  void fetch(ENDPOINT, {
-    method: "POST",
-    mode: "cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-    keepalive: true,
-  }).catch(() => {});
+  // O diagnóstico do comentário antigo estava certo (sendBeacon + application/json
+  // é descartado no CORS), mas a saída — fetch com application/json — ainda paga o
+  // PREFLIGHT: no clique de WhatsApp a página navega pra fora e o OPTIONS pendente
+  // pode ser cancelado antes do POST sair, mesmo com keepalive. Era a explicação
+  // mais provável pra este site capturar só ~8 de 153 cliques pagos (28/jul).
+  // Saída correta: text/plain é content-type "simples" → SEM preflight → o beacon
+  // passa e sobrevive à navegação. O server lê com request.json(), que não olha o
+  // content-type. Fallback pro fetch se o beacon recusar (retorno false).
+  const raw = JSON.stringify(body);
+  let ok = false;
+  try {
+    ok = navigator.sendBeacon(ENDPOINT, new Blob([raw], { type: "text/plain;charset=UTF-8" }));
+  } catch {
+    ok = false;
+  }
+  if (!ok) {
+    void fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=UTF-8" },
+      body: raw,
+      keepalive: true,
+    }).catch(() => {});
+  }
 }
