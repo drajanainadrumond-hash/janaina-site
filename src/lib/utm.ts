@@ -43,6 +43,10 @@ export type Attribution = {
   gclid?: string;
   /** fbclid: sem ele não há atribuição de Meta (não era capturado até 15/jul). */
   fbclid?: string;
+  /** Cookie _ga lido AO VIVO (kit v2.1 · 29/jul): prova pra Central que o GA4 está vivo no site. */
+  ga4ClientId?: string;
+  /** Cookie _fbp idem: prova que o Pixel da Meta está vivo. */
+  metaFbp?: string;
   referrer?: string;
   landing_page?: string;
 };
@@ -57,6 +61,12 @@ function setCookie(name: string, value: string) {
 
 function getCookie(name: string): string | undefined {
   const m = document.cookie.match(new RegExp(`(^|;)\\s*${PREFIX}${name}\\s*=\\s*([^;]+)`));
+  return m ? decodeURIComponent(m[2]) : undefined;
+}
+
+/** Cookie SEM o prefixo orbee_ — pros cookies dos vizinhos (_ga do GA4, _fbp do Pixel). */
+function getRawCookie(name: string): string | undefined {
+  const m = document.cookie.match(new RegExp(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`));
   return m ? decodeURIComponent(m[2]) : undefined;
 }
 
@@ -107,6 +117,17 @@ export function getStoredAttribution(): Attribution {
     if (ref) out.referrer = ref;
     const lp = getCookie("landing_page");
     if (lp) out.landing_page = lp;
+
+    // Vizinhos, lidos AO VIVO a cada evento (kit v2.1): _ga prova GA4 vivo,
+    // _fbp prova Pixel vivo — separa os canos no Status do Rastreamento da
+    // Central. Client id do GA4 = 2 últimos grupos ("GA1.1.123.456" → "123.456").
+    const ga = getRawCookie("_ga");
+    if (ga) {
+      const parts = ga.split(".");
+      if (parts.length >= 4) out.ga4ClientId = parts.slice(-2).join(".");
+    }
+    const fbp = getRawCookie("_fbp");
+    if (fbp) out.metaFbp = fbp;
     return out;
   } catch {
     return {};
@@ -119,7 +140,11 @@ export function getStoredAttribution(): Attribution {
  */
 export function exposeOrbeeGlobal() {
   if (typeof window === "undefined") return;
-  const w = window as unknown as { Orbee?: { getAttribution?: () => Attribution } };
+  const w = window as unknown as {
+    Orbee?: { getAttribution?: () => Attribution; bridgeVersion?: string };
+  };
   w.Orbee = w.Orbee || {};
   w.Orbee.getAttribution = getStoredAttribution;
+  // Auditável no console do site: window.Orbee.bridgeVersion → "orbee-bridge-v2.1"
+  w.Orbee.bridgeVersion = "orbee-bridge-v2.1";
 }

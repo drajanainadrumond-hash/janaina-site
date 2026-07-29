@@ -14,6 +14,16 @@ import { getStoredAttribution } from "@/lib/utm";
 const ENDPOINT = "https://www.orbeelabs.com.br/api/tracking/event";
 
 /**
+ * Versão do kit da ponte (Fase 0.4/1.1 do Plano de Rastreamento · 29/jul).
+ * O literal sobrevive à minificação → auditável à distância:
+ *   curl site | grep -o 'orbee-bridge-v[0-9.]*'
+ * E vai em cada evento (bridgeVersion) → a tela Status da Central detecta
+ * sozinha qual kit este site roda. Manter em sincronia com ORBEE_BRIDGE_VERSION
+ * da Central (src/lib/tracking/snippets.ts).
+ */
+export const BRIDGE_VERSION = "orbee-bridge-v2.1";
+
+/**
  * Eventos aceitos pela Central (precisam casar com ALLOWED_EVENTS do webhook).
  *
  * Eles NÃO servem à mesma coisa — e confundir isso é o que faz achar que "tem
@@ -74,6 +84,7 @@ export function sendOrbeeEvent(
     event,
     sessionId: getSessionId(),
     occurredAt: new Date().toISOString(),
+    bridgeVersion: BRIDGE_VERSION,
     attribution: {
       utm_source: attr.utm_source,
       utm_medium: attr.utm_medium,
@@ -84,6 +95,11 @@ export function sendOrbeeEvent(
       // fbclid: sem ele a Central não fecha o loop offline da Meta (CAPI).
       // Não era capturado nem enviado até 15/jul.
       fbclid: attr.fbclid,
+      // Cookies dos vizinhos lidos ao vivo (v2.1): provam GA4/Pixel vivos no
+      // site — sem eles a Central acusava "GA4 invisível" sem saber de quem
+      // era a culpa (kit cego × GA4 ausente).
+      ga4ClientId: attr.ga4ClientId,
+      metaFbp: attr.metaFbp,
     },
     lead: opts.lead,
     page: {
