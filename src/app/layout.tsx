@@ -104,6 +104,19 @@ export default function RootLayout({
       className={`${centuryGothic.variable} ${airePro.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        {/* Consent Mode v2 (29/jul · decisão Diana/Orbee): defaults NEGADOS antes de
+            qualquer tag. Com isso o GTM/GA4 pode carregar SEMPRE (modo avançado):
+            sem consentimento manda pings SEM cookie (dado modelado, LGPD-ok);
+            no "Aceitar" o cookie-consent sobe tudo pra granted. Antes o GA4 só via
+            quem clicava Aceitar (~1 visitante/dia) — ficava cego pro resto. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;" +
+              "gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});" +
+              "gtag('set','url_passthrough',true);",
+          }}
+        />
         {/* Anti-flash: esconde o banner de cookies antes do paint p/ quem já consentiu
             (o banner é renderizado no SSR para servir de LCP rápido em quem ainda não consentiu). */}
         <script

@@ -7,6 +7,25 @@ const COOKIE_KEY = "cookie-consent";
 
 type ConsentState = "pending" | "accepted" | "rejected";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+/**
+ * Consent Mode v2 (29/jul): sobe os 4 sinais pra granted quando a pessoa aceita.
+ * O default (denied) é setado no layout ANTES de qualquer tag carregar.
+ */
+function consentGranted() {
+  window.gtag?.("consent", "update", {
+    ad_storage: "granted",
+    analytics_storage: "granted",
+    ad_user_data: "granted",
+    ad_personalization: "granted",
+  });
+}
+
 function injectGTM() {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   if (!gtmId || document.getElementById("gtm-script")) return;
@@ -37,9 +56,12 @@ function injectMetaPixel() {
   document.head.appendChild(script);
 }
 
-// Carrega os trackers (GTM/GA4 + Meta Pixel) — só após consentimento.
+// Trackers com CONSENTIMENTO (29/jul · Consent Mode avançado):
+// - GTM/GA4 carrega SEMPRE — antes do aceite roda com consent denied (pings sem
+//   cookie, dado modelado); no aceite o consentGranted() libera cookies.
+// - Meta Pixel NÃO tem modo cookieless equivalente → continua só após aceite.
 function injectAnalytics() {
-  injectGTM();
+  consentGranted();
   injectMetaPixel();
 }
 
@@ -51,6 +73,10 @@ export function CookieConsent() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    // GTM entra pra TODO visitante (consent denied por default = sem cookie).
+    // É o que devolve visão modelada do GA4 sem esperar o clique no banner.
+    injectGTM();
+
     const stored = localStorage.getItem(COOKIE_KEY);
     if (stored === "accepted" || stored === "rejected") {
       setConsent(stored);
