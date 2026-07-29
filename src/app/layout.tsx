@@ -53,6 +53,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Dra. Janaína Drumond Rocha Fraga" }],
   creator: "Dra. Janaína Drumond Rocha Fraga",
   publisher: "Dra. Janaína Drumond",
+  // Verificação de domínio no Business Manager da Meta (29/jul) — resolve o
+  // aviso "Confirme o domínio" do Events Manager e habilita a lista de permissões.
+  verification: {
+    other: { "facebook-domain-verification": "ji7rnvnh7arae6q8oclfdwlye7w06j" },
+  },
   formatDetection: {
     telephone: true,
     email: true,
