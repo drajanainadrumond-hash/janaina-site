@@ -108,5 +108,39 @@ export function OrbeeAutoCapture() {
     return () => document.removeEventListener("click", onClick, true);
   }, []);
 
+  // Profundidade de scroll (25/50/75/100) — o proxy de VISITA da ponte (molde do
+  // site da Paula, ScrollTracker). Sem ele, visitante pago que entra, lê e sai é
+  // invisível pra Central. Cada marco dispara UMA vez por carga de página.
+  useEffect(() => {
+    const marks = [25, 50, 75, 100] as const;
+    const fired = new Set<number>();
+    let ticking = false;
+
+    function measure() {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - doc.clientHeight;
+      if (scrollable <= 0) return;
+      const pct = (window.scrollY / scrollable) * 100;
+      for (const mark of marks) {
+        if (pct >= mark && !fired.has(mark)) {
+          fired.add(mark);
+          sendOrbeeEvent("orbee_scroll", { payload: { scroll_depth: mark } });
+        }
+      }
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        measure();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return null;
 }

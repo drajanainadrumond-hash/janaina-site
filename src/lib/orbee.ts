@@ -34,8 +34,11 @@ export const BRIDGE_VERSION = "orbee-bridge-v2.1";
  *   acontecer depois → **fecham o caixa** (conversão offline pro Google Ads).
  *
  * • ANÔNIMOS (`orbee_whatsapp_click`, `orbee_phone_click`, `orbee_doctoralia_click`,
- *   `orbee_cta_click`) — não sabem QUEM é a pessoa. Medem interesse e ensinam o
- *   otimizador, mas **nunca fecham o loop sozinhos**.
+ *   `orbee_cta_click`, `orbee_scroll`) — não sabem QUEM é a pessoa. Medem interesse
+ *   e ensinam o otimizador, mas **nunca fecham o loop sozinhos**. O `orbee_scroll`
+ *   é o proxy de VISITA: sem ele, o visitante pago que entra, lê e sai não deixa
+ *   rastro nenhum na Central — a régua de captura fica curta (era por isso que este
+ *   site media "3%" contra 42% do site da Paula, achado 04/ago).
  */
 export type OrbeeEvent =
   | "orbee_lead_submit"
@@ -43,6 +46,7 @@ export type OrbeeEvent =
   | "orbee_phone_click"
   | "orbee_doctoralia_click"
   | "orbee_cta_click"
+  | "orbee_scroll"
   | "orbee_appointment_booked";
 
 type OrbeeLead = { name?: string; email?: string; phone?: string };
