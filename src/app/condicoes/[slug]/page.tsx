@@ -13,6 +13,7 @@ import { AeoContentIntro } from "@/components/seo/aeo-content-intro";
 import { CondicaoFaqSection } from "@/components/condicoes/condicao-faq-section";
 import { CondicaoHowToSection } from "@/components/condicoes/condicao-howto-section";
 import { TimelineFeed } from "@/components/condicoes/timeline-feed";
+import { CondicaoWhatsAppCta } from "@/components/condicoes/condicao-whatsapp-cta";
 import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
 
 type Props = {
@@ -75,6 +76,12 @@ export default async function CondicaoPage({ params }: Props) {
 
         <AeoContentIntro directAnswer={directAnswer} pageTitle={cond.title} />
 
+        <CondicaoWhatsAppCta
+          condicao={cond.title}
+          slug={cond.slug}
+          posicao="topo"
+        />
+
         <hr className="my-8 border-cream-dark" />
 
         <TimelineFeed content={cond.content} areaLabel={cond.areaLabel} />
@@ -85,17 +92,29 @@ export default async function CondicaoPage({ params }: Props) {
           <CondicaoFaqSection faqs={condicaoFaqs} conditionTitle={cond.title} />
         ) : null}
 
-        {/* CTA contextual */}
+        {/* CTA contextual — o WhatsApp é o caminho principal; o formulário, a alternativa. */}
         <div className="mt-12 p-8 bg-teal rounded-2xl text-center">
-          <p className="text-white/80 text-[1.125rem] mb-4">
+          <p className="text-white/80 text-[1.125rem] mb-1">
             Tem dúvidas sobre sua condição? Agende uma consulta para avaliação individualizada.
           </p>
-          <Link
-            href="/contato"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-white text-teal font-medium hover:bg-cream transition-colors"
-          >
-            Agendar Consulta
-          </Link>
+          <p className="text-white/60 text-[1rem] mb-5">
+            Atendimento exclusivamente particular.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <CondicaoWhatsAppCta
+              condicao={cond.title}
+              slug={cond.slug}
+              posicao="final"
+              tone="teal"
+            />
+            <Link
+              href="/contato"
+              data-orbee-cta={`agendar-formulario:${cond.slug}`}
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-transparent text-white/60 border border-white/[0.1] font-medium hover:border-white/25 hover:text-white transition-all duration-300"
+            >
+              Agendar Consulta
+            </Link>
+          </div>
         </div>
 
         <DisclaimerBanner />
