@@ -204,7 +204,7 @@ export const ESPECIALIDADES: Especialidade[] = [
     slug: "cirurgia-da-mao-e-punho",
     tag: "Diferencial",
     title: "Mão e Punho",
-    desc: "Subespecialidade e diferencial clínico. Domínio de todas as condições da extremidade distal.",
+    desc: "Área de atuação e diferencial clínico. Domínio de todas as condições da extremidade distal.",
     icon: "🤚",
     tags: ["Túnel do Carpo", "Dedo em Gatilho", "Rizartrose", "Fratura Punho", "Cisto Sinovial", "De Quervain"],
     gradient: "from-cream to-teal-pale",

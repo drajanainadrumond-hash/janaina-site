@@ -83,7 +83,7 @@ export function Hero() {
           <p className="text-[0.95rem] sm:text-[1.125rem] text-white/65 leading-[1.7] sm:leading-[1.9] max-w-[520px] tracking-[0.2px] text-center lg:text-left lg:hidden">
             Diagnóstico preciso do ombro ao punho.{" "}
             <strong className="text-white/75 font-normal">
-              Subespecialidade em mão e punho
+              Formação específica em mão e punho
             </strong>{" "}
             com pós-graduação pela Faculdade Ciências Médicas de MG.
           </p>
@@ -91,7 +91,7 @@ export function Hero() {
             <p className="text-[1.125rem] text-white/65 leading-[1.9] max-w-[520px] tracking-[0.2px]">
               Diagnóstico preciso do ombro ao punho.{" "}
               <strong className="text-white/75 font-normal">
-                Subespecialidade em mão e punho
+                Formação específica em mão e punho
               </strong>{" "}
               com pós-graduação pela Faculdade Ciências Médicas de MG.
             </p>

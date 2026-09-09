@@ -8,7 +8,7 @@ const CARDS = [
     href: "/especialidades/cirurgia-da-mao-e-punho",
     tag: "Diferencial",
     title: "Mão e Punho",
-    desc: "Subespecialidade e diferencial. Túnel do carpo, dedo em gatilho, fraturas complexas.",
+    desc: "Área de atuação e diferencial. Túnel do carpo, dedo em gatilho, fraturas complexas.",
     icon: "🤚",
     variant: "dark" as const,
     span: true,
