@@ -105,6 +105,12 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       className={`${centuryGothic.variable} ${airePro.variable} h-full antialiased`}
+      // O script de consentimento abaixo escreve `data-consent="given"` neste mesmo elemento
+      // ANTES do React hidratar — de propósito, pra evitar piscada de banner em quem já decidiu.
+      // O HTML do servidor não tem o atributo e o do navegador tem, e o React acusa
+      // "hydrated but some attributes didn't match". É o caso exato pra que este prop existe.
+      // ⚠️ Só vale pra ESTE elemento (um nível), não silencia o resto da árvore.
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans">
         {/* Consent Mode v2 (29/jul · decisão Diana/Orbee): defaults NEGADOS antes de
