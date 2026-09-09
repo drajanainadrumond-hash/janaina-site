@@ -24,7 +24,7 @@ const STATIC_FAQ_CATEGORIES: FaqCategoryGroup[] = [
       {
         question: "Quais condições a Dra. Janaína trata?",
         answer:
-          "Atendo todas as condições ortopédicas gerais (ombro, joelho, quadril, coluna) com subespecialidade em cirurgia da mão e punho — incluindo síndrome do túnel do carpo, dedo em gatilho, rizartrose, fraturas de punho e escafóide, cisto sinovial e tendinite de De Quervain.",
+          "Atendo todas as condições ortopédicas gerais (ombro, joelho, quadril, coluna) e tenho formação específica em cirurgia da mão e punho — incluindo síndrome do túnel do carpo, dedo em gatilho, rizartrose, fraturas de punho e escafóide, cisto sinovial e tendinite de De Quervain.",
       },
       {
         question: "Como funciona a primeira consulta?",
@@ -139,12 +139,12 @@ const STATIC_FAQ_CATEGORIES: FaqCategoryGroup[] = [
       {
         question: "O atendimento é particular ou por convênio?",
         answer:
-          "O atendimento é exclusivamente particular. Entre em contato pelo WhatsApp para saber valores e formas de pagamento.",
+          "O atendimento é exclusivamente particular — não há atendimento por convênio. A consulta custa R$ 500, e o pagamento pode ser feito por PIX, dinheiro, transferência bancária ou cartão de crédito.",
       },
       {
         question: "Quanto custa uma consulta particular?",
         answer:
-          "O valor da consulta particular é informado no momento do agendamento. Entre em contato pelo WhatsApp para obter informações atualizadas sobre valores e formas de pagamento.",
+          "A consulta particular custa R$ 500. O pagamento pode ser feito por PIX, dinheiro, transferência bancária ou cartão de crédito. Fale pelo WhatsApp para agendar.",
       },
       {
         question: "Atende urgências e emergências?",

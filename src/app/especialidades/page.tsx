@@ -19,7 +19,7 @@ export default function EspecialidadesPage() {
           Áreas de atuação
         </h1>
         <p className="reveal text-[0.95rem] sm:text-[1.125rem] text-[#4A5E6B] max-w-[500px] mx-auto mt-4 leading-[1.7] sm:leading-[1.8]">
-          Ortopedia geral com subespecialidade em mão e punho.
+          Ortopedia geral, com formação específica em mão e punho.
         </p>
       </section>
 

@@ -19,7 +19,7 @@ export const HOME_FAQS: FaqItem[] = [
   {
     question: "A Dra. Janaína atende por convênio?",
     answer:
-      "Não. O atendimento é exclusivamente particular. Entre em contato pelo WhatsApp para saber valores e formas de pagamento.",
+      "Não. O atendimento é exclusivamente particular. A consulta custa R$ 500, com pagamento por PIX, dinheiro, transferência bancária ou cartão de crédito.",
   },
   {
     question: "O que é dedo em gatilho?",
@@ -29,11 +29,11 @@ export const HOME_FAQS: FaqItem[] = [
   {
     question: "Preciso de encaminhamento para agendar?",
     answer:
-      "Não. Você pode agendar diretamente pelo site, WhatsApp ou Doctoralia.",
+      "Não. Você pode agendar diretamente pelo WhatsApp ou pelo Doctoralia, sem encaminhamento.",
   },
   {
     question: "A teleconsulta está disponível?",
     answer:
-      "Sim, ofereço teleconsulta para avaliação inicial e retornos pós-operatórios.",
+      "Não. O atendimento é presencial, no consultório na Savassi, em Belo Horizonte.",
   },
 ];

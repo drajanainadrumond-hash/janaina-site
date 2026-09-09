@@ -208,7 +208,7 @@ export const ESPECIALIDADES: Especialidade[] = [
     icon: "🤚",
     tags: ["Túnel do Carpo", "Dedo em Gatilho", "Rizartrose", "Fratura Punho", "Cisto Sinovial", "De Quervain"],
     gradient: "from-cream to-teal-pale",
-    intro: "A cirurgia da mão e punho é minha subespecialidade e meu diferencial. Tenho formação específica nessa área, com pós-graduação pela Faculdade Ciências Médicas de Minas Gerais. As mãos são ferramentas essenciais para viver, trabalhar e criar.",
+    intro: "A cirurgia da mão e punho é minha área de atuação e meu diferencial. Tenho formação específica nessa área, com pós-graduação pela Faculdade Ciências Médicas de Minas Gerais. As mãos são ferramentas essenciais para viver, trabalhar e criar.",
     sections: [
       {
         icon: "🖐️",
@@ -328,7 +328,7 @@ export const ESPECIALIDADES: Especialidade[] = [
     ],
     outro: "A mão é uma estrutura de extrema complexidade — 27 ossos, dezenas de tendões, múltiplos nervos e vasos em um espaço pequeno. Uma cirurgia bem feita exige conhecimento anatômico profundo, técnica refinada e instrumentos específicos. A formação especializada garante a precisão que suas mãos merecem.",
     content: `
-<p>A cirurgia da mão e punho é minha <strong>subespecialidade e meu diferencial</strong>. Tenho formação específica nessa área, com pós-graduação pela <strong>Faculdade Ciências Médicas de Minas Gerais</strong>.</p>
+<p>A cirurgia da mão e punho é minha <strong>área de atuação e meu diferencial</strong>. Tenho formação específica nessa área, com pós-graduação pela <strong>Faculdade Ciências Médicas de Minas Gerais</strong>.</p>
 
 <p>As mãos são ferramentas essenciais para <strong>viver, trabalhar e criar</strong>. Quando uma condição na mão limita sua função, o impacto na qualidade de vida é imenso — desde a incapacidade de abotoar uma camisa até a impossibilidade de exercer sua profissão.</p>
 
