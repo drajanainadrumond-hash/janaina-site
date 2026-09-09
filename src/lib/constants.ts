@@ -36,6 +36,27 @@ export const SOCIAL = {
   doctoralia: "https://www.doctoralia.com.br/janaina-drumond-2/ortopedista-traumatologista/belo-horizonte",
 } as const;
 
+/**
+ * Prova social agregada — o que dá para publicar sem reproduzir palavra de paciente.
+ *
+ * Regra do projeto (C36, item 6): depoimento de paciente **não vai ao site**, real ou não.
+ * O que vai é o agregado da plataforma, que é verificável em um clique e não é citação.
+ *
+ * ⚠️ Não marcar com schema `AggregateRating`: o Google proíbe review agregada sobre a própria
+ * entidade no próprio site. Mostrar na tela, sim; como dado estruturado, não.
+ *
+ * Conferir na página do Doctoralia e atualizar `conferidoEm` junto com os números.
+ */
+export const PROVA_SOCIAL = {
+  /** Fonte única e verificável: o perfil dela no Doctoralia. */
+  fonte: "Doctoralia",
+  avaliacoes: 42,
+  estrelas: 5,
+  /** Tags que a própria Doctoralia agrega das opiniões — não são frases de paciente. */
+  maisMencionado: ["Atenção na consulta", "Explicações detalhadas", "Pontualidade"],
+  conferidoEm: "09/09/2026",
+} as const;
+
 export const FORMACAO = [
   {
     title: "Graduação em Medicina",
