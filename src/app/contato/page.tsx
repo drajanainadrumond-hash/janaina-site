@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { QuemAtende } from "@/components/layout/quem-atende";
 import { ContactForm } from "@/components/forms/contact-form";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -31,6 +32,12 @@ export default function AgendePage() {
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-start">
           {/* Info */}
           <div className="space-y-8">
+            <QuemAtende
+              condicao="ortopedia"
+              slug="contato"
+              variante="discreto"
+              className="mb-10 pb-8 border-b border-cream-dark -mr-4 sm:mr-0"
+            />
             <div>
               <h2 className="font-heading text-lg font-normal tracking-[0.5px] mb-3">
                 Consultório

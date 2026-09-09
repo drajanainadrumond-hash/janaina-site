@@ -14,6 +14,7 @@ import { CondicaoFaqSection } from "@/components/condicoes/condicao-faq-section"
 import { CondicaoHowToSection } from "@/components/condicoes/condicao-howto-section";
 import { TimelineFeed } from "@/components/condicoes/timeline-feed";
 import { CondicaoWhatsAppCta } from "@/components/condicoes/condicao-whatsapp-cta";
+import { QuemAtende } from "@/components/layout/quem-atende";
 import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
 
 type Props = {
@@ -57,7 +58,8 @@ export default async function CondicaoPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
-      <article className="max-w-[700px] mx-auto">
+      <div className="max-w-[1140px] mx-auto grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
+      <article className="max-w-[700px] w-full mx-auto lg:mx-0">
         <PageBreadcrumbs
           className="mb-8"
           items={withHome(
@@ -73,6 +75,16 @@ export default async function CondicaoPage({ params }: Props) {
         <h1 className="font-heading text-[2rem] md:text-[2.5rem] font-light tracking-[1px] leading-[1.2] mb-6">
           {cond.title}
         </h1>
+
+        {/* No CELULAR a foto entra aqui — depois do caminho, da tag e do título, que é como a
+            pessoa se localiza na página. No desktop ela é a coluna lateral fixa (abaixo), e este
+            bloco some. Renderizar nos dois lugares e alternar por breakpoint é o que permite uma
+            ordem no mobile e outra no desktop sem duplicar a página. (pedido da Diana, 09/09) */}
+        <QuemAtende
+          condicao={cond.title}
+          slug={cond.slug}
+          className="lg:hidden mb-8"
+        />
 
         <AeoContentIntro directAnswer={directAnswer} pageTitle={cond.title} />
 
@@ -119,6 +131,15 @@ export default async function CondicaoPage({ params }: Props) {
 
         <DisclaimerBanner />
       </article>
+
+      {/* Lateral fixa: o rosto e o botão acompanham a rolagem. No celular vira cartão
+          de largura inteira, logo abaixo do conteúdo — e a `order` sobe ele pro topo. */}
+      <QuemAtende
+        condicao={cond.title}
+        slug={cond.slug}
+        className="hidden lg:block"
+      />
+      </div>
     </div>
   );
 }

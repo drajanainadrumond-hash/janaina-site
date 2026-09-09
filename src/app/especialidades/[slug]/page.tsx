@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { CondicaoWhatsAppCta } from "@/components/condicoes/condicao-whatsapp-cta";
+import { QuemAtende } from "@/components/layout/quem-atende";
 import { notFound } from "next/navigation";
 import { ESPECIALIDADES, getEspecialidadeBySlug } from "@/lib/especialidades";
 import { buildPageMetadata } from "@/lib/seo";
@@ -77,13 +79,17 @@ export default async function EspecialidadePage({ params }: Props) {
     },
   };
 
+  // `overflow-x-clip` e NÃO `overflow-hidden`: `position: sticky` não funciona dentro de um
+  // ancestral com overflow hidden/auto/scroll. Era o que impedia a foto lateral de acompanhar a
+  // rolagem nesta página (achado da Diana, 09/09). `clip` corta o transbordo sem quebrar o sticky.
   return (
-    <div className="pt-[100px] lg:pt-[140px] pb-24 px-6 overflow-hidden">
+    <div className="pt-[100px] lg:pt-[140px] pb-24 px-6 overflow-x-clip">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <article className={`mx-auto ${esp.sections ? "max-w-[1100px]" : "max-w-[700px]"}`}>
+      <div className="max-w-[1460px] mx-auto grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
+      <article className={`w-full mx-auto lg:mx-0 ${esp.sections ? "max-w-[1100px]" : "max-w-[700px]"}`}>
         <div className="mb-8">
           <Link
             href="/especialidades"
@@ -100,6 +106,14 @@ export default async function EspecialidadePage({ params }: Props) {
         <h1 className="font-heading text-[2rem] md:text-[2.5rem] font-light tracking-[1px] leading-[1.2] mb-4">
           {esp.title}
         </h1>
+
+        {/* No CELULAR a foto entra aqui — depois do caminho e do título. No desktop ela é a
+            coluna lateral fixa (abaixo), e este bloco some. */}
+        <QuemAtende
+          condicao={esp.title}
+          slug={`especialidade:${esp.slug}`}
+          className="lg:hidden mb-8"
+        />
 
         <p className="text-[1.125rem] text-[#4A5E6B] leading-[1.8] mb-6">
           {esp.desc}
@@ -157,19 +171,40 @@ export default async function EspecialidadePage({ params }: Props) {
           />
         )}
 
-        {/* CTA contextual */}
+        {/* CTA contextual — o WhatsApp é o caminho principal; o formulário, a alternativa. */}
         <div className="mt-12 p-8 bg-teal rounded-2xl text-center">
-          <p className="text-white/80 text-[1.125rem] mb-4">
+          <p className="text-white/80 text-[1.125rem] mb-1">
             Quer saber mais ou agendar uma avaliação?
           </p>
-          <Link
-            href="/contato"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-white text-teal font-medium hover:bg-cream transition-colors"
-          >
-            Agendar Consulta
-          </Link>
+          <p className="text-white/60 text-[1rem] mb-5">
+            Atendimento exclusivamente particular.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <CondicaoWhatsAppCta
+              condicao={esp.title}
+              slug={`especialidade:${esp.slug}`}
+              posicao="final"
+              tone="teal"
+            />
+            <Link
+              href="/contato"
+              data-orbee-cta={`agendar-formulario:especialidade:${esp.slug}`}
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-transparent text-white/60 border border-white/[0.1] font-medium hover:border-white/25 hover:text-white transition-all duration-300"
+            >
+              Agendar Consulta
+            </Link>
+          </div>
         </div>
       </article>
+
+      {/* Lateral fixa: o rosto e o botão acompanham a rolagem. No celular vira cartão
+          de largura inteira e sobe pro topo. */}
+      <QuemAtende
+        condicao={esp.title}
+        slug={`especialidade:${esp.slug}`}
+        className="hidden lg:block"
+      />
+      </div>
     </div>
   );
 }

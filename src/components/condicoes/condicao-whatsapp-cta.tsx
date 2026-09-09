@@ -35,9 +35,12 @@ type Props = {
   posicao: Posicao;
   /**
    * Fundo em que o botão é renderizado. `light` desenha o cartão inteiro;
-   * `teal` devolve só o botão, pra encaixar num bloco escuro já existente.
+   * `teal` devolve só o botão BRANCO, pra encaixar num bloco escuro já existente;
+   * `solo` devolve só o botão VERDE, pra fundo claro sem cartão em volta.
+   * (⚠️ usar `teal` sobre fundo claro deixa o botão branco no branco — foi o que
+   * aconteceu na primeira versão da landing em 09/09.)
    */
-  tone?: "light" | "teal";
+  tone?: "light" | "teal" | "solo";
 };
 
 /** Mensagem pré-preenchida — a ponte anexa " (ref:<sid>)" quando a origem é paga. */
@@ -69,7 +72,7 @@ export function CondicaoWhatsAppCta({ condicao, slug, posicao, tone = "light" }:
     </a>
   );
 
-  if (tone === "teal") return botao;
+  if (tone === "teal" || tone === "solo") return botao;
 
   return (
     <aside className="my-10 rounded-2xl border border-cream-dark bg-cream-light p-6 text-center">

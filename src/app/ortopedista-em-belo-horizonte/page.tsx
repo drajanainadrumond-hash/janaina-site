@@ -4,6 +4,7 @@ import { CondicaoWhatsAppCta } from "@/components/condicoes/condicao-whatsapp-ct
 import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
 import { SchemaMarkup } from "@/components/seo/schema-markup";
 import { FloatingOrbs } from "@/components/ui/floating-orbs";
+import { QuemAtende } from "@/components/layout/quem-atende";
 import { PROVA_SOCIAL, SITE, SOCIAL } from "@/lib/constants";
 import { generateBreadcrumbList, generateFAQPage, generatePhysician } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/seo";
@@ -33,7 +34,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 const TITULO = "Ortopedista em Belo Horizonte — Dra. Janaína Drumond | CRM-MG 69719";
 const DESCRICAO =
-  "Dra. Janaína Drumond, médica ortopedista e traumatologista em Belo Horizonte. Consultório na Savassi. Atendimento particular, R$ 500. CRM-MG 69719 · RQE 50592. Agende pelo WhatsApp.";
+  "Dra. Janaína Drumond, médica ortopedista e traumatologista em Belo Horizonte. Consultório na Savassi. Atendimento exclusivamente particular. CRM-MG 69719 · RQE 50592. Agende pelo WhatsApp.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: TITULO,
@@ -86,7 +87,7 @@ const ATENDE = [
 
 export default function OrtopedistaEmBeloHorizontePage() {
   return (
-    <div className="relative overflow-hidden bg-cream-light/40">
+    <div className="relative overflow-x-clip bg-cream-light/40">
       <SchemaMarkup schema={generatePhysician()} />
       <SchemaMarkup schema={generateFAQPage(FAQS)} />
       <SchemaMarkup
@@ -120,16 +121,19 @@ export default function OrtopedistaEmBeloHorizontePage() {
             condicao="ortopedia em Belo Horizonte"
             slug="ortopedista-bh"
             posicao="topo"
-            tone="teal"
+            tone="solo"
           />
         </div>
         <p className="mt-4 text-[1rem] text-[#5A6B78]">
-          Atendimento exclusivamente particular · consulta R$ 500
+          Atendimento exclusivamente particular
         </p>
       </section>
 
+      <div className="max-w-[1140px] mx-auto px-6 grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
+      <div className="min-w-0">
+
       {/* O que ela atende — ortopedia geral primeiro, o nicho como diferencial */}
-      <section className="max-w-[900px] mx-auto px-6 py-12">
+      <section className="py-12">
         <h2 className="font-heading text-[1.5rem] md:text-[1.9rem] font-light tracking-[1px] uppercase text-teal text-center">
           O que ela atende
         </h2>
@@ -166,8 +170,8 @@ export default function OrtopedistaEmBeloHorizontePage() {
       </section>
 
       {/* Formação — fatos conferíveis, sem título que o RQE não cobre */}
-      <section className="bg-cream-light py-14 px-6">
-        <div className="max-w-[760px] mx-auto text-center">
+      <section className="rounded-3xl bg-cream-light p-8 my-10">
+        <div className="text-center">
           <h2 className="font-heading text-[1.5rem] md:text-[1.9rem] font-light tracking-[1px] uppercase text-teal">
             Formação
           </h2>
@@ -187,8 +191,8 @@ export default function OrtopedistaEmBeloHorizontePage() {
       </section>
 
       {/* Prova social — agregado, nunca palavra de paciente (C36, item 6) */}
-      <section className="py-14 px-6">
-        <div className="max-w-[760px] mx-auto text-center">
+      <section className="py-12">
+        <div className="text-center">
           <div className="flex justify-center gap-1" role="img" aria-label={`${PROVA_SOCIAL.estrelas} de 5 estrelas`}>
             {Array.from({ length: 5 }).map((_, i) => (
               <span key={i} className="text-[1.5rem] text-teal-mid" aria-hidden>
@@ -220,8 +224,8 @@ export default function OrtopedistaEmBeloHorizontePage() {
       </section>
 
       {/* Consultório */}
-      <section className="bg-cream-light py-14 px-6">
-        <div className="max-w-[760px] mx-auto text-center">
+      <section className="rounded-3xl bg-cream-light p-8 my-10">
+        <div className="text-center">
           <h2 className="font-heading text-[1.5rem] md:text-[1.9rem] font-light tracking-[1px] uppercase text-teal">
             Consultório
           </h2>
@@ -235,7 +239,7 @@ export default function OrtopedistaEmBeloHorizontePage() {
       </section>
 
       {/* Perguntas — as mesmas do "As pessoas também perguntam" */}
-      <section className="max-w-[800px] mx-auto px-6 py-14">
+      <section className="py-12">
         <h2 className="font-heading text-[1.5rem] md:text-[1.9rem] font-light tracking-[1px] uppercase text-teal text-center">
           Perguntas frequentes
         </h2>
@@ -256,6 +260,17 @@ export default function OrtopedistaEmBeloHorizontePage() {
         <DisclaimerBanner />
       </section>
 
+      </div>
+
+      {/* Lateral fixa: o rosto e o botão acompanham a rolagem. No celular vira cartão
+          de largura inteira e sobe pro topo da coluna. */}
+      <QuemAtende
+        condicao="ortopedia em Belo Horizonte"
+        slug="ortopedista-bh"
+        className=""
+      />
+      </div>
+
       {/* Fechamento */}
       <section className="pb-24 px-6 text-center">
         <p className="text-[1.125rem] text-[#4A5E6B] mb-6">
@@ -266,7 +281,7 @@ export default function OrtopedistaEmBeloHorizontePage() {
             condicao="ortopedia em Belo Horizonte"
             slug="ortopedista-bh"
             posicao="final"
-            tone="teal"
+            tone="solo"
           />
         </div>
       </section>
