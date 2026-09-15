@@ -5,7 +5,7 @@ import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
 import { SchemaMarkup } from "@/components/seo/schema-markup";
 import { FloatingOrbs } from "@/components/ui/floating-orbs";
 import { QuemAtende } from "@/components/layout/quem-atende";
-import { PROVA_SOCIAL, SITE, SOCIAL } from "@/lib/constants";
+import { CONTACT, PROVA_SOCIAL, SITE, SOCIAL } from "@/lib/constants";
 import { generateBreadcrumbList, generateFAQPage, generatePhysician } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -125,7 +125,20 @@ export default function OrtopedistaEmBeloHorizontePage() {
           />
         </div>
         <p className="mt-4 text-[1rem] text-[#5A6B78]">
-          Atendimento exclusivamente particular
+          Resposta em até 24h · sem encaminhamento · consultório na Savassi
+        </p>
+
+        {/* Os outros dois canais. A /contato oferece três (WhatsApp, telefone, e-mail) e é
+            de onde saem 17 dos 43 cliques de WhatsApp medidos; esta página oferecia um só. */}
+        <p className="mt-4 text-[0.95rem] text-[#5A6B78]">
+          Prefere ligar?{" "}
+          <a href={`tel:${CONTACT.phone}`} className="text-teal-mid hover:text-teal underline underline-offset-2">
+            (31) 9 9288-0728
+          </a>{" "}
+          ·{" "}
+          <Link href="/contato" className="text-teal-mid hover:text-teal underline underline-offset-2">
+            enviar mensagem pelo site
+          </Link>
         </p>
       </section>
 
@@ -271,18 +284,35 @@ export default function OrtopedistaEmBeloHorizontePage() {
       />
       </div>
 
-      {/* Fechamento */}
-      <section className="pb-24 px-6 text-center">
-        <p className="text-[1.125rem] text-[#4A5E6B] mb-6">
-          Com dor ou lesão? Fale com o consultório e agende sua avaliação.
-        </p>
-        <div className="flex justify-center">
-          <CondicaoWhatsAppCta
-            condicao="ortopedia em Belo Horizonte"
-            slug="ortopedista-bh"
-            posicao="final"
-            tone="solo"
-          />
+      {/* Fechamento — espelha o que a /contato faz e esta página não fazia: diz o que
+          acontece depois do clique e tira a dúvida de "o que eu levo". */}
+      <section className="pb-24 px-6">
+        <div className="max-w-[560px] mx-auto text-center">
+          <p className="text-[1.125rem] text-[#4A5E6B] mb-2">
+            Com dor ou lesão? Fale com o consultório e agende sua avaliação.
+          </p>
+          <p className="text-[1rem] text-[#5A6B78] mb-6">
+            Você fala direto com o consultório pelo WhatsApp e tem resposta em até 24h.
+            Não precisa de encaminhamento.
+          </p>
+          <div className="flex justify-center">
+            <CondicaoWhatsAppCta
+              condicao="ortopedia em Belo Horizonte"
+              slug="ortopedista-bh"
+              posicao="final"
+              tone="solo"
+            />
+          </div>
+
+          <div className="mt-10 rounded-2xl bg-teal-ghost p-6 text-left">
+            <h2 className="font-heading text-[0.95rem] font-normal tracking-[0.5px] mb-2 text-teal">
+              Primeira consulta?
+            </h2>
+            <p className="text-[1rem] text-[#4A5E6B] leading-[1.7]">
+              Traga exames anteriores (raio-X, ressonância, etc.) e uma lista dos medicamentos
+              que usa. Isso agiliza o diagnóstico. A consulta dura de 30 a 45 minutos.
+            </p>
+          </div>
         </div>
       </section>
     </div>

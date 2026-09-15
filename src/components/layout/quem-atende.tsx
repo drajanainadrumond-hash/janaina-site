@@ -123,8 +123,14 @@ export function QuemAtende({ condicao, slug, className = "", variante = "lateral
               tone="solo"
             />
           </div>
+          {/* Logo abaixo do botão vai o que REDUZ atrito, não o que trava. Até 15/09/2026
+              este espaço dizia "atendimento exclusivamente particular": a primeira coisa que
+              quem buscou "ortopedista em BH" lia depois do CTA era o motivo de não clicar.
+              A informação continua no FAQ da página e na página /contato — o que muda é a
+              ordem. Estas duas frases são as que a /contato usa, e a /contato responde por
+              17 dos 43 cliques de WhatsApp já medidos, sem receber um centavo de anúncio. */}
           <p className="mt-3 text-[0.85rem] text-[#5A6B78]">
-            Atendimento exclusivamente particular
+            Resposta em até 24h · sem encaminhamento
           </p>
         </div>
       </div>

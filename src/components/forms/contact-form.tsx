@@ -6,10 +6,12 @@ import { CONVENIOS } from "@/lib/constants";
 import { getStoredAttribution } from "@/lib/utm";
 import { sendOrbeeEvent } from "@/lib/orbee";
 
+/** Única forma de atendimento (D41). Era a única opção do <select> que saiu do formulário. */
+const CONVENIO_PADRAO = CONVENIOS[0];
+
 type ContactFormData = {
   name: string;
   whatsapp: string;
-  convenio: string;
   queixa: string;
   consent: boolean;
 };
@@ -40,7 +42,9 @@ export function ContactForm() {
       const res = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, ...attribution }),
+        // `convenio` não é mais perguntado (só havia uma resposta possível), mas segue no
+        // corpo para o e-mail e o banco continuarem com o mesmo formato.
+        body: JSON.stringify({ ...data, convenio: CONVENIO_PADRAO, ...attribution }),
       });
 
       const result = await res.json();
@@ -129,25 +133,11 @@ export function ContactForm() {
         {errors.whatsapp && <p id="whatsapp-error" role="alert" className="text-xs text-destructive mt-1">{errors.whatsapp.message}</p>}
       </div>
 
-      <div>
-        <label htmlFor="convenio" className="block text-[1.125rem] text-[#4A5E6B] uppercase tracking-[1.5px] mb-1.5">
-          Convênio
-        </label>
-        <select
-          id="convenio"
-          className={inputClass}
-          defaultValue=""
-          aria-invalid={errors.convenio ? "true" : undefined}
-          aria-describedby={errors.convenio ? "convenio-error" : undefined}
-          {...register("convenio", { required: "Selecione o convênio" })}
-        >
-          <option value="" disabled>Selecione</option>
-          {CONVENIOS.map((c) => (
-            <option key={c} value={c}>{c}</option>
-          ))}
-        </select>
-        {errors.convenio && <p id="convenio-error" role="alert" className="text-xs text-destructive mt-1">{errors.convenio.message}</p>}
-      </div>
+      {/* O campo "Convênio" saiu em 15/09/2026. Era um <select> OBRIGATÓRIO com uma única
+          opção ("Particular", o CONVENIOS inteiro): a pessoa tinha que parar, abrir e escolher
+          a única resposta possível — atrito puro — e a palavra "Convênio" ainda contradizia
+          um consultório que não atende convênio. O valor continua indo para o e-mail e para o
+          banco, fixo, em `onSubmit`, então nada muda para quem recebe o lead. */}
 
       <div>
         <label htmlFor="queixa" className="block text-[1.125rem] text-[#4A5E6B] uppercase tracking-[1.5px] mb-1.5">
