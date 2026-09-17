@@ -1110,3 +1110,38 @@ export const CONDICOES: Condicao[] = [
 export function getCondicaoBySlug(slug: string): Condicao | undefined {
   return CONDICOES.find((c) => c.slug === slug);
 }
+
+/**
+ * Linkagem interna (item 1.3.1 · C23) — aprovado pela Diana em 17/09/2026.
+ *
+ * Cada condição aponta para 3 parecidas: primeiro a mesma região do corpo, depois
+ * o que a mesma pessoa pesquisa junto ("é túnel do carpo ou tendinite?"). As 7 de
+ * mão se reforçam entre si de propósito — são as que recebem clique pago, e o link
+ * certo segura a dúvida no site em vez de devolvê-la ao Google.
+ * Rizartrose ↔ Artrose do Joelho: mesma doença em articulações diferentes.
+ */
+const RELACIONADAS: Record<string, [string, string, string]> = {
+  "sindrome-do-tunel-do-carpo": ["tendinite-de-quervain", "dedo-em-gatilho", "rizartrose"],
+  "dedo-em-gatilho": ["sindrome-do-tunel-do-carpo", "tendinite-de-quervain", "doenca-de-dupuytren"],
+  "tendinite-de-quervain": ["sindrome-do-tunel-do-carpo", "dedo-em-gatilho", "rizartrose"],
+  "rizartrose": ["sindrome-do-tunel-do-carpo", "tendinite-de-quervain", "artrose-do-joelho"],
+  "cisto-sinovial": ["sindrome-do-tunel-do-carpo", "tendinite-de-quervain", "dedo-em-gatilho"],
+  "doenca-de-dupuytren": ["dedo-em-gatilho", "sindrome-do-tunel-do-carpo", "rizartrose"],
+  "fratura-de-escafoide": ["fraturas", "sindrome-do-tunel-do-carpo", "cisto-sinovial"],
+  "epicondilite-lateral": ["tendinite-de-quervain", "dor-no-ombro-tendinite", "sindrome-do-tunel-do-carpo"],
+  "dor-no-ombro-tendinite": ["epicondilite-lateral", "fraturas", "tendinite-de-quervain"],
+  "dor-no-joelho-menisco": ["lesao-do-lca", "artrose-do-joelho", "dor-no-quadril"],
+  "lesao-do-lca": ["dor-no-joelho-menisco", "artrose-do-joelho", "entorse-de-tornozelo"],
+  "artrose-do-joelho": ["dor-no-joelho-menisco", "dor-no-quadril", "rizartrose"],
+  "dor-no-quadril": ["artrose-do-joelho", "dor-lombar-cronica", "dor-no-joelho-menisco"],
+  "dor-lombar-cronica": ["dor-no-quadril", "artrose-do-joelho", "fraturas"],
+  "entorse-de-tornozelo": ["fraturas", "lesao-do-lca", "dor-no-joelho-menisco"],
+  "fraturas": ["fratura-de-escafoide", "entorse-de-tornozelo", "dor-no-ombro-tendinite"],
+};
+
+/** As 3 condições relacionadas, já resolvidas. Slug desconhecido devolve lista vazia. */
+export function getCondicoesRelacionadas(slug: string): Condicao[] {
+  return (RELACIONADAS[slug] ?? [])
+    .map((s) => getCondicaoBySlug(s))
+    .filter((c): c is Condicao => Boolean(c));
+}

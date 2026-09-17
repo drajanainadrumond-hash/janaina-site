@@ -14,6 +14,7 @@ import { CondicaoFaqSection } from "@/components/condicoes/condicao-faq-section"
 import { CondicaoHowToSection } from "@/components/condicoes/condicao-howto-section";
 import { TimelineFeed } from "@/components/condicoes/timeline-feed";
 import { CondicaoWhatsAppCta } from "@/components/condicoes/condicao-whatsapp-cta";
+import { CondicoesRelacionadas } from "@/components/condicoes/condicoes-relacionadas";
 import { QuemAtende } from "@/components/layout/quem-atende";
 import { DisclaimerBanner } from "@/components/layout/disclaimer-banner";
 
@@ -103,6 +104,8 @@ export default async function CondicaoPage({ params }: Props) {
         {condicaoFaqs ? (
           <CondicaoFaqSection faqs={condicaoFaqs} conditionTitle={cond.title} />
         ) : null}
+
+        <CondicoesRelacionadas slug={cond.slug} />
 
         {/* CTA contextual — o WhatsApp é o caminho principal; o formulário, a alternativa. */}
         <div className="mt-12 p-8 bg-teal rounded-2xl text-center">
