@@ -59,10 +59,14 @@ export default function PoliticaPage() {
           prevenção de abuso).
           <br /><br />
           <strong>Cookies e rastreamento:</strong> utilizamos o Google Tag Manager
-          (GTM) para fins analíticos. Esses scripts <strong>só são carregados após
-          seu consentimento expresso</strong>, via o banner de cookies exibido em
-          sua primeira visita. Cookies essenciais (necessários ao funcionamento do
-          site) não requerem consentimento.
+          (GTM) para fins analíticos. O GTM é carregado em todas as visitas, mas{" "}
+          <strong>em modo restrito enquanto não há consentimento</strong>: nesse
+          estado ele <strong>não grava cookies</strong> e não identifica você, apenas
+          contabiliza a visita de forma agregada e estimada (Consent Mode do Google).
+          Os cookies analíticos só passam a ser gravados <strong>depois que você
+          aceita</strong> no banner. O pixel da Meta (Facebook) <strong>só é
+          carregado após o aceite</strong>. Cookies essenciais (necessários ao
+          funcionamento do site) não requerem consentimento.
         </Section>
 
         <Section title="4. Finalidade e base legal do tratamento">
@@ -98,6 +102,14 @@ export default function PoliticaPage() {
           <br />
           <strong>Google LLC (EUA):</strong> análise de uso do site via Google Tag
           Manager / Google Analytics, apenas após consentimento do usuário.
+          <br />
+          <strong>Orbee Labs (Brasil):</strong> agência responsável pela operação de
+          marketing e pela medição de resultados do site. Recebe, para registrar a
+          origem do contato, <strong>nome e WhatsApp</strong> informados no
+          formulário, junto de dados de navegação (página de origem, campanha e
+          identificador de sessão). <strong>A descrição da queixa não é enviada</strong>{" "}
+          — por ser dado de saúde, permanece apenas no e-mail à Dra. Janaína e no
+          banco de dados do site.
           <br />
           <strong>WhatsApp / Meta Platforms (EUA):</strong> ao enviar o formulário,
           você é redirecionado ao WhatsApp para iniciar a conversa. A partir desse
@@ -173,9 +185,13 @@ export default function PoliticaPage() {
           <br /><br />
           <strong>Cookies analíticos (Google Analytics via GTM):</strong> coletam
           dados de navegação de forma agregada para entender como os visitantes
-          utilizam o site. <strong>Só são ativados após consentimento expresso</strong>{" "}
-          no banner de cookies. Você pode alterar sua preferência a qualquer
-          momento limpando os dados do site no navegador.
+          utilizam o site. <strong>Os cookies só são gravados após consentimento
+          expresso</strong> no banner. Antes do aceite, o GTM funciona em modo
+          restrito, sem gravar cookies e sem identificar você. Você pode alterar sua
+          preferência a qualquer momento limpando os dados do site no navegador.
+          <br /><br />
+          <strong>Cookies de publicidade (pixel da Meta):</strong> só são carregados
+          após o aceite no banner.
         </Section>
 
         <Section title="11. Alterações nesta política">
