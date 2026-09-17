@@ -32,6 +32,16 @@ const CONDICAO_FAQS: Record<string, FaqItem[]> = {
         "Em geral de 15 a 30 minutos, com anestesia local ou regional. O paciente recebe alta no mesmo dia. A recuperação funcional completa pode levar algumas semanas, conforme a gravidade pré-operatória.",
     },
     {
+      // Nomes e grafias (C43 · item 1.3.8): 9 das 10 consultas do Search Console
+      // sobre esta doença chegam escritas de outro jeito. A dúvida é real — muita
+      // gente acha que são doenças diferentes. Uma pergunta cobre todas; página
+      // por grafia seria página de passagem, que o Google pune. Nada foi mexido no
+      // corpo do texto: o Google já trata acento como equivalente (Diana, 17/09).
+      question: "Túnel do carpo, síndrome do carpo, nervo do carpo: é tudo a mesma coisa?",
+      answer:
+        "Sim, é a mesma doença. O nome correto é síndrome do túnel do carpo: a compressão do nervo mediano dentro de um canal estreito do punho. Como o nome é comprido, ele acaba abreviado de várias formas no dia a dia — síndrome do carpo, nervo do carpo, síndrome do túnel — e às vezes escrito sem acento ou na versão em inglês, túnel carpal. Todas se referem à mesma condição e ao mesmo tratamento.",
+    },
+    {
       question: "A cirurgia de túnel do carpo é perigosa?",
       answer:
         "É um procedimento seguro e bem estabelecido, com baixa taxa de complicações graves. Os riscos e benefícios são discutidos na consulta; a indicação cirúrgica segue critérios clínicos e, quando necessário, exames complementares.",
