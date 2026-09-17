@@ -1,6 +1,6 @@
 # janainadrumond.com.br
 
-Site institucional da **Dra. Janaina Drumond** — Ortopedista e Traumatologista em Belo Horizonte com formação em Cirurgia da Mão e Punho.
+Site institucional da **Dra. Janaína Drumond** — Ortopedista e Traumatologista em Belo Horizonte com formação em Cirurgia da Mão e Punho.
 
 ## Stack Técnica (Livro-Guia 2026)
 
@@ -66,6 +66,6 @@ Paleta conforme Manual de Marca 2026:
 
 ## Referências
 
-- Livro-Guia Dra. Janaina Drumond (Orbee Labs)
+- Livro-Guia Dra. Janaína Drumond (Orbee Labs)
 - Checklist de Tecnologias Atualizado 2026
 - Manual de Marca — Identidade Visual 2026

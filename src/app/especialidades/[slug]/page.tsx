@@ -27,9 +27,6 @@ const TAG_LINKS: Record<string, string> = {
   "Manguito Rotador": "/condicoes/dor-no-ombro-tendinite",
   "Entorse": "/condicoes/entorse-de-tornozelo",
   "Epicondilite": "/condicoes/epicondilite-lateral",
-  "Polidactilia": "/condicoes/polidactilia",
-  "Sindactilia": "/condicoes/sindactilia",
-  "Fraturas Infantis": "/condicoes/fraturas-infantis",
 };
 
 export function generateStaticParams() {

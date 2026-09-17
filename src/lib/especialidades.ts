@@ -194,7 +194,7 @@ export const ESPECIALIDADES: Especialidade[] = [
 
 <p>Acredito em um atendimento que combina <strong>precisão diagnóstica</strong> com <strong>explicação clara</strong>. Antes de qualquer tratamento, você vai entender exatamente o que está acontecendo. Uso exame físico detalhado, solicito apenas os exames realmente necessários e priorizo o <strong>tratamento conservador</strong> sempre que possível — cirurgia é o último recurso, não o primeiro.</p>
 
-<p>Quando identifico necessidade de tratamento especializado em áreas como cirurgia da coluna ou próteses, encaminho para colegas de confiança, garantindo a melhor condução do seu caso.</p>
+<p>Quando identifico necessidade de tratamento especializado em áreas como cirurgia da coluna ou próteses, encaminho para colegas de confiança, para que seu caso tenha a melhor condução.</p>
 
 <p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,
@@ -326,7 +326,7 @@ export const ESPECIALIDADES: Especialidade[] = [
         },
       },
     ],
-    outro: "A mão é uma estrutura de extrema complexidade — 27 ossos, dezenas de tendões, múltiplos nervos e vasos em um espaço pequeno. Uma cirurgia bem feita exige conhecimento anatômico profundo, técnica refinada e instrumentos específicos. A formação especializada garante a precisão que suas mãos merecem.",
+    outro: "A mão é uma estrutura de extrema complexidade — 27 ossos, dezenas de tendões, múltiplos nervos e vasos em um espaço pequeno. Uma cirurgia bem feita exige conhecimento anatômico profundo, técnica refinada e instrumentos específicos. A formação em Cirurgia da Mão e Punho prepara para esse nível de cuidado.",
     content: `
 <p>A cirurgia da mão e punho é minha <strong>área de atuação e meu diferencial</strong>. Tenho formação específica nessa área, com pós-graduação pela <strong>Faculdade Ciências Médicas de Minas Gerais</strong>.</p>
 
@@ -379,9 +379,9 @@ export const ESPECIALIDADES: Especialidade[] = [
 
 <h2>Por que a especialização importa?</h2>
 
-<p>A mão é uma estrutura de <strong>extrema complexidade</strong> — em um espaço pequeno convivem 27 ossos, dezenas de tendões, múltiplos nervos e vasos. Uma cirurgia bem feita na mão exige conhecimento anatômico profundo, técnica refinada e instrumentos específicos. A formação especializada garante que cada procedimento seja realizado com a precisão que suas mãos merecem.</p>
+<p>A mão é uma estrutura de <strong>extrema complexidade</strong> — em um espaço pequeno convivem 27 ossos, dezenas de tendões, múltiplos nervos e vasos. Uma cirurgia bem feita na mão exige conhecimento anatômico profundo, técnica refinada e instrumentos específicos. A formação em Cirurgia da Mão e Punho prepara para conduzir cada procedimento com esse cuidado.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
 ];

@@ -183,7 +183,7 @@ const STATIC_POSTS: BlogPost[] = [
 
 <p><strong>Atendimento:</strong> O atendimento é exclusivamente particular. Entre em contato para saber valores e formas de pagamento.</p>
 
-<p><strong>CTA:</strong> Se você sente algum desses sintomas ou deseja uma avaliação preventiva, <a href="/contato">agende sua avaliação com a Dra. Janaina Drumond</a>. Cuidar das suas mãos é garantir sua independência e produtividade.</p>
+<p><strong>CTA:</strong> Se você sente algum desses sintomas ou deseja uma avaliação preventiva, <a href="/contato">agende sua avaliação com a Dra. Janaína Drumond</a>. Cuidar das suas mãos é garantir sua independência e produtividade.</p>
 
 <p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,

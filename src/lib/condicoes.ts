@@ -82,7 +82,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>Quanto mais cedo o diagnóstico, melhores os resultados.</strong> Em casos avançados com atrofia muscular, a recuperação pode ser incompleta mesmo após cirurgia.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
@@ -143,7 +143,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>O dedo em gatilho tem tratamento eficaz e rápido.</strong> Nos casos cirúrgicos, o alívio costuma ser percebido rapidamente. Cada caso é individual.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
@@ -209,7 +209,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>A rizartrose não precisa significar perda de função.</strong> Com diagnóstico precoce e tratamento adequado, é possível manter a qualidade de vida e a capacidade de usar as mãos no dia a dia.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
@@ -438,7 +438,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>Cirurgia</strong> é reservada para: falha do tratamento conservador após 6-12 semanas, déficit neurológico progressivo ou síndrome da cauda equina (emergência).</p>
 
-<p><strong>Nota:</strong> como ortopedista generalista, realizo a avaliação completa da dor lombar. Quando identifico necessidade de tratamento cirúrgico da coluna, encaminho para um colega especialista em cirurgia da coluna, garantindo que você tenha a melhor condução possível.</p>
+<p><strong>Nota:</strong> como ortopedista generalista, realizo a avaliação completa da dor lombar. Quando identifico necessidade de tratamento cirúrgico da coluna, encaminho para um colega especialista em cirurgia da coluna, para que você tenha a melhor condução possível.</p>
 
 <p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | CRM-MG 69719 | RQE 50592</em></p>
 `,
@@ -514,7 +514,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>Não subestime a dor no punho após queda.</strong> O diagnóstico precoce da fratura de escafoide é fundamental para evitar complicações graves como pseudoartrose e artrose.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
@@ -601,7 +601,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>A tendinite de Quervain é tratável e tem ótimos resultados.</strong> Se você é mãe e está com dor no punho, não precisa "aguentar" — busque avaliação para buscar alívio dos sintomas e cuidar melhor do seu bebê.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
@@ -768,7 +768,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>Importante:</strong> nunca tente "estourar" o cisto em casa com livros ou batendo (a famosa "bíblia") — isso pode causar lesão nas estruturas ao redor e o cisto voltará.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
@@ -902,7 +902,7 @@ export const CONDICOES: Condicao[] = [
 <li>Osso visível através da pele (fratura exposta — vá ao pronto-socorro imediatamente).</li>
 </ul>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
@@ -956,7 +956,7 @@ export const CONDICOES: Condicao[] = [
 
 <p><strong>A doença de Dupuytren pode recidivar</strong> — o acompanhamento em longo prazo é importante.</p>
 
-<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista | Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592</em></p>
+<p><em>Dra. Janaína Drumond — Ortopedista e Traumatologista, com formação em Cirurgia da Mão e Punho | CRM-MG 69719 | RQE 50592 (Ortopedia)</em></p>
 `,
   },
   {
