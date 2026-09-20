@@ -38,11 +38,14 @@ const SANITIZE_OPTIONS: sanitizeHtml.IOptions = {
   allowProtocolRelative: false,
   transformTags: {
     // Todo link abre com rel seguro (evita tabnabbing em target=_blank).
-    a: sanitizeHtml.simpleTransform("a", { rel: "noopener noreferrer" }, false),
+    // O terceiro argumento PRECISA ser `true` (mesclar): com `false`, o
+    // simpleTransform troca os atributos em vez de somar, e o `href` do link some.
+    // Achado em 20/09/2026 pela guarda G10 — posts do painel saíam sem destino.
+    a: sanitizeHtml.simpleTransform("a", { rel: "noopener noreferrer" }, true),
   },
 };
 
-function sanitizePost(post: BlogPost): BlogPost {
+export function sanitizePost(post: BlogPost): BlogPost {
   if (typeof post.content === "string") {
     return { ...post, content: sanitizeHtml(post.content, SANITIZE_OPTIONS) };
   }

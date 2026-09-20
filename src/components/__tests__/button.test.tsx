@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { Button } from "@/components/ui/button";
 
 describe("Button", () => {
@@ -8,8 +9,16 @@ describe("Button", () => {
   });
 
   it("applies variant classes", () => {
-    render(<Button variant="outline">Outline</Button>);
-    const button = screen.getByRole("button", { name: /outline/i });
-    expect(button).toBeInTheDocument();
+    // Antes este teste só verificava que o botão existia — passava sem olhar
+    // classe nenhuma (C22, §2). Agora compara duas variantes de verdade.
+    const { unmount } = render(<Button variant="outline">Outline</Button>);
+    const outline = screen.getByRole("button", { name: /outline/i });
+    expect(outline).toHaveClass("border", "bg-background");
+    unmount();
+
+    render(<Button variant="destructive">Excluir</Button>);
+    const destructive = screen.getByRole("button", { name: /excluir/i });
+    expect(destructive).not.toHaveClass("bg-background");
+    expect(destructive.className).not.toBe(outline.className);
   });
 });
