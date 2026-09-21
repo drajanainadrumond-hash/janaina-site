@@ -27,11 +27,11 @@ export function AboutSplit() {
         <div className="absolute rounded-full bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/[0.06] w-[180px] h-[180px] bottom-[5%] left-[3%] hidden lg:block" style={{ animation: "morph-a 10s ease-in-out infinite" }} />
         <div className="absolute rounded-full bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/[0.05] w-[100px] h-[100px] top-[15%] right-[8%] hidden lg:block" style={{ animation: "morph-b 12s ease-in-out infinite" }} />
 
-        <div className="text-[1.125rem] font-normal uppercase tracking-[3px] text-teal-pale mb-8">
+        <div className="text-[1.125rem] font-normal uppercase tracking-[3px] text-teal-pale mb-8 text-center lg:text-left">
           Sobre a Dra. Janaína
         </div>
 
-        <h2 className="font-heading text-[1.8rem] sm:text-[2.2rem] lg:text-[2.5rem] font-light text-white leading-[1.2] tracking-[1px] uppercase mb-6">
+        <h2 className="font-heading text-[1.8rem] sm:text-[2.2rem] lg:text-[2.5rem] font-light text-white leading-[1.2] tracking-[1px] uppercase mb-6 text-center lg:text-left">
           {/* as="span" + block: conteúdo válido dentro de <h2> (span é phrasing;
               div não é), mantendo as duas linhas empilhadas. */}
           <TextReveal as="span" className="block">
@@ -47,6 +47,13 @@ export function AboutSplit() {
             </em>
           </TextReveal>
         </h2>
+
+        {/* Só no celular: a segunda foto entra logo depois do slogan, dentro do bloco, em vez
+            de ficar depois da linha do tempo, já colada nas avaliações. É outra foto (pijama
+            cirúrgico) para não repetir a do topo da home. (pedido da Diana, 21/09) */}
+        <div className="lg:hidden mx-auto mb-8 w-full max-w-[320px] sm:max-w-[480px] h-[440px] sm:h-[620px] bg-gradient-to-br from-teal-pale to-cream rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.2)] overflow-hidden relative">
+          <Image src="/janaina-pijama-cirurgico.jpg" alt="Dra. Janaína Drumond, médica ortopedista, de pijama cirúrgico" fill className="object-cover object-top" sizes="(max-width: 640px) 320px, 480px" />
+        </div>
 
         <TextReveal delay={400}>
         <blockquote className="font-serif text-[1.125rem] text-white/65 leading-[1.9] italic pl-6 border-l-2 border-teal-pale mb-8">
@@ -83,11 +90,12 @@ export function AboutSplit() {
         </div>
       </div>
 
-      {/* Right — Photo + floating cards */}
-      <div className="bg-cream-light flex items-center justify-center relative min-h-[40vh] lg:min-h-0 py-16 lg:py-12 px-4 sm:px-6 lg:px-0">
+      {/* Right — Photo + floating cards. Só no desktop: no celular a foto sobe para dentro do bloco. */}
+      <div className="bg-cream-light hidden lg:flex items-center justify-center relative min-h-[40vh] lg:min-h-0 py-16 lg:py-12 px-4 sm:px-6 lg:px-0">
         {/* Photo */}
         <div className="w-full max-w-[320px] sm:max-w-[480px] lg:w-[540px] lg:max-w-none h-[440px] sm:h-[620px] lg:h-[700px] bg-gradient-to-br from-teal-pale to-cream rounded-3xl shadow-[0_30px_60px_rgba(0,62,81,0.1)] overflow-hidden relative">
-          <Image src="/janaina-hero.jpg" alt="Dra. Janaína Drumond — Ortopedista em BH" fill className="object-cover object-top" sizes="(max-width: 640px) 320px, (max-width: 1024px) 480px, 540px" priority />
+          {/* Sem `priority`: no desktop o bloco fica abaixo da dobra. */}
+          <Image src="/janaina-hero.jpg" alt="Dra. Janaína Drumond — Ortopedista em BH" fill className="object-cover object-top" sizes="540px" />
         </div>
 
         {/* Floating cards — positioned relative to the outer container */}

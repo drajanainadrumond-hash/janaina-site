@@ -83,11 +83,11 @@ export default function SobrePage() {
           items={withHome({ name: "Sobre", href: "/sobre" })}
         />
 
-        <div className="reveal text-[1.125rem] uppercase tracking-[1.5px] sm:tracking-[3px] text-teal-pale mb-8">
+        <div className="reveal text-[1.125rem] uppercase tracking-[1.5px] sm:tracking-[3px] text-teal-pale mb-8 text-center lg:text-left">
           Conheça a Dra. Janaína
         </div>
 
-        <h1 className="reveal font-heading text-[1.5rem] sm:text-[2.2rem] lg:text-[2.5rem] font-light text-white leading-[1.2] tracking-[0.5px] sm:tracking-[1px] uppercase mb-6">
+        <h1 className="reveal font-heading text-[1.5rem] sm:text-[2.2rem] lg:text-[2.5rem] font-light text-white leading-[1.2] tracking-[0.5px] sm:tracking-[1px] uppercase mb-6 text-center lg:text-left">
           Ortopedista com
           <br />
           <em className="font-serif italic font-normal text-cream normal-case tracking-[-0.5px]">formação em</em>
@@ -95,6 +95,13 @@ export default function SobrePage() {
           <em className="font-serif italic font-normal text-cream normal-case tracking-[-0.5px]">mão e punho</em>
           <br />em BH.
         </h1>
+
+        {/* Só no celular: uma foto logo depois do título, em vez de ficar no fim da seção,
+            depois da linha do tempo. No desktop a mesma foto fica na coluna da direita.
+            (pedido da Diana, 21/09) */}
+        <div className="lg:hidden mx-auto mb-8 w-full max-w-[320px] sm:max-w-[480px] h-[440px] sm:h-[620px] bg-gradient-to-br from-teal-pale to-cream rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.2)] overflow-hidden relative">
+          <Image src="/janaina-hero.jpg" alt="Dra. Janaína Drumond, médica ortopedista em Belo Horizonte" fill className="object-cover object-top" sizes="(max-width: 640px) 320px, 480px" />
+        </div>
 
         <blockquote className="reveal font-serif text-[0.95rem] sm:text-[1.125rem] text-white/65 leading-[1.7] sm:leading-[1.9] italic pl-5 sm:pl-6 border-l-2 border-teal-pale mb-8">
           &ldquo;Sou ortopedista e traumatologista em Belo Horizonte. Atendo de dores no joelho e ombro até cirurgias complexas da mão e do punho.&rdquo;
@@ -144,19 +151,22 @@ export default function SobrePage() {
         </div>
       </div>
 
-      {/* Right */}
-      <div ref={photoColumnRef} className="bg-cream-light relative min-h-[40vh] lg:min-h-0">
+      {/* Right — só no desktop; no celular a foto sobe para depois do título. */}
+      <div ref={photoColumnRef} className="bg-cream-light relative hidden lg:block">
         {/* Floating orbs */}
         <div className="absolute rounded-full bg-gradient-to-br from-teal/[0.04] to-teal/[0.01] border border-teal/[0.05] w-[160px] h-[160px] top-[5%] left-[5%] hidden lg:block pointer-events-none" style={{ animation: "morph-b 11s ease-in-out infinite" }} />
         <div className="absolute rounded-full bg-gradient-to-br from-teal/[0.03] to-teal/[0.01] border border-teal/[0.04] w-[90px] h-[90px] bottom-[8%] right-[8%] hidden lg:block pointer-events-none" style={{ animation: "morph-a 9s ease-in-out infinite" }} />
 
         <div className="flex justify-center items-start py-12 lg:pt-28 px-4 sm:px-0">
-          <div ref={photoWrapperRef} className="will-change-transform w-full max-w-[380px] sm:max-w-[540px] lg:max-w-none lg:w-auto">
+          <div ref={photoWrapperRef} className="will-change-transform w-auto">
+            {/* A de blazer, na vertical e no tamanho da home — no lugar da foto do consultório,
+                que era escura. A altura acompanha a tela, para a foto caber inteira
+                abaixo do menu mesmo em notebook. (pedido da Diana, 21/09) */}
             <div
-              className="w-full lg:w-[720px] aspect-[3/2] bg-gradient-to-br from-teal-pale to-cream rounded-3xl shadow-[0_30px_60px_rgba(0,62,81,0.1)] overflow-hidden relative"
+              className="h-[min(700px,calc(100vh-170px))] aspect-[540/700] bg-gradient-to-br from-teal-pale to-cream rounded-3xl shadow-[0_30px_60px_rgba(0,62,81,0.1)] overflow-hidden relative"
               style={{ animation: "float 6s ease-in-out infinite" }}
             >
-              <Image src="/janaina-mg7080.jpg" alt="Dra. Janaína Drumond — Ortopedista em BH" fill className="object-cover" sizes="(max-width: 640px) 380px, (max-width: 1024px) 540px, 720px" />
+              <Image src="/janaina-hero.jpg" alt="Dra. Janaína Drumond, médica ortopedista em Belo Horizonte" fill className="object-cover object-top" sizes="540px" />
             </div>
           </div>
         </div>

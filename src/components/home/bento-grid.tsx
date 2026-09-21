@@ -56,15 +56,15 @@ export function BentoGrid() {
       <div className="absolute rounded-full bg-gradient-to-br from-teal/[0.05] to-teal/[0.02] border border-teal/[0.06] w-[120px] h-[120px] bottom-[10%] left-[3%] hidden lg:block" style={{ animation: "morph-a 11s ease-in-out infinite" }} />
       <div
         ref={ref}
-        className="flex flex-col md:flex-row justify-between items-start md:items-end max-w-[1200px] mx-auto mb-12 pb-8 border-b border-cream-dark"
+        className="flex flex-col md:flex-row justify-between items-center md:items-end max-w-[1200px] mx-auto mb-12 pb-8 border-b border-cream-dark"
       >
-        <h2 className="font-heading text-[1.6rem] sm:text-[1.9rem] lg:text-[2.2rem] font-light tracking-[2px] uppercase leading-[1.3]">
+        <h2 className="font-heading text-[1.6rem] sm:text-[1.9rem] lg:text-[2.2rem] font-light tracking-[2px] uppercase leading-[1.3] text-center md:text-left">
           Cuidado ortopédico
           <em className="font-serif italic font-normal text-teal normal-case tracking-[-0.5px] block text-[1.8rem] sm:text-[2rem] lg:text-[2.4rem]">
             em todas as dimensões
           </em>
         </h2>
-        <p className="text-[1.125rem] text-[#5A6B78] max-w-[300px] md:text-right leading-[1.7] mt-4 md:mt-0">
+        <p className="text-[1.125rem] text-[#5A6B78] max-w-[300px] text-center md:text-right leading-[1.7] mt-4 md:mt-0">
           Do diagnóstico à recuperação, com expertise comprovada em cada etapa.
         </p>
       </div>

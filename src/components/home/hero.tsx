@@ -80,6 +80,19 @@ export function Hero() {
             </em>
           </h1>
 
+          {/* Só no celular: lá a foto da lateral some, e o rosto dela só aparecia três seções
+              abaixo. Mesma foto e mesmo tamanho do bloco "Sobre". (pedido da Diana, 21/09) */}
+          <div className="lg:hidden w-full max-w-[320px] sm:max-w-[480px] h-[440px] sm:h-[620px] bg-gradient-to-br from-teal-pale to-cream rounded-3xl shadow-[0_30px_60px_rgba(0,62,81,0.1)] overflow-hidden relative">
+            <Image
+              src="/janaina-hero.jpg"
+              alt="Dra. Janaína Drumond, médica ortopedista em Belo Horizonte"
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 640px) 320px, 480px"
+              priority
+            />
+          </div>
+
           <p className="text-[0.95rem] sm:text-[1.125rem] text-white/65 leading-[1.7] sm:leading-[1.9] max-w-[520px] tracking-[0.2px] text-center lg:text-left lg:hidden">
             Diagnóstico preciso do ombro ao punho.{" "}
             <strong className="text-white/75 font-normal">

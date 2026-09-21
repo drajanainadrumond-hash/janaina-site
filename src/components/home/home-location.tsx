@@ -6,7 +6,7 @@ export function HomeLocation() {
   return (
     <section className="py-20 lg:py-28 px-6 bg-teal text-white">
       <div className="max-w-[1200px] mx-auto grid gap-10 md:grid-cols-2 md:items-center">
-        <div>
+        <div className="text-center md:text-left">
           <p className="text-[1.125rem] uppercase tracking-[3px] text-teal-pale/80 mb-3">
             Consultório
           </p>
@@ -16,10 +16,10 @@ export function HomeLocation() {
               Belo Horizonte
             </em>
           </h2>
-          <p className="text-[1.125rem] text-white/70 leading-[1.8] mb-6 max-w-[400px]">
+          <p className="text-[1.125rem] text-white/70 leading-[1.8] mb-6 max-w-[400px] mx-auto md:mx-0">
             {SITE.address.full}
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap justify-center md:justify-start gap-4">
             <Link
               href="/contato"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-cream text-teal text-[1.125rem] hover:bg-white transition-colors"
