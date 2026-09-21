@@ -145,7 +145,7 @@ export default function SobrePage() {
         </div>
 
         <div className="reveal mt-8">
-          <Link href="/contato" className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-teal-mid text-white shadow-[0_0_30px_rgba(0,86,91,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(0,86,91,0.45)] transition-all text-center">
+          <Link href="/contato" data-orbee-cta="agendar-formulario:sobre" className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-teal-mid text-white shadow-[0_0_30px_rgba(0,86,91,0.3)] hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgba(0,86,91,0.45)] transition-all text-center">
             {"Agendar com a Dra.\u00A0Janaína"}
           </Link>
         </div>

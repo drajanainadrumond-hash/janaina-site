@@ -169,6 +169,7 @@ export default async function BlogPostPage({ params }: Props) {
             </p>
             <Link
               href="/contato"
+              data-orbee-cta="agendar-formulario:blog-post-meio"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm bg-teal text-white hover:bg-teal-mid transition-colors uppercase"
             >
               Agendar Consulta
@@ -195,6 +196,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="flex flex-col sm:flex-row gap-3 justify-center relative z-10">
             <Link
               href="/contato"
+              data-orbee-cta="agendar-formulario:blog-post-final"
               className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-white text-teal font-medium hover:bg-cream transition-colors"
             >
               Agendar Consulta

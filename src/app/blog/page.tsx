@@ -277,6 +277,7 @@ export default async function BlogPage() {
             <div className="flex flex-col sm:flex-row gap-3 lg:justify-end">
               <Link
                 href="/contato"
+                data-orbee-cta="agendar-formulario:blog-lista"
                 className="inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-white text-teal font-medium hover:shadow-[0_8px_30px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 transition-all duration-300"
               >
                 Agendar Consulta

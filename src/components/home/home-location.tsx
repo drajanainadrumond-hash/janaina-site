@@ -22,12 +22,14 @@ export function HomeLocation() {
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
             <Link
               href="/contato"
+              data-orbee-cta="agendar-formulario:home-consultorio"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-cream text-teal text-[1.125rem] hover:bg-white transition-colors"
             >
               Agendar consulta
             </Link>
             <Link
               href="/contato"
+              data-orbee-cta="fale-conosco:home-consultorio"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-white/25 text-[1.125rem] text-white/90 hover:bg-white/10 transition-colors"
             >
               Fale conosco

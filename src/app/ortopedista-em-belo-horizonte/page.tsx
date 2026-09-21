@@ -136,7 +136,7 @@ export default function OrtopedistaEmBeloHorizontePage() {
             (31) 9 9288-0728
           </a>{" "}
           ·{" "}
-          <Link href="/contato" className="text-teal-mid hover:text-teal underline underline-offset-2">
+          <Link href="/contato" data-orbee-cta="agendar-formulario:ortopedista-bh" className="text-teal-mid hover:text-teal underline underline-offset-2">
             enviar mensagem pelo site
           </Link>
         </p>

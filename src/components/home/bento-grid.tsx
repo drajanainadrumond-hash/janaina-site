@@ -74,6 +74,7 @@ export function BentoGrid() {
           <Link
             key={card.title}
             href={card.href}
+            data-orbee-cta={card.href === "/contato" ? "agendar-formulario:home-cartao" : undefined}
             className={`group relative rounded-[20px] p-5 sm:p-8 flex flex-col justify-end overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,62,81,0.08)] ${VARIANT_STYLES[card.variant]}`}
           >
             {card.icon && (

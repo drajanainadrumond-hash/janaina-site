@@ -145,6 +145,7 @@ export default function PublicacoesPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center relative z-10">
             <Link
               href="/contato"
+              data-orbee-cta="agendar-formulario:sobre-publicacoes"
               className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-white text-teal font-medium hover:bg-cream transition-colors"
             >
               Agendar Consulta

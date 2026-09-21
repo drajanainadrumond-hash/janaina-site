@@ -260,7 +260,7 @@ function CondicoesContent() {
             <p className="text-white/70 text-[1.125rem] mb-2">Não encontrou sua condição?</p>
             <p className="text-white text-[1.1rem] font-medium mb-6">A Dra. Janaína pode ajudar</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/contato" className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-white text-teal font-medium hover:shadow-[0_8px_30px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 transition-all duration-300">
+              <Link href="/contato" data-orbee-cta="agendar-formulario:condicoes-lista" className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-[1.125rem] uppercase tracking-[0.5px] bg-white text-teal font-medium hover:shadow-[0_8px_30px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 transition-all duration-300">
                 Agendar Consulta
                 <span className="w-5 h-5 rounded-full bg-teal/10 flex items-center justify-center text-[1.125rem]">→</span>
               </Link>

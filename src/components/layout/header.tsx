@@ -264,6 +264,7 @@ export function Header() {
 
         <Link
           href="/contato"
+          data-orbee-cta="agendar-formulario:menu-topo"
           className={cn(
             "inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs tracking-[1.5px] uppercase whitespace-nowrap hover:-translate-y-px transition-all duration-300",
             useReadableStyle
@@ -329,6 +330,7 @@ export function Header() {
             </form>
             <Link
               href="/contato"
+              data-orbee-cta="agendar-formulario:menu-celular"
               onClick={closeMobile}
               className="mt-4 flex items-center justify-center bg-teal text-white py-3 rounded-full text-sm"
             >
