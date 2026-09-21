@@ -8,6 +8,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Agende sua consulta com a Dra. Janaína Drumond, ortopedista em Belo Horizonte. Atendimento exclusivamente particular.",
   path: "/contato",
+  ogImage: "/contato/opengraph-image",
 });
 
 export default function AgendePage() {

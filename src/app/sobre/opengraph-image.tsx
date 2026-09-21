@@ -6,5 +6,5 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
 export default function Image() {
-  return renderOgImage({ assunto: "Ortopedia completa. Mão e punho." });
+  return renderOgImage({ assunto: "Conheça a Dra. Janaína" });
 }

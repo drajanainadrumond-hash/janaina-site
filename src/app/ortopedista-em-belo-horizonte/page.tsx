@@ -40,6 +40,7 @@ export const metadata: Metadata = buildPageMetadata({
   title: TITULO,
   description: DESCRICAO,
   path: "/ortopedista-em-belo-horizonte",
+  ogImage: "/ortopedista-em-belo-horizonte/opengraph-image",
 });
 
 /** As perguntas são as que aparecem no "As pessoas também perguntam" das SERPs capturadas. */

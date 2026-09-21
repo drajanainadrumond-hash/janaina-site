@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: cond.title,
     description: getCondicaoDirectAnswer(cond.slug, cond.desc),
     path: `/condicoes/${slug}`,
+    ogImage: `/condicoes/${slug}/opengraph-image`,
   });
 }
 

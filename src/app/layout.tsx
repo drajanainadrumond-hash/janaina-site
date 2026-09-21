@@ -9,7 +9,6 @@ import { ClientShell } from "@/components/layout/client-shell";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE } from "@/lib/constants";
-import { absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
 
 const airePro = localFont({
@@ -65,14 +64,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: SITE.name,
-    images: [
-      {
-        url: absoluteUrl(DEFAULT_OG_IMAGE),
-        width: 1200,
-        height: 630,
-        alt: SITE.fullName,
-      },
-    ],
+    // Sem `images` aqui: a prévia vem de `opengraph-image.tsx` (a da home vale para as
+    // páginas que não têm a sua). Imagem fixa neste objeto passaria por cima delas. (1.3.5)
   },
   twitter: {
     card: "summary_large_image",

@@ -42,6 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: esp.title,
     description: esp.desc,
     path: `/especialidades/${slug}`,
+    ogImage: `/especialidades/${slug}/opengraph-image`,
   });
 }
 
