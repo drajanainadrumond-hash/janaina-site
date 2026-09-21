@@ -37,6 +37,29 @@ export const SOCIAL = {
 } as const;
 
 /**
+ * Produção científica com endereço verificável. Conferido nas fontes em 21/09/2026:
+ * o DOI resolve para o artigo com ela entre os 5 autores, e o ORCID está no nome dela
+ * e lista esse mesmo artigo. (1.3.6 · C31 autoridade)
+ */
+export const ACADEMICO = {
+  orcid: "https://orcid.org/0000-0003-2579-0312",
+  artigo: {
+    titulo:
+      "Avaliação do Resultado da Adição de Bicarbonato de Sódio em Solução para Infiltração em Patologias da Mão",
+    autores: [
+      "Bruno Kaehler de Albuquerque Maranhão",
+      "Antônio Barbosa Chaves",
+      "Janaína Drumond Rocha Fraga",
+      "Daphne Rios Viana",
+      "Luis Guilherme Rosifini Alves Rezende",
+    ],
+    periodico: "Archives of Health Investigation",
+    publicadoEm: "2023-11-30",
+    doi: "10.21270/archi.v12i11.6210",
+  },
+} as const;
+
+/**
  * Prova social agregada — o que dá para publicar sem reproduzir palavra de paciente.
  *
  * Regra do projeto (C36, item 6): depoimento de paciente **não vai ao site**, real ou não.

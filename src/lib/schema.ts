@@ -1,4 +1,4 @@
-import { CONTACT, SITE, SOCIAL } from "@/lib/constants";
+import { ACADEMICO, CONTACT, SITE, SOCIAL } from "@/lib/constants";
 import { absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 /** Savassi — Av. do Contorno (aproximado para schema LocalBusiness). */
@@ -102,9 +102,12 @@ export function generatePhysician() {
       postalCode: SITE.address.zip,
       addressCountry: "BR",
     },
-    sameAs: [SOCIAL.facebook, SOCIAL.instagram, SOCIAL.doctoralia, SOCIAL.linkedin, SOCIAL.youtube].filter(
-      (url) => url !== "#"
-    ),
+    sameAs: [
+      ...[SOCIAL.facebook, SOCIAL.instagram, SOCIAL.doctoralia, SOCIAL.linkedin, SOCIAL.youtube].filter(
+        (url) => url !== "#"
+      ),
+      ACADEMICO.orcid,
+    ],
     hasCredential: [
       {
         "@type": "EducationalOccupationalCredential",

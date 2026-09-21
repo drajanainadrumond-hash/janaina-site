@@ -5,6 +5,8 @@ import { TimelineFeed } from "@/components/condicoes/timeline-feed";
 import { withHome } from "@/lib/breadcrumbs";
 import { buildPageMetadata } from "@/lib/seo";
 import { PageBreadcrumbs } from "@/components/seo/page-breadcrumbs";
+import { ACADEMICO, SITE } from "@/lib/constants";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Produção Científica — Dra. Janaína Drumond",
@@ -16,10 +18,13 @@ export const metadata: Metadata = buildPageMetadata({
 const CONTENT = `
 <h2>Artigo em Periódico Indexado (2023)</h2>
 <div style="background:#f8f7f4;border-radius:16px;padding:24px;border:1px solid #e0dfdb;margin-bottom:8px">
-<p><strong>Periódico:</strong> Archives of Health Investigation.</p>
-<p><strong>Ano:</strong> 2023.</p>
-<p><strong>ORCID:</strong> <code>0000-0003-2579-0312</code>.</p>
+<p><strong>Título:</strong> "${ACADEMICO.artigo.titulo}."</p>
+<p><strong>Autores:</strong> ${ACADEMICO.artigo.autores.map((a) => (a.startsWith("Janaína") ? `<strong>${a}</strong>` : a)).join(", ")}.</p>
+<p><strong>Periódico:</strong> ${ACADEMICO.artigo.periodico}, novembro de 2023.</p>
+<p><strong>Leia o artigo:</strong> <a href="https://doi.org/${ACADEMICO.artigo.doi}" target="_blank" rel="noopener">doi.org/${ACADEMICO.artigo.doi}</a></p>
+<p><strong>ORCID:</strong> <a href="${ACADEMICO.orcid}" target="_blank" rel="noopener">0000-0003-2579-0312</a></p>
 </div>
+<p>O estudo avaliou o resultado de acrescentar bicarbonato de sódio à solução usada nas infiltrações de patologias da mão.</p>
 <p><em>Archives of Health Investigation</em> é uma revista científica indexada voltada à pesquisa em saúde. A publicação neste periódico demonstra capacidade de produzir e comunicar conhecimento científico seguindo os padrões metodológicos exigidos pela comunidade acadêmica.</p>
 
 <h2>Congresso Mineiro de Ortopedia e Traumatologia (2018)</h2>
@@ -51,10 +56,32 @@ const CONTENT = `
 </ul>
 `;
 
+const ARTIGO_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  headline: ACADEMICO.artigo.titulo,
+  inLanguage: "pt-BR",
+  datePublished: ACADEMICO.artigo.publicadoEm,
+  isPartOf: { "@type": "Periodical", name: ACADEMICO.artigo.periodico },
+  identifier: { "@type": "PropertyValue", propertyID: "DOI", value: ACADEMICO.artigo.doi },
+  url: `https://doi.org/${ACADEMICO.artigo.doi}`,
+  author: ACADEMICO.artigo.autores.map((nome) =>
+    nome.startsWith("Janaína")
+      ? { "@type": "Person", "@id": absoluteUrl("/#physician"), name: SITE.fullName, sameAs: ACADEMICO.orcid }
+      : { "@type": "Person", name: nome }
+  ),
+};
+
 export default function PublicacoesPage() {
   return (
     <>
       {/* Hero */}
+      {/* O artigo como ScholarlyArticle, ligado ao Physician do site pelo @id — é o que deixa
+          o Google e os buscadores de IA verem a publicação como dela. (1.3.6) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTIGO_SCHEMA) }}
+      />
       <div className="relative bg-teal overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_45%,rgba(0,86,91,0.35)_0%,transparent_60%)]" />
 
@@ -92,7 +119,9 @@ export default function PublicacoesPage() {
               <div>
                 <p className="text-[1.125rem] text-white/70 font-medium">Dra. Janaína Drumond</p>
                 <div className="flex items-center gap-3 text-[1.125rem] text-white/60">
-                  <span>ORCID: 0000-0003-2579-0312</span>
+                  <a href={ACADEMICO.orcid} target="_blank" rel="noopener" className="underline underline-offset-2 hover:text-white transition-colors">
+                    ORCID: 0000-0003-2579-0312
+                  </a>
                 </div>
               </div>
             </div>
