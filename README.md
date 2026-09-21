@@ -1,71 +1,78 @@
 # janainadrumond.com.br
 
-Site institucional da **Dra. Janaína Drumond** — Ortopedista e Traumatologista em Belo Horizonte com formação em Cirurgia da Mão e Punho.
+Site da **Dra. Janaína Drumond**, médica ortopedista e traumatologista em Belo Horizonte
+(CRM-MG 69719 · RQE 50592), com formação em cirurgia da mão e punho.
 
-## Stack Técnica (Livro-Guia 2026)
+## Stack
 
-- **Next.js 16** + **React 19** + **TypeScript**
-- **Tailwind CSS 4** + **shadcn/ui**
-- **Zustand** (estado global)
-- **Jest** + **React Testing Library** (TDD)
-- **sonner** (notificações) | **lucide-react** (ícones)
-- **react-hook-form** + **zod** (formulários)
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**, hospedado na **Vercel**
+- **Tailwind CSS 4** — tema em `src/app/globals.css` (sem biblioteca de componentes)
+- **Supabase** — admin, blog, formulários e newsletter
+- **Resend** — e-mail do formulário de contato
+- **react-hook-form** — formulários · **sanitize-html** — HTML dos posts do blog
+- **googleapis** — agenda do Google no admin
+- **Jest** + **Testing Library** — testes · **ESLint** — lint
+- **sonner** (avisos) · **lucide-react** (ícones)
+
+Node **24** (`.nvmrc` e `engines` no `package.json`).
+
+> Nota para agentes: esta versão do Next muda APIs e convenções. Antes de escrever código,
+> ler o guia em `node_modules/next/dist/docs/` (ver `AGENTS.md`).
 
 ## Desenvolvimento
 
-Copie as variáveis de ambiente e ajuste os valores (Supabase, e-mail, etc.):
-
 ```bash
-cp .env.example .env.local
+cp .env.example .env.local   # e preencher
+npm run dev                  # http://127.0.0.1:3000
+npm run build && npm run start
+npm run lint
+npm run test                 # Jest em modo watch
+npm run test:ci              # Jest uma vez (é o que o CI roda)
 ```
 
-```bash
-npm run dev      # Servidor em http://127.0.0.1:3000
-npm run build    # Build de produção
-npm run start    # Servidor de produção
-npm run lint     # ESLint
-npm run test     # Jest (watch mode para TDD)
-npm run test:ci  # Jest em modo CI
-```
+Variável obrigatória faltando não trava o servidor: ela é avisada no log quando ele sobe
+(`src/instrumentation.ts` → `src/lib/env-check.ts`). A lista está em `.env.example`.
 
-## Estrutura do Projeto
+## CI
+
+`.github/workflows/ci.yml`: `npm ci` + lint + testes em todo push e pull request. Os testes
+guardam os fatos canônicos (endereço, CRM, RQE, preço, terminologia) e a limpeza do HTML do blog.
+Deploy: a Vercel publica a `main` a cada push.
+
+## Estrutura
 
 ```
 src/
-├── app/                    # App Router (Next.js)
-│   ├── sobre/
-│   ├── especialidades/
-│   ├── condicoes/
-│   ├── blog/
-│   ├── contato/
-│   ├── agende-sua-consulta/
-│   └── ...
-├── components/
-│   ├── layout/             # Header, Footer
-│   └── ui/                 # shadcn/ui
-├── lib/                    # Utilitários
-├── store/                  # Zustand stores
-└── hooks/                  # Custom hooks
+├── app/            # rotas (App Router): home, sobre, especialidades, condicoes, blog,
+│                   # faq, contato, depoimentos, ortopedista-em-belo-horizonte, admin, api
+├── components/     # por área: home, layout, condicoes, especialidades, faq, forms,
+│                   # seo, effects, admin, ui
+├── lib/            # conteúdo (condicoes, especialidades, faqs, blog), schema.org, seo,
+│                   # constants (fatos canônicos), orbee/utm (rastreio), supabase
+├── hooks/          # use-focus-trap, use-reveal
+└── instrumentation.ts
 ```
 
-## Identidade Visual
+**Fatos canônicos** (nome, CRM, RQE, endereço, telefone, preço) moram em `src/lib/constants.ts`.
 
-Paleta conforme Manual de Marca 2026:
+## Identidade visual
 
-- **#003E51** — Azul principal
-- **#00565B** — Teal
-- **#85878B** — Cinza
-- **#E6E5E2** — Off-white
-- **#2D3748** — Texto principal
+Tokens em `src/app/globals.css`:
 
-## SEO
+| Token | Cor | Uso |
+|---|---|---|
+| `teal` | `#003E51` | azul principal |
+| `teal-mid` | `#00565B` | teal |
+| `cream` | `#E6E5E2` | off-white |
+| `cream-light` | `#F5F4F2` | fundo claro |
+| `gray-brand` | `#66686D` | cinza (mais escuro que o `#85878B` do manual, para passar no contraste AA) |
+| `dark` | `#0A1F2C` | texto principal |
+| `whatsapp` | `#25D366` | botões de WhatsApp |
 
-- Metadata API (title, description, Open Graph)
-- `robots.txt` e `sitemap.xml` dinâmicos
-- GTM preparado (descomentar no layout quando ID disponível)
+Fontes locais em `src/fonts/`: Aire Roman Pro (títulos) e Century Gothic (texto).
 
-## Referências
+## Rastreio
 
-- Livro-Guia Dra. Janaína Drumond (Orbee Labs)
-- Checklist de Tecnologias Atualizado 2026
-- Manual de Marca — Identidade Visual 2026
+- **Central Orbee**: `src/lib/orbee.ts` + `orbee-autocapture` — cliques no WhatsApp, telefone,
+  Doctoralia e botões com `data-orbee-cta`, enviados direto à Central (sem GTM, sem cookie de terceiro).
+- **GTM / GA4** com Consent Mode (padrão negado até o aceite no banner de cookies).
