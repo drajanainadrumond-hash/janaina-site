@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, Suspense } from "react";
+import { useState, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CONDICOES } from "@/lib/condicoes";
@@ -93,10 +93,14 @@ function SearchResults() {
   const searchParams = useSearchParams();
   const q = searchParams.get("q") || "";
   const [query, setQuery] = useState(q);
+  const [qAnterior, setQAnterior] = useState(q);
 
-  useEffect(() => {
+  // Quando o ?q= da URL muda, ele passa para o campo — ajustado no próprio
+  // render, sem efeito (https://react.dev/learn/you-might-not-need-an-effect).
+  if (q !== qAnterior) {
+    setQAnterior(q);
     if (q) setQuery(q);
-  }, [q]);
+  }
 
   const allResults = useMemo(() => buildIndex(), []);
 

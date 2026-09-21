@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, useRef, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -83,13 +83,17 @@ function BodySilhouette({ active, onSelect }: { active: Area; onSelect: (a: Area
 function CondicoesContent() {
   const searchParams = useSearchParams();
   const [activeArea, setActiveArea] = useState<Area>("todas");
-  const [search, setSearch] = useState("");
+  const q = searchParams.get("q") ?? "";
+  const [search, setSearch] = useState(q);
+  const [qAnterior, setQAnterior] = useState(q);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const q = searchParams.get("q");
+  // Quando o ?q= da URL muda, ele passa para a busca — ajustado no próprio
+  // render, sem efeito (https://react.dev/learn/you-might-not-need-an-effect).
+  if (q !== qAnterior) {
+    setQAnterior(q);
     if (q) setSearch(q);
-  }, [searchParams]);
+  }
 
   const filtered = CONDICOES.filter((c) => {
     const matchesArea = activeArea === "todas" || c.area === activeArea;

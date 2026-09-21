@@ -1,4 +1,4 @@
-const nextJest = require("next/jest");
+import nextJest from "next/jest.js";
 
 const createJestConfig = nextJest({
   dir: "./",
@@ -42,7 +42,7 @@ const ESM_A_TRANSFORMAR = [
 
 const criarConfig = createJestConfig(customJestConfig);
 
-module.exports = async (...args) => {
+const jestConfig = async (...args) => {
   const config = await criarConfig(...args);
 
   config.transformIgnorePatterns = [
@@ -52,3 +52,5 @@ module.exports = async (...args) => {
 
   return config;
 };
+
+export default jestConfig;

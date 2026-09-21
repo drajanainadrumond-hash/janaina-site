@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
 
 const COOKIE_KEY = "cookie-consent";
@@ -65,51 +65,68 @@ function injectAnalytics() {
   injectMetaPixel();
 }
 
+// A escolha mora no localStorage; o React lê de lá como loja externa. No
+// servidor (e na hidratação) vale "pending", para o banner sair no HTML.
+const ouvintes = new Set<() => void>();
+
+function assinarConsentimento(avisar: () => void) {
+  ouvintes.add(avisar);
+  return () => {
+    ouvintes.delete(avisar);
+  };
+}
+
+function lerConsentimento(): ConsentState {
+  try {
+    const stored = localStorage.getItem(COOKIE_KEY);
+    return stored === "accepted" || stored === "rejected" ? stored : "pending";
+  } catch {
+    return "pending";
+  }
+}
+
+function gravarConsentimento(valor: "accepted" | "rejected") {
+  localStorage.setItem(COOKIE_KEY, valor);
+  ouvintes.forEach((avisar) => avisar());
+}
+
 export function CookieConsent() {
-  const [consent, setConsent] = useState<ConsentState>("pending");
-  // Inicia visível para ser renderizado no SSR (pinta no FCP, não atrasa o LCP).
+  // Começa "pending" para ser renderizado no SSR (pinta no FCP, não atrasa o LCP).
   // Quem já consentiu é escondido antes do paint pelo script anti-flash no layout
-  // (data-consent="given") e desmontado por este efeito.
-  const [visible, setVisible] = useState(true);
+  // (data-consent="given") e desmontado assim que a hidratação lê o localStorage.
+  const consent = useSyncExternalStore(
+    assinarConsentimento,
+    lerConsentimento,
+    () => "pending" as const
+  );
 
   useEffect(() => {
     // GTM entra pra TODO visitante (consent denied por default = sem cookie).
     // É o que devolve visão modelada do GA4 sem esperar o clique no banner.
     injectGTM();
 
-    const stored = localStorage.getItem(COOKIE_KEY);
-    if (stored === "accepted" || stored === "rejected") {
-      setConsent(stored);
-      setVisible(false);
-      if (stored === "accepted") injectAnalytics();
-    } else {
-      setVisible(true);
-    }
+    if (lerConsentimento() === "accepted") injectAnalytics();
   }, []);
 
   useEffect(() => {
-    if (visible && consent === "pending") {
+    if (consent === "pending") {
       document.body.classList.add("cookie-banner-open");
     } else {
       document.body.classList.remove("cookie-banner-open");
     }
     return () => document.body.classList.remove("cookie-banner-open");
-  }, [visible, consent]);
+  }, [consent]);
 
   function handleAccept() {
-    localStorage.setItem(COOKIE_KEY, "accepted");
-    setConsent("accepted");
-    setVisible(false);
+    gravarConsentimento("accepted");
     injectAnalytics();
   }
 
   function handleReject() {
-    localStorage.setItem(COOKIE_KEY, "rejected");
-    setConsent("rejected");
-    setVisible(false);
+    gravarConsentimento("rejected");
   }
 
-  if (!visible || consent !== "pending") return null;
+  if (consent !== "pending") return null;
 
   return (
     <div className="cookie-consent-root fixed bottom-0 inset-x-0 z-[9999] p-4 sm:p-6">

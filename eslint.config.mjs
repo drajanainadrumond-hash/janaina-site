@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Relatório gerado pelo jest --coverage (já fora do git).
+    "coverage/**",
   ]),
 ]);
 
