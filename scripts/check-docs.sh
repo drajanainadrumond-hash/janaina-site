@@ -30,9 +30,19 @@ else erro "arquivo com '- [ ]' fora do roadmap:"; echo "$intrusos" | sed 's|^|  
 echo "3) nada ativo aponta para lugar aposentado"
 # Citar em prosa o que virou histórico é legítimo. O que quebra é apontar como CAMINHO DE ARQUIVO,
 # porque aí alguém abre e trabalha a partir dele — foi exatamente o que aconteceu em 10/09.
-mortos=$(grep -rn "ROADMAP-MASTER\.md\|Janaina-Cerebro/" --include="*.md" "$V" "$D" 2>/dev/null \
-  | grep -v "_historico/" | grep -v "git log" | grep -v "MUDOU DE LUGAR" \
-  | grep -v "Comece Aqui.md" | grep -v "morava dentro" | grep -v "Aposentados em" || true)
+# `03-Pesquisas/` fica de fora com o `_historico/`: são retratos datados, prova do que se
+# sabia na data (D53), e citam os arquivos de então de propósito. Linha de TABELA (começa com
+# "|") também sai: ali o arquivo aparece como fonte consultada, não como "vá trabalhar aqui" —
+# que é o único caso que faz perder uma sessão.
+# 20/09: o padrão pegava só "ROADMAP-MASTER.md" e passou 21 wikilinks vivos para o
+# "ROADMAP MESTRE (fila única)" (que está em _historico/) em 16 notas do cofre, mais dois
+# ponteiros para o RETOMADA.md, que não existe desde a D52 — um deles no TOPO da própria fila.
+mortos=$(grep -rn "ROADMAP-MASTER\.md\|Janaina-Cerebro/\|ROADMAP MESTRE\|RETOMADA\.md\|RUMO-AOS-100\|PLANO-TRACKING\|CHECKUP-360" --include="*.md" "$V" "$D" 2>/dev/null \
+  | grep -v "_historico/" | grep -v "03-Pesquisas/" | grep -v "git log" \
+  | grep -v "MUDOU DE LUGAR" | grep -v "Comece Aqui.md" | grep -v "morava dentro" \
+  | grep -v "Aposentados em" | grep -v "check-docs" \
+  | grep -vE ":[0-9]+:\|" \
+  | grep -viE "aposentad|n[ãa]o existe|foi arquivad|fonte:|superado" || true)
 if [ -z "$mortos" ]; then ok "sem ponteiro para o que morreu"
 else erro "ponteiro vivo para lugar aposentado:"; echo "$mortos" | head -8 | sed 's|^|       |'; fi
 
