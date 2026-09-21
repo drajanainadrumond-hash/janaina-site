@@ -129,9 +129,18 @@ export function CookieConsent() {
   if (consent !== "pending") return null;
 
   return (
-    <div className="cookie-consent-root fixed bottom-0 inset-x-0 z-[9999] p-4 sm:p-6">
+    // Diálogo NÃO modal (1.4.6): o leitor de tela anuncia o aviso pelo nome, mas o foco
+    // não é roubado nem preso — o banner não bloqueia a página, e prender o Tab aqui
+    // travaria o site inteiro para quem navega pelo teclado até a escolha.
+    <div
+      role="dialog"
+      aria-modal="false"
+      aria-label="Aviso de cookies"
+      aria-describedby="cookie-consent-texto"
+      className="cookie-consent-root fixed bottom-0 inset-x-0 z-[9999] p-4 sm:p-6"
+    >
       <div className="max-w-[440px] mx-auto bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-black/[0.04] p-4 sm:p-5">
-        <p className="text-[0.95rem] text-[#4A5E6B] leading-[1.6] mb-3">
+        <p id="cookie-consent-texto" className="text-[0.95rem] text-[#4A5E6B] leading-[1.6] mb-3">
           Usamos cookies para melhorar sua experiência. Ao aceitar, você concorda com nossa{" "}
           <Link href="/politica-de-privacidade" className="text-teal underline underline-offset-2">
             Política de Privacidade
@@ -139,12 +148,14 @@ export function CookieConsent() {
         </p>
         <div className="flex flex-col sm:flex-row gap-2.5">
           <button
+            type="button"
             onClick={handleAccept}
             className="flex-1 py-2.5 rounded-full text-[1rem] tracking-[0.3px] bg-teal text-white hover:bg-teal-mid transition-colors"
           >
             Aceitar cookies
           </button>
           <button
+            type="button"
             onClick={handleReject}
             className="flex-1 py-2.5 rounded-full text-[1rem] tracking-[0.3px] bg-cream-light text-[#4A5E6B] border border-cream-dark hover:bg-cream-dark/20 transition-colors"
           >
