@@ -1,0 +1,29 @@
+# 1.4.4 — lint + testes em todo push e pull request.
+# Os testes são as guardas dos fatos canônicos (CRM, RQE, endereço, preço) e a
+# limpeza do HTML do blog: se um deles quebra, o commit aparece vermelho no GitHub.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-e-testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test:ci
