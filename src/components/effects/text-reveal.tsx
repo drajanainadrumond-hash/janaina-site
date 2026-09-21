@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+
+const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
+
+function assinarReducedMotion(avisar: () => void) {
+  const mql = window.matchMedia(REDUCED_MOTION);
+  mql.addEventListener("change", avisar);
+  return () => mql.removeEventListener("change", avisar);
+}
 
 /**
  * Text that reveals character by character as it enters the viewport.
@@ -18,28 +26,35 @@ export function TextReveal({
   as?: "div" | "h1" | "h2" | "h3" | "p" | "span";
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  // Respect prefers-reduced-motion — show immediately without animation
+  const reducedMotion = useSyncExternalStore(
+    assinarReducedMotion,
+    () => window.matchMedia(REDUCED_MOTION).matches,
+    () => false
+  );
+  const visible = revealed || reducedMotion;
 
   useEffect(() => {
-    // Respect prefers-reduced-motion — show immediately without animation
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
+    if (reducedMotion) return;
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => setVisible(true), delay);
+          setTimeout(() => setRevealed(true), delay);
           observer.unobserve(el);
         }
       },
-      { threshold: 0.2 }
+      // Sem limiar de área: enquanto fechado, o próprio clip-path zera a área
+      // visível do texto, e um threshold de 0.2 nunca era atingido — o texto
+      // abaixo da dobra ficava invisível para sempre. A margem de baixo faz
+      // ele abrir só depois de entrar um pouco na tela.
+      { rootMargin: "0px 0px -15% 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, reducedMotion]);
 
   return (
     <Tag
