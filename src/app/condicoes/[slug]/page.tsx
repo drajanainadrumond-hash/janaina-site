@@ -89,11 +89,8 @@ export default async function CondicaoPage({ params }: Props) {
 
         <AeoContentIntro directAnswer={directAnswer} pageTitle={cond.title} />
 
-        <CondicaoWhatsAppCta
-          condicao={cond.title}
-          slug={cond.slug}
-          posicao="topo"
-        />
+        {/* Sem botão de WhatsApp aqui: o cartão "Quem vai te atender" já leva um — fixo na
+            lateral no desktop e logo acima deste trecho no celular. (pedido da Diana, 21/09) */}
 
         <hr className="my-8 border-cream-dark" />
 
